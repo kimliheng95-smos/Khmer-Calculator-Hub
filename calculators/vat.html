@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO -->
+    <title>VAT Calculator | Khmer Calculator Hub</title>
+
+    <meta
+      name="description"
+      content="Calculate VAT amount, pre-tax price and total price quickly and easily with Khmer Calculator Hub."
+    />
+
+    <meta
+      name="keywords"
+      content="VAT Calculator, VAT Calculator Cambodia, VAT Tax Calculator, VAT Amount Calculator, Pre-Tax Calculator, គណនា VAT, គណនាពន្ធ VAT, គណនាតម្លៃមុនពន្ធ, គណនាតម្លៃសរុប, Khmer Calculator"
+    />
+
+    <meta name="robots" content="index, follow" />
+
+    <!-- Canonical -->
+    <link
+      rel="canonical"
+      href="https://kimliheng95-smos.github.io/Khmer-Calculator-Hub/calculators/vat.html"
+    />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+
+    <meta property="og:title" content="VAT Calculator | Khmer Calculator Hub" />
+
+    <meta
+      property="og:description"
+      content="Calculate VAT amount, pre-tax price and total price quickly and easily with Khmer Calculator Hub."
+    />
+
+    <meta
+      property="og:url"
+      content="https://kimliheng95-smos.github.io/Khmer-Calculator-Hub/calculators/vat.html"
+    />
+
+    <meta property="og:site_name" content="Khmer Calculator Hub" />
+
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Kantumruy+Pro:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    <nav
+      class="navbar navbar-expand-lg navbar-light bg-white sticky-top border-bottom"
+    >
+      <div class="container">
+        <a
+          class="navbar-brand d-flex align-items-center gap-2"
+          href="../index.html"
+        >
+          <div class="logo">
+            <i class="bi bi-calculator"></i>
+          </div>
+
+          <div>
+            <span class="brand-name"> Khmer Calculator </span>
+            <small class="brand-subtitle"> HUB </small>
+          </div>
+        </a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#mainNavbar"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="mainNavbar">
+          <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+            <li class="nav-item">
+              <a class="nav-link" href="../index.html" data-i18n="home">
+                Home
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                href="../index.html#calculators"
+                data-i18n="calculators"
+              >
+                Calculators
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="../index.html#about" data-i18n="about">
+                About
+              </a>
+            </li>
+
+            <li class="nav-item ms-lg-2">
+              <button type="button" class="language-btn" id="languageButton">
+                <i class="bi bi-translate"></i>
+                <span id="languageText">EN</span>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main -->
+    <main class="py-5">
+      <div class="container">
+        <!-- Breadcrumb -->
+        <div class="mb-4">
+          <a href="../index.html" class="text-decoration-none">
+            <i class="bi bi-house"></i>
+            <span data-i18n="home">Home</span>
+          </a>
+
+          <span class="mx-2 text-secondary">/</span>
+
+          <span data-i18n="vatCalculator"> VAT Calculator </span>
+        </div>
+
+        <!-- Header -->
+        <div class="text-center mb-5">
+          <div class="calculator-icon mb-3">
+            <i class="bi bi-receipt-cutoff"></i>
+          </div>
+
+          <h1 class="fw-bold" data-i18n="vatCalculator">VAT Calculator</h1>
+
+          <p class="text-secondary" data-i18n="vatDescription">
+            Calculate VAT amount, total price and price before VAT.
+          </p>
+        </div>
+
+        <!-- Calculator -->
+        <div class="row justify-content-center">
+          <div class="col-lg-7 col-md-9">
+            <div class="calculator-box">
+              <!-- Calculation Type -->
+              <div class="mb-4">
+                <label class="form-label fw-semibold">
+                  <span data-i18n="vatCalculationType"> Calculation Type </span>
+                </label>
+
+                <select class="form-select" id="vatType">
+                  <option value="add" data-i18n="addVat">Add VAT</option>
+
+                  <option value="remove" data-i18n="removeVat">
+                    Remove VAT
+                  </option>
+                </select>
+              </div>
+
+              <!-- Price -->
+              <div class="mb-4">
+                <label
+                  for="price"
+                  class="form-label fw-semibold"
+                  data-i18n="price"
+                >
+                  Price
+                </label>
+
+                <input
+                  type="number"
+                  id="price"
+                  class="form-control"
+                  placeholder="Example: 100"
+                  data-i18n-placeholder="example100"
+                  min="0"
+                  step="0.01"
+                />
+              </div>
+
+              <!-- VAT Rate -->
+              <div class="mb-4">
+                <label
+                  for="vatRate"
+                  class="form-label fw-semibold"
+                  data-i18n="vatRate"
+                >
+                  VAT Rate (%)
+                </label>
+
+                <input
+                  type="number"
+                  id="vatRate"
+                  class="form-control"
+                  placeholder="Example: 10"
+                  data-i18n-placeholder="example10"
+                  min="0"
+                  max="100"
+                  step="0.01"
+                />
+              </div>
+
+              <!-- Calculate -->
+              <button
+                type="button"
+                class="btn btn-primary w-100"
+                onclick="calculateVAT()"
+                data-i18n="calculate"
+              >
+                Calculate
+              </button>
+
+              <!-- Result -->
+              <div id="vatResult" class="result-box mt-4 d-none">
+                <h5 class="fw-bold mb-4" data-i18n="result">Result</h5>
+
+                <div class="row g-3">
+                  <div class="col-md-4">
+                    <div class="p-3 bg-light rounded">
+                      <small
+                        class="text-secondary d-block mb-1"
+                        data-i18n="priceBeforeVat"
+                      >
+                        Price Before VAT
+                      </small>
+
+                      <strong id="priceBeforeVat"> $0.00 </strong>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="p-3 bg-light rounded">
+                      <small
+                        class="text-secondary d-block mb-1"
+                        data-i18n="vatAmount"
+                      >
+                        VAT Amount
+                      </small>
+
+                      <strong id="vatAmount"> $0.00 </strong>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="p-3 bg-light rounded">
+                      <small
+                        class="text-secondary d-block mb-1"
+                        data-i18n="totalPrice"
+                      >
+                        Total Price
+                      </small>
+
+                      <strong id="totalPrice"> $0.00 </strong>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- History -->
+            <div class="history-box">
+              <div class="history-header">
+                <h3 class="history-title">
+                  <i class="bi bi-clock-history"></i>
+
+                  <span data-i18n="calculationHistory">
+                    Calculation History
+                  </span>
+                </h3>
+
+                <button
+                  type="button"
+                  class="btn btn-sm btn-outline-danger"
+                  onclick="clearVATHistory()"
+                  data-i18n="clearHistory"
+                >
+                  Clear
+                </button>
+              </div>
+
+              <div id="historyContainer"></div>
+            </div>
+
+            <!-- Example -->
+            <div class="alert alert-info mt-4">
+              <h6 class="fw-bold">
+                <i class="bi bi-lightbulb"></i>
+
+                <span data-i18n="vatExampleTitle"> Example </span>
+              </h6>
+
+              <p class="mb-0" data-i18n="vatExample">
+                If the price is $100 and VAT is 10%, the VAT amount is $10 and
+                the total price is $110.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-5">
+      <div class="container py-5">
+        <div class="row g-4">
+          <div class="col-md-4">
+            <h5 class="fw-bold">Khmer Calculator Hub</h5>
+
+            <p class="text-secondary" data-i18n="footerDescription">
+              Simple and useful calculators for everyday life.
+            </p>
+          </div>
+
+          <div class="col-md-4">
+            <h6 class="fw-bold" data-i18n="calculators">Calculators</h6>
+
+            <ul class="list-unstyled">
+              <li>
+                <a href="gpa.html">GPA Calculator</a>
+              </li>
+
+              <li>
+                <a href="grade.html">Grade Calculator</a>
+              </li>
+
+              <li>
+                <a href="discount.html">Discount Calculator</a>
+              </li>
+
+              <li>
+                <a href="profit.html">Profit Calculator</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-md-4">
+            <h6 class="fw-bold">More</h6>
+
+            <ul class="list-unstyled">
+              <li>
+                <a href="../index.html#about"> About </a>
+              </li>
+
+              <li>
+                <a href="../index.html"> Home </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-top py-3">
+        <div class="container text-center text-secondary">
+          © 2026 Khmer Calculator Hub
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="../js/history.js"></script>
+    <script src="../js/language.js"></script>
+    <script src="../js/vat.js"></script>
+  </body>
+</html>

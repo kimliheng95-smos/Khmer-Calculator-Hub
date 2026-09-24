@@ -1,0 +1,568 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO -->
+    <title>Savings Calculator | Khmer Calculator Hub</title>
+
+    <meta
+      name="description"
+      content="Calculate future savings, total contributions and interest earned based on your savings amount, interest rate and time."
+    />
+
+    <meta
+      name="keywords"
+      content="Savings Calculator, Savings Interest Calculator, Savings Growth Calculator, Future Savings Calculator, គណនាប្រាក់សន្សំ, គណនាការសន្សំ, គណនាការប្រាក់សន្សំ, Khmer Calculator"
+    />
+
+    <meta name="robots" content="index, follow" />
+
+    <!-- Canonical -->
+    <link
+      rel="canonical"
+      href="https://kimliheng95-smos.github.io/Khmer-Calculator-Hub/calculators/savings.html"
+    />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+
+    <meta
+      property="og:title"
+      content="Savings Calculator | Khmer Calculator Hub"
+    />
+
+    <meta
+      property="og:description"
+      content="Calculate future savings, total contributions and interest earned easily with Khmer Calculator Hub."
+    />
+
+    <meta
+      property="og:url"
+      content="https://kimliheng95-smos.github.io/Khmer-Calculator-Hub/calculators/savings.html"
+    />
+
+    <meta property="og:site_name" content="Khmer Calculator Hub" />
+
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap Icons -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Kantumruy+Pro:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="../css/style.css" />
+    <style>
+      .calculator-box {
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 20px;
+        padding: 30px;
+        box-shadow: 0 15px 40px rgba(15, 23, 42, 0.06);
+      }
+
+      .result-box {
+        background: #f8fafc;
+        border: 1px solid #e5e7eb;
+        border-radius: 18px;
+        padding: 25px;
+      }
+
+      .savings-result-item {
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 14px;
+        padding: 18px;
+        height: 100%;
+      }
+
+      .savings-result-item small {
+        display: block;
+        color: #64748b;
+        font-weight: 600;
+        margin-bottom: 6px;
+      }
+
+      .savings-result-item strong {
+        font-size: 22px;
+        color: #1e293b;
+      }
+
+      .future-value {
+        background: #fff5f5;
+        border: 1px solid #fecaca;
+      }
+
+      .future-value strong {
+        color: #d71920;
+        font-size: 28px;
+      }
+
+      .history-box {
+        margin-top: 25px;
+        background: white;
+        border: 1px solid #e5e7eb;
+        border-radius: 20px;
+        padding: 25px;
+        box-shadow: 0 15px 40px rgba(15, 23, 42, 0.06);
+      }
+
+      .history-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        gap: 10px;
+      }
+
+      .history-title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 0;
+        font-size: 20px;
+        font-weight: 700;
+      }
+
+      .history-title i {
+        color: #2563eb;
+      }
+
+      .history-item {
+        background: #f8fafc;
+        transition: 0.2s;
+      }
+
+      .history-item:hover {
+        transform: translateY(-2px);
+      }
+
+      @media (max-width: 576px) {
+        .calculator-box {
+          padding: 20px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ========================================
+     NAVBAR
+======================================== -->
+
+    <nav
+      class="navbar navbar-expand-lg navbar-light bg-white sticky-top border-bottom"
+    >
+      <div class="container">
+        <a
+          class="navbar-brand d-flex align-items-center gap-2"
+          href="../index.html"
+        >
+          <div class="logo">
+            <i class="bi bi-calculator"></i>
+          </div>
+
+          <div>
+            <span class="brand-name"> Khmer Calculator </span>
+
+            <small class="brand-subtitle"> HUB </small>
+          </div>
+        </a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#mainNavbar"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="mainNavbar">
+          <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+            <li class="nav-item">
+              <a class="nav-link" href="../index.html" data-i18n="home">
+                Home
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                href="../index.html#calculators"
+                data-i18n="calculators"
+              >
+                Calculators
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="../index.html#about" data-i18n="about">
+                About
+              </a>
+            </li>
+
+            <li class="nav-item ms-lg-2">
+              <button type="button" class="language-btn" id="languageButton">
+                <i class="bi bi-translate"></i>
+                <span id="languageText">EN</span>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ========================================
+     MAIN
+======================================== -->
+
+    <main>
+      <div class="container py-4">
+        <!-- Breadcrumb -->
+
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a
+                href="../index.html"
+                class="text-decoration-none"
+                data-i18n="home"
+              >
+                Home
+              </a>
+            </li>
+
+            <li class="breadcrumb-item active" data-i18n="savingsCalculator">
+              Savings Calculator
+            </li>
+          </ol>
+        </nav>
+
+        <!-- Title -->
+
+        <div class="text-center mb-4">
+          <div class="mb-3">
+            <i
+              class="bi bi-piggy-bank"
+              style="font-size: 48px; color: #d71920"
+            ></i>
+          </div>
+
+          <h1 class="fw-bold" data-i18n="savingsCalculator">
+            Savings Calculator
+          </h1>
+
+          <p class="text-secondary" data-i18n="savingsDescription">
+            Calculate your future savings and interest earned.
+          </p>
+        </div>
+
+        <!-- Calculator -->
+
+        <div class="row justify-content-center">
+          <div class="col-lg-7 col-md-9">
+            <div class="calculator-box">
+              <!-- Initial Deposit -->
+
+              <div class="mb-3">
+                <label
+                  for="initialDeposit"
+                  class="form-label fw-semibold"
+                  data-i18n="initialDeposit"
+                >
+                  Initial Deposit
+                </label>
+
+                <div class="input-group">
+                  <span class="input-group-text"> $ </span>
+
+                  <input
+                    type="number"
+                    id="initialDeposit"
+                    class="form-control"
+                    placeholder="Example: 1000"
+                    data-i18n-placeholder="example1000"
+                    min="0"
+                    step="0.01"
+                  />
+                </div>
+              </div>
+
+              <!-- Monthly Contribution -->
+
+              <div class="mb-3">
+                <label
+                  for="monthlyContribution"
+                  class="form-label fw-semibold"
+                  data-i18n="monthlyContribution"
+                >
+                  Monthly Contribution
+                </label>
+
+                <div class="input-group">
+                  <span class="input-group-text"> $ </span>
+
+                  <input
+                    type="number"
+                    id="monthlyContribution"
+                    class="form-control"
+                    placeholder="Example: 100"
+                    data-i18n-placeholder="example100"
+                    min="0"
+                    step="0.01"
+                  />
+                </div>
+              </div>
+
+              <!-- Interest Rate -->
+
+              <div class="mb-3">
+                <label
+                  for="savingsRate"
+                  class="form-label fw-semibold"
+                  data-i18n="annualInterestRate"
+                >
+                  Annual Interest Rate (%)
+                </label>
+
+                <div class="input-group">
+                  <input
+                    type="number"
+                    id="savingsRate"
+                    class="form-control"
+                    placeholder="Example: 5"
+                    data-i18n-placeholder="example5"
+                    min="0"
+                    step="0.01"
+                  />
+
+                  <span class="input-group-text"> % </span>
+                </div>
+              </div>
+
+              <!-- Years -->
+
+              <div class="mb-3">
+                <label
+                  for="savingsYears"
+                  class="form-label fw-semibold"
+                  data-i18n="savingPeriod"
+                >
+                  Saving Period (Years)
+                </label>
+
+                <input
+                  type="number"
+                  id="savingsYears"
+                  class="form-control"
+                  placeholder="Example: 5"
+                  data-i18n-placeholder="example5"
+                  min="0.01"
+                  step="0.01"
+                />
+              </div>
+
+              <!-- Calculate -->
+
+              <button
+                type="button"
+                id="calculateSavingsButton"
+                class="btn btn-danger w-100 py-2"
+                data-i18n="calculate"
+              >
+                Calculate
+              </button>
+
+              <!-- Result -->
+
+              <div id="savingsResult" class="result-box mt-4 d-none">
+                <div class="text-center mb-4">
+                  <small class="text-secondary" data-i18n="futureValue">
+                    FUTURE VALUE
+                  </small>
+
+                  <div
+                    id="futureValue"
+                    class="fw-bold mt-2"
+                    style="color: #d71920; font-size: 32px"
+                  >
+                    $0.00
+                  </div>
+
+                  <p id="savingsResultText" class="text-secondary mb-0">
+                    Future savings
+                  </p>
+                </div>
+
+                <div class="row g-3">
+                  <!-- Total Contributions -->
+
+                  <div class="col-md-4">
+                    <div class="savings-result-item">
+                      <small data-i18n="totalContributions">
+                        Total Contributions
+                      </small>
+
+                      <strong id="totalContributions"> $0.00 </strong>
+                    </div>
+                  </div>
+
+                  <!-- Interest Earned -->
+
+                  <div class="col-md-4">
+                    <div class="savings-result-item">
+                      <small data-i18n="interestEarned">
+                        Interest Earned
+                      </small>
+
+                      <strong id="interestEarned"> $0.00 </strong>
+                    </div>
+                  </div>
+
+                  <!-- Future Value -->
+
+                  <div class="col-md-4">
+                    <div class="savings-result-item future-value">
+                      <small data-i18n="futureValue"> Future Value </small>
+
+                      <strong id="futureValueSmall"> $0.00 </strong>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ========================================
+                     HISTORY
+                ======================================== -->
+
+            <div class="history-box">
+              <div class="history-header">
+                <h3 class="history-title">
+                  <i class="bi bi-clock-history"></i>
+
+                  <span data-i18n="calculationHistory">
+                    Calculation History
+                  </span>
+                </h3>
+
+                <button
+                  type="button"
+                  id="clearSavingsHistoryButton"
+                  class="btn btn-sm btn-outline-danger"
+                >
+                  <i class="bi bi-trash"></i>
+
+                  <span data-i18n="clearHistory"> Clear History </span>
+                </button>
+              </div>
+
+              <div id="historyContainer"></div>
+            </div>
+
+            <!-- ========================================
+                     INFO
+                ======================================== -->
+
+            <div class="mt-4 p-4 bg-white border rounded-4">
+              <h5 class="fw-bold">
+                <i class="bi bi-lightbulb text-warning"></i>
+
+                <span data-i18n="savingsExampleTitle"> Example </span>
+              </h5>
+
+              <p class="text-secondary mb-0">
+                <span data-i18n="savingsExample">
+                  If you start with $1,000, save $100 every month, earn 5%
+                  annual interest, and save for 5 years, this calculator
+                  estimates your future savings.
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- ========================================
+     FOOTER
+======================================== -->
+
+    <footer class="mt-5">
+      <div class="container py-5">
+        <div class="row g-4">
+          <div class="col-lg-5">
+            <h5 class="fw-bold">Khmer Calculator Hub</h5>
+
+            <p class="text-secondary">
+              Simple and useful calculators for everyday life.
+            </p>
+          </div>
+
+          <div class="col-md-3">
+            <h6 class="fw-bold" data-i18n="calculators">Calculators</h6>
+
+            <ul class="list-unstyled">
+              <li>
+                <a href="gpa.html"> GPA Calculator </a>
+              </li>
+
+              <li>
+                <a href="loan.html"> Loan Calculator </a>
+              </li>
+
+              <li>
+                <a href="interest.html"> Interest Calculator </a>
+              </li>
+
+              <li>
+                <a href="savings.html"> Savings Calculator </a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-md-4">
+            <h6 class="fw-bold" data-i18n="company">Company</h6>
+
+            <ul class="list-unstyled">
+              <li>
+                <a href="../index.html#about"> About </a>
+              </li>
+
+              <li>
+                <a href="../index.html#calculators"> All Calculators </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ========================================
+     SCRIPTS
+======================================== -->
+
+    <script src="../js/history.js"></script>
+
+    <script src="../js/savings.js"></script>
+
+    <script src="../js/language.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

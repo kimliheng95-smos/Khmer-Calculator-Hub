@@ -1,0 +1,585 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO -->
+    <title>Loan Calculator | Khmer Calculator Hub</title>
+
+    <meta
+      name="description"
+      content="Calculate monthly loan payments, total payments and total interest easily with Khmer Calculator Hub. Free loan calculator."
+    />
+
+    <meta
+      name="keywords"
+      content="Loan Calculator, loan payment calculator, monthly loan calculator, loan calculator Cambodia, គណនាកម្ចី, គណនាបង់រំលស់, Khmer Calculator"
+    />
+
+    <meta name="robots" content="index, follow" />
+
+    <!-- Canonical -->
+    <link
+      rel="canonical"
+      href="https://kimliheng95-smos.github.io/Khmer-Calculator-Hub/calculators/loan.html"
+    />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+
+    <meta
+      property="og:title"
+      content="Loan Calculator | Khmer Calculator Hub"
+    />
+
+    <meta
+      property="og:description"
+      content="Calculate monthly loan payments, total payments and total interest easily with Khmer Calculator Hub."
+    />
+
+    <meta
+      property="og:url"
+      content="https://kimliheng95-smos.github.io/Khmer-Calculator-Hub/calculators/loan.html"
+    />
+
+    <meta property="og:site_name" content="Khmer Calculator Hub" />
+
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap Icons -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Kantumruy+Pro:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="../css/style.css" />
+
+    <style>
+      .calculator-box {
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+        border-radius: 20px;
+        padding: 30px;
+        box-shadow: 0 15px 40px rgba(15, 23, 42, 0.06);
+      }
+
+      .result-box {
+        background: #f8fafc;
+        border: 1px solid #e5e7eb;
+        border-radius: 16px;
+        padding: 22px;
+      }
+
+      .loan-result-item {
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+        border-radius: 14px;
+        padding: 18px;
+        text-align: center;
+        height: 100%;
+      }
+
+      .loan-result-item small {
+        display: block;
+        color: #64748b;
+        margin-bottom: 8px;
+      }
+
+      .loan-result-item strong {
+        display: block;
+        font-size: 22px;
+        font-weight: 700;
+      }
+
+      .history-box {
+        margin-top: 25px;
+        background: white;
+        border: 1px solid #e5e7eb;
+        border-radius: 20px;
+        padding: 25px;
+        box-shadow: 0 15px 40px rgba(15, 23, 42, 0.06);
+      }
+
+      .history-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        gap: 10px;
+      }
+
+      .history-title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 0;
+        font-size: 20px;
+        font-weight: 700;
+      }
+
+      .history-title i {
+        color: #2563eb;
+      }
+
+      .history-item {
+        background: #f8fafc;
+        transition: 0.2s;
+      }
+
+      .history-item:hover {
+        transform: translateY(-2px);
+      }
+
+      @media (max-width: 576px) {
+        .calculator-box {
+          padding: 20px;
+        }
+
+        .history-box {
+          padding: 18px;
+        }
+
+        .history-title {
+          font-size: 18px;
+        }
+
+        .loan-result-item {
+          padding: 15px 10px;
+        }
+
+        .loan-result-item strong {
+          font-size: 19px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ========================================
+     NAVBAR
+======================================== -->
+
+    <nav
+      class="navbar navbar-expand-lg navbar-light bg-white sticky-top border-bottom"
+    >
+      <div class="container">
+        <a
+          class="navbar-brand d-flex align-items-center gap-2"
+          href="../index.html"
+        >
+          <div class="logo">
+            <i class="bi bi-calculator"></i>
+          </div>
+
+          <div>
+            <span class="brand-name"> Khmer Calculator </span>
+
+            <small class="brand-subtitle"> HUB </small>
+          </div>
+        </a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#mainNavbar"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="mainNavbar">
+          <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+            <li class="nav-item">
+              <a class="nav-link" href="../index.html" data-i18n="home">
+                Home
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                href="../index.html#calculators"
+                data-i18n="calculators"
+              >
+                Calculators
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="../index.html#about" data-i18n="about">
+                About
+              </a>
+            </li>
+
+            <li class="nav-item ms-lg-2">
+              <button type="button" class="language-btn" id="languageButton">
+                <i class="bi bi-translate"></i>
+
+                <span id="languageText"> EN </span>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ========================================
+     MAIN
+======================================== -->
+
+    <main>
+      <div class="container py-5">
+        <!-- BREADCRUMB -->
+
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a
+                href="../index.html"
+                class="text-decoration-none"
+                data-i18n="home"
+              >
+                Home
+              </a>
+            </li>
+
+            <li class="breadcrumb-item active" data-i18n="loanCalculator">
+              Loan Calculator
+            </li>
+          </ol>
+        </nav>
+
+        <!-- TITLE -->
+
+        <div class="text-center mb-5">
+          <div class="mb-3">
+            <i
+              class="bi bi-cash-stack"
+              style="font-size: 50px; color: #d71920"
+            ></i>
+          </div>
+
+          <h1 class="fw-bold" data-i18n="loanCalculator">Loan Calculator</h1>
+
+          <p class="text-muted" data-i18n="loanDescription">
+            Calculate monthly payment, total payment and total interest.
+          </p>
+        </div>
+
+        <!-- ========================================
+             CALCULATOR
+        ======================================== -->
+
+        <div class="row justify-content-center">
+          <div class="col-lg-7 col-md-9">
+            <div class="calculator-box">
+              <!-- LOAN AMOUNT -->
+
+              <div class="mb-3">
+                <label
+                  for="loanAmount"
+                  class="form-label fw-semibold"
+                  data-i18n="loanAmount"
+                >
+                  Loan Amount
+                </label>
+
+                <input
+                  type="number"
+                  class="form-control"
+                  id="loanAmount"
+                  placeholder="Example: 10000"
+                  data-i18n-placeholder="example10000"
+                  min="0"
+                  step="any"
+                />
+              </div>
+
+              <!-- INTEREST RATE -->
+
+              <div class="mb-3">
+                <label
+                  for="interestRate"
+                  class="form-label fw-semibold"
+                  data-i18n="interestRate"
+                >
+                  Annual Interest Rate (%)
+                </label>
+
+                <input
+                  type="number"
+                  class="form-control"
+                  id="interestRate"
+                  placeholder="Example: 5"
+                  data-i18n-placeholder="example5"
+                  min="0"
+                  step="any"
+                />
+              </div>
+
+              <!-- LOAN TERM -->
+
+              <div class="mb-4">
+                <label
+                  for="loanTerm"
+                  class="form-label fw-semibold"
+                  data-i18n="loanTerm"
+                >
+                  Loan Term (Years)
+                </label>
+
+                <input
+                  type="number"
+                  class="form-control"
+                  id="loanTerm"
+                  placeholder="Example: 5"
+                  data-i18n-placeholder="example5"
+                  min="1"
+                  step="1"
+                />
+              </div>
+
+              <!-- CALCULATE -->
+
+              <button
+                type="button"
+                class="btn btn-danger w-100 py-2"
+                id="calculateLoanButton"
+              >
+                <i class="bi bi-calculator"></i>
+
+                <span data-i18n="calculate"> Calculate </span>
+              </button>
+
+              <!-- ========================================
+                         RESULT
+                    ======================================== -->
+
+              <div id="loanResult" class="result-box mt-4 d-none">
+                <h5 class="fw-bold text-center mb-3">
+                  <span data-i18n="result"> Result </span>
+                </h5>
+
+                <div class="row g-3">
+                  <!-- MONTHLY PAYMENT -->
+
+                  <div class="col-12">
+                    <div class="loan-result-item">
+                      <small data-i18n="monthlyPayment">
+                        Monthly Payment
+                      </small>
+
+                      <strong id="monthlyPayment"> $0.00 </strong>
+                    </div>
+                  </div>
+
+                  <!-- TOTAL PAYMENT -->
+
+                  <div class="col-6">
+                    <div class="loan-result-item">
+                      <small data-i18n="totalPayment"> Total Payment </small>
+
+                      <strong id="totalPayment"> $0.00 </strong>
+                    </div>
+                  </div>
+
+                  <!-- TOTAL INTEREST -->
+
+                  <div class="col-6">
+                    <div class="loan-result-item">
+                      <small data-i18n="totalInterest"> Total Interest </small>
+
+                      <strong id="totalInterest"> $0.00 </strong>
+                    </div>
+                  </div>
+                </div>
+
+                <p
+                  id="loanResultText"
+                  class="text-muted text-center mb-0 mt-3"
+                ></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ========================================
+             HISTORY
+        ======================================== -->
+
+        <div class="row justify-content-center">
+          <div class="col-lg-7 col-md-9">
+            <div class="history-box">
+              <div class="history-header">
+                <h3 class="history-title">
+                  <i class="bi bi-clock-history"></i>
+
+                  <span data-i18n="calculationHistory">
+                    Calculation History
+                  </span>
+                </h3>
+
+                <button
+                  type="button"
+                  class="btn btn-sm btn-outline-danger"
+                  id="clearLoanHistoryButton"
+                >
+                  <i class="bi bi-trash3"></i>
+
+                  <span data-i18n="clearHistory"> Clear All </span>
+                </button>
+              </div>
+
+              <div id="historyContainer"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ========================================
+             INFO
+        ======================================== -->
+
+        <div class="row justify-content-center mt-5">
+          <div class="col-lg-7 col-md-9">
+            <div class="calculator-box">
+              <h4 class="fw-bold mb-3" data-i18n="loanExampleTitle">Example</h4>
+
+              <p class="mb-2">
+                <strong data-i18n="loanAmount"> Loan Amount </strong>
+
+                : $10,000
+              </p>
+
+              <p class="mb-2">
+                <strong data-i18n="interestRate"> Annual Interest Rate </strong>
+
+                : 5%
+              </p>
+
+              <p class="mb-0">
+                <strong data-i18n="loanTerm"> Loan Term </strong>
+
+                : 5 years
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- ========================================
+     FOOTER
+======================================== -->
+
+    <footer class="mt-5">
+      <div class="container py-5">
+        <div class="row g-4">
+          <div class="col-lg-5">
+            <h5 class="fw-bold">Khmer Calculator HUB</h5>
+
+            <p class="text-muted" data-i18n="footerDescription">
+              Simple and useful online calculators for everyone.
+            </p>
+          </div>
+
+          <div class="col-6 col-lg-3">
+            <h6 class="fw-bold" data-i18n="tools">Tools</h6>
+
+            <ul class="list-unstyled">
+              <li>
+                <a href="gpa.html" class="text-decoration-none">
+                  GPA Calculator
+                </a>
+              </li>
+
+              <li>
+                <a href="grade.html" class="text-decoration-none">
+                  Grade Calculator
+                </a>
+              </li>
+
+              <li>
+                <a href="average.html" class="text-decoration-none">
+                  Average Calculator
+                </a>
+              </li>
+
+              <li>
+                <a href="loan.html" class="text-decoration-none">
+                  Loan Calculator
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-6 col-lg-3">
+            <h6 class="fw-bold" data-i18n="company">Company</h6>
+
+            <ul class="list-unstyled">
+              <li>
+                <a
+                  href="../index.html#about"
+                  class="text-decoration-none"
+                  data-i18n="about"
+                >
+                  About
+                </a>
+              </li>
+
+              <li>
+                <a href="#" class="text-decoration-none" data-i18n="contact">
+                  Contact
+                </a>
+              </li>
+
+              <li>
+                <a href="#" class="text-decoration-none" data-i18n="privacy">
+                  Privacy
+                </a>
+              </li>
+
+              <li>
+                <a href="#" class="text-decoration-none" data-i18n="terms">
+                  Terms
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-top">
+        <div class="container py-3 text-center">
+          <small class="text-muted">
+            © 2026 Khmer Calculator Hub. All rights reserved.
+          </small>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ========================================
+     JAVASCRIPT
+======================================== -->
+
+    <script src="../js/history.js"></script>
+
+    <script src="../js/loan.js"></script>
+
+    <script src="../js/language.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
