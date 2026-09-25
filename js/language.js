@@ -4,6 +4,7 @@ const translations = {
   // =========================================================
   // ENGLISH
   // =========================================================
+
   en: {
     // ================= NAVBAR =================
     home: "Home",
@@ -12,12 +13,16 @@ const translations = {
 
     // ================= HERO =================
     heroBadge: "Free Online Tools for Everyone",
-    heroTitleMain: "Calculate Anything,",
-    heroTitleSimple: " Simply.",
+
+    // SEO: Main H1
+    heroTitleMain: "Khmer Calculator Hub",
+    heroTitleSimple: " – Free Online Calculators",
+
     heroKhmer: "Fast • Easy • Free",
 
+    // SEO: Main description
     heroDescription:
-      "Khmer Calculator Hub provides simple and useful calculators for students, businesses and everyday life.",
+      "Khmer Calculator Hub provides free online calculators for students, businesses and everyday life in Cambodia. Calculate GPA, grades, percentage, salary, loan, tax, BMI and more.",
 
     searchPlaceholder: "Search calculator...",
     search: "Search",
@@ -28,15 +33,12 @@ const translations = {
 
     gpaResult: "GPA RESULT",
     excellentResult: "Excellent Result",
-
     advertisement: "Advertisement",
 
     // ================= HOME =================
     tools: "Tools",
     popularCalculators: "Popular Calculators",
-
     popularDescription: "Useful calculators for students and everyday life.",
-
     viewAll: "View All",
 
     // ================= GPA =================
@@ -92,10 +94,13 @@ const translations = {
 
     age: "Age Calculator",
     ageCalculator: "Age Calculator",
+
     bmi: "BMI Calculator",
     bmiCalculator: "BMI Calculator",
+
     unit: "Unit Converter",
     unitConverter: "Unit Converter",
+
     currency: "Currency Converter",
     currencyConverter: "Currency Converter",
 
@@ -127,12 +132,10 @@ const translations = {
     contact: "Contact",
     privacy: "Privacy",
     terms: "Terms",
-
     followUs: "Follow Us",
 
     copyright: "© 2026 Khmer Calculator Hub",
     madeInCambodia: "Made with ❤️ in Cambodia",
-
     founderDeveloper: "Founder & Developer",
 
     // ================= COMMON =================
@@ -143,6 +146,7 @@ const translations = {
     clearHistory: "Clear All",
 
     example: "Example",
+
     example100: "Example: 100",
     example1000: "Example: 1000",
     example200: "Example: 200",
@@ -154,11 +158,13 @@ const translations = {
     example6: "Example: 6",
     example10: "Example: 10",
     example20: "Example: 20",
+
     exampleNumber: "Example: 100",
     example1_2: "Example: 1.2",
     example10000: "Example: 10000",
 
     enterAllValues: "Please enter all values.",
+
     invalidValues: "Please enter valid values.",
 
     // ================= PERCENTAGE =================
@@ -170,6 +176,7 @@ const translations = {
 
     percentOf: "What is X% of Y?",
     whatPercent: "X is what % of Y?",
+
     percentageIncrease: "Percentage Increase",
     percentageDecrease: "Percentage Decrease",
 
@@ -208,7 +215,9 @@ const translations = {
     loanTerm: "Loan Term (Years)",
 
     monthlyPayment: "Monthly Payment",
+
     totalPayment: "Total Payment",
+
     totalInterest: "Total Interest",
 
     loanExampleTitle: "Example",
@@ -225,6 +234,7 @@ const translations = {
     interestType: "Interest Type",
 
     simpleInterest: "Simple Interest",
+
     compoundInterest: "Compound Interest",
 
     principal: "Principal Amount",
@@ -236,12 +246,17 @@ const translations = {
     compoundFrequency: "Compound Frequency",
 
     annually: "Annually",
+
     semiAnnually: "Semi-annually",
+
     quarterly: "Quarterly",
+
     monthly: "Monthly",
+
     daily: "Daily",
 
     interestEarned: "Interest",
+
     totalAmount: "Total Amount",
 
     interestExampleTitle: "Example",
@@ -279,11 +294,15 @@ const translations = {
       "Calculate taxable income, tax amount and after-tax income.",
 
     income: "Income",
+
     taxDeduction: "Tax Deduction",
+
     taxRate: "Tax Rate (%)",
 
     taxableIncome: "Taxable Income",
+
     taxAmount: "Tax Amount",
+
     afterTaxIncome: "After-Tax Income",
 
     taxAmountResult: "Tax Amount",
@@ -304,11 +323,15 @@ const translations = {
       "Calculate your gross salary, deductions and net salary.",
 
     basicSalary: "Basic Salary",
+
     allowances: "Allowances",
+
     deductions: "Deductions",
 
     grossSalary: "Gross Salary",
+
     totalDeductions: "Total Deductions",
+
     netSalary: "Net Salary",
 
     yourNetSalary: "Your estimated net salary",
@@ -330,6 +353,7 @@ const translations = {
     vatCalculationType: "Calculation Type",
 
     addVat: "Add VAT",
+
     removeVat: "Remove VAT",
 
     price: "Price",
@@ -337,7 +361,9 @@ const translations = {
     vatRate: "VAT Rate (%)",
 
     priceBeforeVat: "Price Before VAT",
+
     vatAmount: "VAT Amount",
+
     totalPrice: "Total Price",
 
     vatExampleTitle: "Example",
@@ -402,58 +428,102 @@ const translations = {
     confirmClearHistory:
       "Are you sure you want to clear all calculation history?",
 
-    // ---- Added missing keys ----
+    // ================= ADDED MISSING KEYS =================
     allCalculators: "All Calculators",
-    chooseCalculator: "Choose the calculator you need.",
-    ageDescription: "Calculate your exact age.",
-    bmiDescription: "Calculate your Body Mass Index.",
-    unitDescription: "Convert length, weight, temperature and more.",
-    convert: "Convert",
-    currencyDescription: "Convert between different currencies.",
-    enterBirthDate: "Enter Your Date of Birth",
-    dateOfBirth: "Date of Birth",
-    calculateAge: "Calculate Age",
-    yourAge: "Your Age",
-    years: "Years",
-    months: "Months",
-    days: "Days",
-    examples: "Examples",
-    enterInformation: "Enter Your Information",
-    weight: "Weight (kg)",
-    height: "Height (cm)",
-    calculateBMI: "Calculate BMI",
-    yourBMI: "YOUR BMI",
-    bmiCategories: "BMI Categories",
-    underweight: "Underweight",
-    normal: "Normal",
-    overweight: "Overweight",
-    obesity: "Obesity",
-    currencyCalculator: "Currency Calculator",
-    amount: "Amount",
-    enterAmount: "Enter amount",
-    from: "From",
-    to: "To",
-    convertedAmount: "Converted Amount",
-    supportedCurrencies: "Supported Currencies",
-    calculateDiscount: "Calculate Discount",
-    youSave: "You Save",
-    maximumScore: "Maximum Score",
-    calculateGrade: "Calculate Grade",
-    percentage: "Percentage",
-    calculateProfit: "Calculate Profit",
-    conversionType: "Conversion Type",
-    length: "Length",
-    weightUnit: "Weight",
-    temperature: "Temperature",
-    area: "Area",
-    value: "Value",
-    conversionResult: "CONVERSION RESULT",
 
+    chooseCalculator: "Choose the calculator you need.",
+
+    ageDescription: "Calculate your exact age.",
+
+    bmiDescription: "Calculate your Body Mass Index.",
+
+    unitDescription: "Convert length, weight, temperature and more.",
+
+    convert: "Convert",
+
+    currencyDescription: "Convert between different currencies.",
+
+    enterBirthDate: "Enter Your Date of Birth",
+
+    dateOfBirth: "Date of Birth",
+
+    calculateAge: "Calculate Age",
+
+    yourAge: "Your Age",
+
+    years: "Years",
+
+    months: "Months",
+
+    days: "Days",
+
+    examples: "Examples",
+
+    enterInformation: "Enter Your Information",
+
+    weight: "Weight (kg)",
+
+    height: "Height (cm)",
+
+    calculateBMI: "Calculate BMI",
+
+    yourBMI: "YOUR BMI",
+
+    bmiCategories: "BMI Categories",
+
+    underweight: "Underweight",
+
+    normal: "Normal",
+
+    overweight: "Overweight",
+
+    obesity: "Obesity",
+
+    currencyCalculator: "Currency Calculator",
+
+    amount: "Amount",
+
+    enterAmount: "Enter amount",
+
+    from: "From",
+
+    to: "To",
+
+    convertedAmount: "Converted Amount",
+
+    supportedCurrencies: "Supported Currencies",
+
+    calculateDiscount: "Calculate Discount",
+
+    youSave: "You Save",
+
+    maximumScore: "Maximum Score",
+
+    calculateGrade: "Calculate Grade",
+
+    percentage: "Percentage",
+
+    calculateProfit: "Calculate Profit",
+
+    conversionType: "Conversion Type",
+
+    length: "Length",
+
+    weightUnit: "Weight",
+
+    temperature: "Temperature",
+
+    area: "Area",
+
+    value: "Value",
+
+    conversionResult: "CONVERSION RESULT",
   },
 
   // =========================================================
   // KHMER
   // =========================================================
+
   kh: {
     // ================= NAVBAR =================
     home: "ទំព័រដើម",
@@ -461,31 +531,39 @@ const translations = {
     about: "អំពីយើង",
 
     // ================= HERO =================
+
     heroBadge: "ឧបករណ៍អនឡាញឥតគិតថ្លៃ សម្រាប់អ្នកគ្រប់គ្នា",
 
-    heroTitleMain: "គណនាអ្វីៗបាន",
-    heroTitleSimple: " យ៉ាងងាយស្រួល។",
+    // SEO: Khmer H1
+    heroTitleMain: "Khmer Calculator Hub",
+
+    heroTitleSimple: " – ម៉ាស៊ីនគណនាអនឡាញឥតគិតថ្លៃ",
 
     heroKhmer: "រហ័ស • ងាយស្រួល • ឥតគិតថ្លៃ",
 
+    // SEO: Khmer description
     heroDescription:
-      "Khmer Calculator Hub ផ្តល់ជូនម៉ាស៊ីនគណនាដែលងាយស្រួល និងមានប្រយោជន៍ សម្រាប់សិស្ស និស្សិត អាជីវកម្ម និងការប្រើប្រាស់ប្រចាំថ្ងៃ។",
+      "Khmer Calculator Hub ផ្តល់ជូនម៉ាស៊ីនគណនាអនឡាញឥតគិតថ្លៃ សម្រាប់សិស្ស និស្សិត អាជីវកម្ម និងការប្រើប្រាស់ប្រចាំថ្ងៃនៅកម្ពុជា។ គណនា GPA ពិន្ទុ ភាគរយ ប្រាក់ខែ ប្រាក់កម្ចី ពន្ធ BMI និងច្រើនទៀត។",
 
     searchPlaceholder: "ស្វែងរកម៉ាស៊ីនគណនា...",
 
     search: "ស្វែងរក",
 
     free: "ឥតគិតថ្លៃ",
+
     fast: "រហ័ស",
+
     mobileFriendly: "ប្រើបានល្អលើទូរស័ព្ទ",
 
     gpaResult: "លទ្ធផល GPA",
+
     excellentResult: "លទ្ធផលល្អប្រសើរ",
 
     advertisement: "ការផ្សព្វផ្សាយ",
 
     // ================= HOME =================
     tools: "ឧបករណ៍",
+
     popularCalculators: "ម៉ាស៊ីនគណនាពេញនិយម",
 
     popularDescription:
@@ -495,12 +573,15 @@ const translations = {
 
     // ================= GPA =================
     gpa: "ម៉ាស៊ីនគណនា GPA",
+
     gpaCalculator: "ម៉ាស៊ីនគណនា GPA",
 
     gpaDescription: "គណនា Grade Point Average របស់អ្នកបានយ៉ាងងាយស្រួល។",
 
     subjectName: "ឈ្មោះមុខវិជ្ជា",
+
     credit: "ក្រេឌីត",
+
     selectGrade: "ជ្រើសរើសនិទ្ទេស",
 
     addSubject: "បន្ថែមមុខវិជ្ជា",
@@ -517,8 +598,11 @@ const translations = {
     gradeDescription: "គណនាពិន្ទុ និងនិទ្ទេសរបស់អ្នក។",
 
     score: "ពិន្ទុ",
+
     enterScore: "បញ្ចូលពិន្ទុ",
+
     gradeResult: "និទ្ទេស",
+
     gradeMessage: "លទ្ធផល",
 
     // ================= DISCOUNT =================
@@ -529,8 +613,11 @@ const translations = {
     discountDescription: "គណនាបញ្ចុះតម្លៃ និងតម្លៃចុងក្រោយបានយ៉ាងរហ័ស។",
 
     originalPrice: "តម្លៃដើម",
+
     discountPercent: "ភាគរយបញ្ចុះតម្លៃ (%)",
+
     discountAmount: "ចំនួនទឹកប្រាក់បញ្ចុះ",
+
     finalPrice: "តម្លៃចុងក្រោយ",
 
     // ================= PROFIT =================
@@ -541,8 +628,11 @@ const translations = {
     profitDescription: "គណនាចំណេញ និងភាគរយចំណេញ។",
 
     costPrice: "ថ្លៃដើម",
+
     sellingPrice: "តម្លៃលក់",
+
     profitAmount: "ប្រាក់ចំណេញ",
+
     profitMargin: "ភាគរយចំណេញ",
 
     // ================= MORE TOOLS =================
@@ -556,12 +646,15 @@ const translations = {
       "ចាប់ពីការគណនាអាយុ រហូតដល់ការបម្លែងឯកតា Khmer Calculator Hub ផ្តល់ជូនឧបករណ៍ងាយស្រួលសម្រាប់ការគណនាប្រចាំថ្ងៃ។",
 
     age: "ម៉ាស៊ីនគណនាអាយុ",
+
     ageCalculator: "ម៉ាស៊ីនគណនាអាយុ",
 
     bmi: "ម៉ាស៊ីនគណនា BMI",
+
     bmiCalculator: "ម៉ាស៊ីនគណនា BMI",
 
     unit: "កម្មវិធីបម្លែងឯកតា",
+
     unitConverter: "កម្មវិធីបម្លែងឯកតា",
 
     currency: "កម្មវិធីបម្លែងរូបិយប័ណ្ណ",
@@ -572,12 +665,19 @@ const translations = {
 
     // ================= CATEGORIES =================
     all: "ទាំងអស់",
+
     education: "ការអប់រំ",
+
     finance: "ហិរញ្ញវត្ថុ",
+
     business: "អាជីវកម្ម",
+
     health: "សុខភាព",
+
     math: "គណិតវិទ្យា",
+
     converter: "កម្មវិធីបម្លែង",
+
     transport: "ការធ្វើដំណើរ",
 
     // ================= ABOUT =================
@@ -593,8 +693,11 @@ const translations = {
       "ម៉ាស៊ីនគណនាអនឡាញ និងឧបករណ៍មានប្រយោជន៍ឥតគិតថ្លៃ សម្រាប់សិស្ស និស្សិត អាជីវកម្ម និងការប្រើប្រាស់ប្រចាំថ្ងៃ។",
 
     company: "ក្រុមហ៊ុន",
+
     contact: "ទំនាក់ទំនង",
+
     privacy: "ឯកជនភាព",
+
     terms: "លក្ខខណ្ឌ",
 
     followUs: "តាមដានពួកយើង",
@@ -607,6 +710,7 @@ const translations = {
 
     // ================= COMMON =================
     calculate: "គណនា",
+
     result: "លទ្ធផល",
 
     calculationHistory: "ប្រវត្តិការគណនា",
@@ -616,18 +720,31 @@ const translations = {
     example: "ឧទាហរណ៍",
 
     example100: "ឧទាហរណ៍៖ 100",
+
     example1000: "ឧទាហរណ៍៖ 1000",
+
     example200: "ឧទាហរណ៍៖ 200",
+
     example2000: "ឧទាហរណ៍៖ 2000",
+
     example50: "ឧទាហរណ៍៖ 50",
+
     example80: "ឧទាហរណ៍៖ 80",
+
     example90: "ឧទាហរណ៍៖ 90",
+
     example5: "ឧទាហរណ៍៖ 5",
+
     example6: "ឧទាហរណ៍៖ 6",
+
     example10: "ឧទាហរណ៍៖ 10",
+
     example20: "ឧទាហរណ៍៖ 20",
+
     exampleNumber: "ឧទាហរណ៍៖ 100",
+
     example1_2: "ឧទាហរណ៍៖ 1.2",
+
     example10000: "ឧទាហរណ៍៖ 10000",
 
     enterAllValues: "សូមបញ្ចូលតម្លៃទាំងអស់។",
@@ -657,11 +774,15 @@ const translations = {
     averageDescription: "គណនាផលបូក មធ្យមភាគ តម្លៃតូចបំផុត និងតម្លៃធំបំផុត។",
 
     enterNumbers: "បញ្ចូលលេខ",
+
     addNumber: "បន្ថែមលេខ",
 
     sum: "ផលបូក",
+
     average: "មធ្យមភាគ",
+
     minimum: "តម្លៃតូចបំផុត",
+
     maximum: "តម្លៃធំបំផុត",
 
     enterAtLeastOneNumber: "សូមបញ្ចូលលេខយ៉ាងហោចណាស់មួយ។",
@@ -715,9 +836,13 @@ const translations = {
     compoundFrequency: "ចំនួនដងបូកការប្រាក់",
 
     annually: "ប្រចាំឆ្នាំ",
+
     semiAnnually: "រៀងរាល់ ៦ ខែ",
+
     quarterly: "រៀងរាល់ ៣ ខែ",
+
     monthly: "ប្រចាំខែ",
+
     daily: "ប្រចាំថ្ងៃ",
 
     interestEarned: "ការប្រាក់",
@@ -759,7 +884,9 @@ const translations = {
       "គណនាប្រាក់ចំណូលជាប់ពន្ធ ចំនួនពន្ធ និងប្រាក់ចំណូលក្រោយបង់ពន្ធ។",
 
     income: "ប្រាក់ចំណូល",
+
     taxDeduction: "ការកាត់បន្ថយពន្ធ",
+
     taxRate: "អត្រាពន្ធ (%)",
 
     taxableIncome: "ប្រាក់ចំណូលជាប់ពន្ធ",
@@ -889,53 +1016,96 @@ const translations = {
     // ================= HISTORY =================
     confirmClearHistory: "តើអ្នកប្រាកដថាចង់លុបប្រវត្តិការគណនាទាំងអស់មែនទេ?",
 
-    // ---- Added missing keys ----
+    // ================= ADDED MISSING KEYS =================
     allCalculators: "ម៉ាស៊ីនគណនាទាំងអស់",
-    chooseCalculator: "ជ្រើសរើសម៉ាស៊ីនគណនាដែលអ្នកត្រូវការ។",
-    ageDescription: "គណនាអាយុពិតប្រាកដរបស់អ្នក។",
-    bmiDescription: "គណនាសន្ទស្សន៍ម៉ាសរាងកាយ (BMI)។",
-    unitDescription: "បម្លែងប្រវែង ទម្ងន់ សីតុណ្ហភាព និងអ្វីៗផ្សេងទៀត។",
-    convert: "បម្លែង",
-    currencyDescription: "បម្លែងរវាងរូបិយប័ណ្ណផ្សេងៗ។",
-    enterBirthDate: "បញ្ចូលថ្ងៃខែឆ្នាំកំណើត",
-    dateOfBirth: "ថ្ងៃខែឆ្នាំកំណើត",
-    calculateAge: "គណនាអាយុ",
-    yourAge: "អាយុរបស់អ្នក",
-    years: "ឆ្នាំ",
-    months: "ខែ",
-    days: "ថ្ងៃ",
-    examples: "ឧទាហរណ៍",
-    enterInformation: "បញ្ចូលព័ត៌មានរបស់អ្នក",
-    weight: "ទម្ងន់ (គ.ក)",
-    height: "កម្ពស់ (ស.ម)",
-    calculateBMI: "គណនា BMI",
-    yourBMI: "BMI របស់អ្នក",
-    bmiCategories: "ប្រភេទ BMI",
-    underweight: "ទម្ងន់តិច",
-    normal: "ធម្មតា",
-    overweight: "ទម្ងន់លើស",
-    obesity: "ធាត់",
-    currencyCalculator: "ម៉ាស៊ីនបម្លែងរូបិយប័ណ្ណ",
-    amount: "ចំនួនទឹកប្រាក់",
-    enterAmount: "បញ្ចូលចំនួនទឹកប្រាក់",
-    from: "ពី",
-    to: "ទៅ",
-    convertedAmount: "ចំនួនទឹកប្រាក់បន្ទាប់ពីបម្លែង",
-    supportedCurrencies: "រូបិយប័ណ្ណដែលគាំទ្រ",
-    calculateDiscount: "គណនាបញ្ចុះតម្លៃ",
-    youSave: "អ្នកសន្សំបាន",
-    maximumScore: "ពិន្ទុអតិបរមា",
-    calculateGrade: "គណនាពិន្ទុ",
-    percentage: "ភាគរយ",
-    calculateProfit: "គណនាប្រាក់ចំណេញ",
-    conversionType: "ប្រភេទបម្លែង",
-    length: "ប្រវែង",
-    weightUnit: "ទម្ងន់",
-    temperature: "សីតុណ្ហភាព",
-    area: "ផ្ទៃក្រឡា",
-    value: "តម្លៃ",
-    conversionResult: "លទ្ធផលបម្លែង",
 
+    chooseCalculator: "ជ្រើសរើសម៉ាស៊ីនគណនាដែលអ្នកត្រូវការ។",
+
+    ageDescription: "គណនាអាយុពិតប្រាកដរបស់អ្នក។",
+
+    bmiDescription: "គណនាសន្ទស្សន៍ម៉ាសរាងកាយ (BMI)។",
+
+    unitDescription: "បម្លែងប្រវែង ទម្ងន់ សីតុណ្ហភាព និងអ្វីៗផ្សេងទៀត។",
+
+    convert: "បម្លែង",
+
+    currencyDescription: "បម្លែងរវាងរូបិយប័ណ្ណផ្សេងៗ។",
+
+    enterBirthDate: "បញ្ចូលថ្ងៃខែឆ្នាំកំណើត",
+
+    dateOfBirth: "ថ្ងៃខែឆ្នាំកំណើត",
+
+    calculateAge: "គណនាអាយុ",
+
+    yourAge: "អាយុរបស់អ្នក",
+
+    years: "ឆ្នាំ",
+
+    months: "ខែ",
+
+    days: "ថ្ងៃ",
+
+    examples: "ឧទាហរណ៍",
+
+    enterInformation: "បញ្ចូលព័ត៌មានរបស់អ្នក",
+
+    weight: "ទម្ងន់ (គ.ក)",
+
+    height: "កម្ពស់ (ស.ម)",
+
+    calculateBMI: "គណនា BMI",
+
+    yourBMI: "BMI របស់អ្នក",
+
+    bmiCategories: "ប្រភេទ BMI",
+
+    underweight: "ទម្ងន់តិច",
+
+    normal: "ធម្មតា",
+
+    overweight: "ទម្ងន់លើស",
+
+    obesity: "ធាត់",
+
+    currencyCalculator: "ម៉ាស៊ីនបម្លែងរូបិយប័ណ្ណ",
+
+    amount: "ចំនួនទឹកប្រាក់",
+
+    enterAmount: "បញ្ចូលចំនួនទឹកប្រាក់",
+
+    from: "ពី",
+
+    to: "ទៅ",
+
+    convertedAmount: "ចំនួនទឹកប្រាក់បន្ទាប់ពីបម្លែង",
+
+    supportedCurrencies: "រូបិយប័ណ្ណដែលគាំទ្រ",
+
+    calculateDiscount: "គណនាបញ្ចុះតម្លៃ",
+
+    youSave: "អ្នកសន្សំបាន",
+
+    maximumScore: "ពិន្ទុអតិបរមា",
+
+    calculateGrade: "គណនាពិន្ទុ",
+
+    percentage: "ភាគរយ",
+
+    calculateProfit: "គណនាប្រាក់ចំណេញ",
+
+    conversionType: "ប្រភេទបម្លែង",
+
+    length: "ប្រវែង",
+
+    weightUnit: "ទម្ងន់",
+
+    temperature: "សីតុណ្ហភាព",
+
+    area: "ផ្ទៃក្រឡា",
+
+    value: "តម្លៃ",
+
+    conversionResult: "លទ្ធផលបម្លែង",
   },
 };
 
@@ -959,6 +1129,7 @@ function applyLanguage() {
   // -----------------------------------------
   // Text
   // -----------------------------------------
+
   document.querySelectorAll("[data-i18n]").forEach((element) => {
     const key = element.getAttribute("data-i18n");
 
@@ -970,6 +1141,7 @@ function applyLanguage() {
   // -----------------------------------------
   // Placeholder
   // -----------------------------------------
+
   document.querySelectorAll("[data-i18n-placeholder]").forEach((element) => {
     const key = element.getAttribute("data-i18n-placeholder");
 
@@ -981,6 +1153,7 @@ function applyLanguage() {
   // -----------------------------------------
   // Title attribute
   // -----------------------------------------
+
   document.querySelectorAll("[data-i18n-title]").forEach((element) => {
     const key = element.getAttribute("data-i18n-title");
 
@@ -992,22 +1165,26 @@ function applyLanguage() {
   // -----------------------------------------
   // Language Button
   // -----------------------------------------
+
   const languageText = document.getElementById("languageText");
+
   const languageButton = document.getElementById("languageButton");
 
   if (languageText) {
     languageText.textContent = currentLanguage === "en" ? "EN" : "KH";
   }
+
   if (languageButton) {
     languageButton.setAttribute(
       "aria-label",
-      currentLanguage === "en" ? "Switch to Khmer" : "Switch to English"
+      currentLanguage === "en" ? "Switch to Khmer" : "Switch to English",
     );
   }
 
   // -----------------------------------------
   // HTML lang
   // -----------------------------------------
+
   document.documentElement.lang = currentLanguage === "en" ? "en" : "km";
 }
 
