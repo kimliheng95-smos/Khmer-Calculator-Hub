@@ -3,6 +3,10 @@
    GLOBAL STYLE
    ========================================================= */
 
+/* =========================================================
+   ROOT
+   ========================================================= */
+
 :root {
   --primary: #2563eb;
   --primary-dark: #1d4ed8;
@@ -23,7 +27,9 @@
   --warning: #f59e0b;
 
   --shadow-sm: 0 8px 25px rgba(15, 23, 42, 0.04);
+
   --shadow-md: 0 18px 40px rgba(15, 23, 42, 0.08);
+
   --shadow-lg: 0 25px 60px rgba(15, 23, 42, 0.1);
 
   --radius-sm: 10px;
@@ -48,11 +54,36 @@ html {
 }
 
 body {
-  font-family: "Inter", "Kantumruy Pro", sans-serif;
+  /* Inter for Latin, Kantumruy Pro for Khmer (browser glyph fallback) */
+  font-family: "Inter", "Kantumruy Pro", system-ui, -apple-system, sans-serif;
+
   color: var(--text);
+
   background: var(--white);
+
   overflow-x: hidden;
+
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  line-height: 1.6;
+}
+
+/* When page language is Khmer, prefer Kantumruy Pro first */
+html[lang="km"] body,
+html[lang="km"] button,
+html[lang="km"] input,
+html[lang="km"] select,
+html[lang="km"] textarea {
+  font-family: "Kantumruy Pro", "Inter", system-ui, -apple-system, sans-serif;
+  line-height: 1.7;
+}
+
+/* Khmer text elements always use Kantumruy Pro */
+.khmer-text,
+[lang="km"],
+.hero-khmer {
+  font-family: "Kantumruy Pro", sans-serif;
 }
 
 a {
@@ -100,9 +131,12 @@ textarea:focus-visible {
 
 .navbar {
   min-height: 72px;
+
   background: rgba(255, 255, 255, 0.96) !important;
+
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+
   border-bottom: 1px solid var(--border) !important;
 }
 
@@ -132,8 +166,18 @@ textarea:focus-visible {
   transition: 0.25s ease;
 }
 
+.logo img {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: block;
+  object-fit: cover;
+}
+
+
 .navbar-brand:hover .logo {
   transform: translateY(-2px);
+
   box-shadow: 0 12px 25px rgba(37, 99, 235, 0.25);
 }
 
@@ -159,6 +203,10 @@ textarea:focus-visible {
   letter-spacing: 2px;
 }
 
+/* =========================================================
+   NAV LINKS
+   ========================================================= */
+
 .nav-link {
   color: #4b5563;
 
@@ -175,21 +223,30 @@ textarea:focus-visible {
 .nav-link:hover,
 .nav-link.active {
   color: var(--primary);
+
   background: var(--primary-light);
 }
 
+/* =========================================================
+   LANGUAGE BUTTON
+   ========================================================= */
+
 .language-btn {
   display: inline-flex;
+
   align-items: center;
   justify-content: center;
+
   gap: 7px;
 
   padding: 8px 13px;
 
   border: 1px solid var(--border);
+
   border-radius: 10px;
 
   background: white;
+
   color: var(--text-light);
 
   font-size: 13px;
@@ -200,14 +257,21 @@ textarea:focus-visible {
 
 .language-btn:hover {
   border-color: #bfdbfe;
+
   background: var(--primary-light);
+
   color: var(--primary);
 }
+
+/* =========================================================
+   NAVBAR TOGGLER
+   ========================================================= */
 
 .navbar-toggler {
   padding: 7px 9px;
 
   border: 1px solid var(--border);
+
   border-radius: 10px;
 
   box-shadow: none !important;
@@ -260,19 +324,27 @@ textarea:focus-visible {
   pointer-events: none;
 }
 
+/* =========================================================
+   HERO BADGE
+   ========================================================= */
+
 .hero-badge {
   width: fit-content;
 
   display: inline-flex;
+
   align-items: center;
+
   gap: 8px;
 
   padding: 8px 14px;
 
   border: 1px solid #dbeafe;
+
   border-radius: 50px;
 
   background: #eff6ff;
+
   color: var(--primary);
 
   font-size: 13px;
@@ -285,12 +357,17 @@ textarea:focus-visible {
   font-size: 15px;
 }
 
+/* =========================================================
+   HERO TITLE
+   ========================================================= */
+
 .hero-title {
   position: relative;
 
   max-width: 700px;
 
   font-size: clamp(42px, 5vw, 68px);
+
   font-weight: 800;
 
   line-height: 1.05;
@@ -304,6 +381,10 @@ textarea:focus-visible {
   color: var(--primary);
 }
 
+/* =========================================================
+   HERO KHMER
+   ========================================================= */
+
 .hero-khmer {
   margin-top: 20px;
 
@@ -311,9 +392,14 @@ textarea:focus-visible {
 
   font-size: 21px;
   font-weight: 600;
+  line-height: 1.7;
 
   color: #374151;
 }
+
+/* =========================================================
+   HERO DESCRIPTION
+   ========================================================= */
 
 .hero-description {
   max-width: 570px;
@@ -323,6 +409,7 @@ textarea:focus-visible {
   color: var(--muted);
 
   font-size: 16px;
+
   line-height: 1.8;
 }
 
@@ -332,6 +419,7 @@ textarea:focus-visible {
 
 .search-box {
   display: flex;
+
   align-items: center;
 
   width: 100%;
@@ -340,11 +428,13 @@ textarea:focus-visible {
   height: 58px;
 
   margin-top: 30px;
+
   padding-left: 18px;
 
   background: white;
 
   border: 1px solid #dbe1ea;
+
   border-radius: 14px;
 
   box-shadow: 0 12px 35px rgba(15, 23, 42, 0.07);
@@ -376,6 +466,7 @@ textarea:focus-visible {
   flex: 1;
 
   min-width: 0;
+
   height: 100%;
 
   border: none;
@@ -400,12 +491,15 @@ textarea:focus-visible {
   height: 44px;
 
   margin-right: 7px;
+
   padding: 0 20px;
 
   border: none;
+
   border-radius: 10px;
 
   background: var(--primary);
+
   color: white;
 
   font-size: 14px;
@@ -429,11 +523,199 @@ textarea:focus-visible {
 }
 
 /* =========================================================
+   SEARCH RESULTS
+   ========================================================= */
+
+.search-results {
+  width: 100%;
+  max-width: 600px;
+
+  margin-top: 12px;
+
+  padding: 12px;
+
+  background: #ffffff;
+
+  border: 1px solid var(--border);
+
+  border-radius: 16px;
+
+  box-shadow: 0 15px 40px rgba(15, 23, 42, 0.12);
+
+  max-height: 380px;
+
+  overflow-y: auto;
+
+  position: relative;
+
+  z-index: 1000;
+
+  animation: searchResultFade 0.2s ease;
+}
+
+@keyframes searchResultFade {
+  from {
+    opacity: 0;
+
+    transform: translateY(-5px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: translateY(0);
+  }
+}
+
+.search-results h5 {
+  margin: 3px 5px 12px;
+
+  color: var(--text);
+
+  font-size: 15px;
+
+  font-weight: 700;
+}
+
+.search-result-item {
+  width: 100%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 15px;
+
+  padding: 13px 14px;
+
+  margin-bottom: 7px;
+
+  background: #f8fafc;
+
+  border: 1px solid transparent;
+
+  border-radius: 12px;
+
+  color: var(--text);
+
+  text-decoration: none;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.search-result-item:last-child {
+  margin-bottom: 0;
+}
+
+.search-result-item:hover {
+  background: var(--primary-light);
+
+  border-color: #bfdbfe;
+
+  color: var(--primary);
+
+  transform: translateX(3px);
+
+  box-shadow: var(--shadow-sm);
+}
+
+.search-result-content {
+  min-width: 0;
+
+  flex: 1;
+}
+
+.search-result-item strong {
+  display: block;
+
+  color: var(--text);
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  line-height: 1.4;
+}
+
+.search-result-item small {
+  display: block;
+
+  margin-top: 4px;
+
+  color: var(--muted);
+
+  font-size: 12px;
+
+  font-weight: 500;
+
+  text-transform: capitalize;
+}
+
+.search-result-item i {
+  flex-shrink: 0;
+
+  width: 32px;
+  height: 32px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 9px;
+
+  background: var(--primary-light);
+
+  color: var(--primary);
+
+  font-size: 15px;
+
+  transition: 0.2s ease;
+}
+
+.search-result-item:hover i {
+  background: var(--primary);
+
+  color: #ffffff;
+
+  transform: translateX(2px);
+}
+
+/* =========================================================
+   SEARCH SCROLLBAR
+   ========================================================= */
+
+.search-results::-webkit-scrollbar {
+  width: 6px;
+}
+
+.search-results::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.search-results::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+
+  border-radius: 10px;
+}
+
+.search-results::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+/* =========================================================
    HERO FEATURES
    ========================================================= */
 
 .hero-features {
   display: flex;
+
   flex-wrap: wrap;
 
   gap: 22px;
@@ -447,6 +729,7 @@ textarea:focus-visible {
 
 .hero-features > div {
   display: flex;
+
   align-items: center;
 }
 
@@ -466,11 +749,13 @@ textarea:focus-visible {
   max-width: 370px;
 
   margin: auto;
+
   padding: 18px;
 
   background: white;
 
   border: 1px solid var(--border);
+
   border-radius: 25px;
 
   box-shadow:
@@ -486,9 +771,15 @@ textarea:focus-visible {
   transform: rotate(0deg) translateY(-5px);
 }
 
+/* =========================================================
+   PREVIEW HEADER
+   ========================================================= */
+
 .preview-header {
   display: flex;
+
   align-items: center;
+
   justify-content: space-between;
 
   margin-bottom: 18px;
@@ -498,6 +789,7 @@ textarea:focus-visible {
 
 .preview-header > div {
   display: flex;
+
   align-items: center;
 }
 
@@ -513,6 +805,10 @@ textarea:focus-visible {
 
   border-radius: 50%;
 }
+
+/* =========================================================
+   PREVIEW SCREEN
+   ========================================================= */
 
 .preview-screen {
   padding: 25px;
@@ -530,6 +826,7 @@ textarea:focus-visible {
   color: #9ca3af;
 
   font-size: 11px;
+
   font-weight: 700;
 
   letter-spacing: 1px;
@@ -541,6 +838,7 @@ textarea:focus-visible {
   margin: 5px 0;
 
   font-size: 48px;
+
   line-height: 1.1;
 }
 
@@ -548,8 +846,13 @@ textarea:focus-visible {
   color: var(--success);
 
   font-size: 12px;
+
   font-weight: 600;
 }
+
+/* =========================================================
+   PREVIEW BUTTONS
+   ========================================================= */
 
 .preview-buttons {
   display: grid;
@@ -565,6 +868,7 @@ textarea:focus-visible {
   height: 48px;
 
   display: flex;
+
   align-items: center;
   justify-content: center;
 
@@ -585,6 +889,7 @@ textarea:focus-visible {
 
 .preview-buttons div:nth-child(4n) {
   background: #eff6ff;
+
   color: var(--primary);
 }
 
@@ -602,10 +907,12 @@ textarea:focus-visible {
   height: 90px;
 
   display: flex;
+
   align-items: center;
   justify-content: center;
 
   border: 1px dashed #d1d5db;
+
   border-radius: 12px;
 
   background: #fafafa;
@@ -615,6 +922,7 @@ textarea:focus-visible {
 
 .ad-placeholder small {
   font-size: 11px;
+
   font-weight: 600;
 
   letter-spacing: 1px;
@@ -634,6 +942,7 @@ textarea:focus-visible {
   color: var(--primary);
 
   font-size: 12px;
+
   font-weight: 800;
 
   letter-spacing: 2px;
@@ -641,7 +950,9 @@ textarea:focus-visible {
 
 .section-heading {
   display: flex;
+
   align-items: flex-end;
+
   justify-content: space-between;
 
   gap: 25px;
@@ -656,6 +967,7 @@ textarea:focus-visible {
   color: var(--text);
 
   font-size: 34px;
+
   font-weight: 800;
 
   line-height: 1.2;
@@ -670,11 +982,17 @@ textarea:focus-visible {
   color: var(--muted);
 
   font-size: 14px;
+
   line-height: 1.7;
 }
 
+/* =========================================================
+   VIEW ALL
+   ========================================================= */
+
 .view-all {
   display: inline-flex;
+
   align-items: center;
 
   gap: 7px;
@@ -682,6 +1000,7 @@ textarea:focus-visible {
   color: var(--primary);
 
   font-size: 14px;
+
   font-weight: 700;
 
   white-space: nowrap;
@@ -719,6 +1038,7 @@ textarea:focus-visible {
   height: 100%;
 
   display: flex;
+
   flex-direction: column;
 
   padding: 25px;
@@ -726,6 +1046,7 @@ textarea:focus-visible {
   background: white;
 
   border: 1px solid var(--border);
+
   border-radius: 18px;
 
   transition:
@@ -742,11 +1063,16 @@ textarea:focus-visible {
   box-shadow: var(--shadow-md);
 }
 
+/* =========================================================
+   CALCULATOR ICON
+   ========================================================= */
+
 .calculator-icon {
   width: 52px;
   height: 52px;
 
   display: flex;
+
   align-items: center;
   justify-content: center;
 
@@ -759,6 +1085,7 @@ textarea:focus-visible {
   font-size: 22px;
 
   background: #eff6ff;
+
   color: var(--primary);
 
   transition: 0.25s ease;
@@ -767,6 +1094,10 @@ textarea:focus-visible {
 .calculator-card:hover .calculator-icon {
   transform: scale(1.05);
 }
+
+/* =========================================================
+   ICON COLORS
+   ========================================================= */
 
 .icon-blue {
   background: #eff6ff;
@@ -808,12 +1139,17 @@ textarea:focus-visible {
   color: #db2777;
 }
 
+/* =========================================================
+   CARD CONTENT
+   ========================================================= */
+
 .calculator-card h3 {
   margin-bottom: 8px;
 
   color: var(--text);
 
   font-size: 18px;
+
   font-weight: 700;
 
   line-height: 1.35;
@@ -827,22 +1163,26 @@ textarea:focus-visible {
   color: var(--muted);
 
   font-size: 14px;
+
   line-height: 1.7;
 }
 
 .calculator-card a,
 .calculator-link {
   display: inline-flex;
+
   align-items: center;
 
   gap: 7px;
 
   margin-top: auto;
+
   padding-top: 10px;
 
   color: var(--primary);
 
   font-size: 14px;
+
   font-weight: 700;
 
   transition: 0.2s ease;
@@ -866,6 +1206,7 @@ textarea:focus-visible {
   background: linear-gradient(180deg, #f8fafc 0%, #f5f8fc 100%);
 
   border-top: 1px solid #f1f5f9;
+
   border-bottom: 1px solid #f1f5f9;
 }
 
@@ -876,8 +1217,13 @@ textarea:focus-visible {
   margin-right: auto;
 }
 
+/* =========================================================
+   CATEGORY FILTER
+   ========================================================= */
+
 .category-filter {
   display: flex;
+
   flex-wrap: wrap;
 
   justify-content: center;
@@ -889,6 +1235,7 @@ textarea:focus-visible {
 
 .category-btn {
   display: inline-flex;
+
   align-items: center;
   justify-content: center;
 
@@ -897,12 +1244,15 @@ textarea:focus-visible {
   padding: 9px 15px;
 
   border: 1px solid var(--border);
+
   border-radius: 999px;
 
   background: white;
+
   color: var(--muted);
 
   font-size: 13px;
+
   font-weight: 650;
 
   cursor: pointer;
@@ -929,6 +1279,7 @@ textarea:focus-visible {
   border-color: var(--primary);
 
   background: var(--primary);
+
   color: white;
 
   box-shadow: 0 7px 18px rgba(37, 99, 235, 0.18);
@@ -937,6 +1288,10 @@ textarea:focus-visible {
 .category-btn i {
   font-size: 14px;
 }
+
+/* =========================================================
+   CALCULATOR CARD WRAPPER
+   ========================================================= */
 
 .calculator-card-wrapper {
   height: 100%;
@@ -982,6 +1337,10 @@ textarea:focus-visible {
   line-height: 1.8;
 }
 
+/* =========================================================
+   TOOL LIST
+   ========================================================= */
+
 .tool-list {
   display: grid;
 
@@ -998,6 +1357,7 @@ textarea:focus-visible {
   padding: 13px 15px;
 
   border: 1px solid var(--border);
+
   border-radius: 12px;
 
   background: white;
@@ -1019,6 +1379,7 @@ textarea:focus-visible {
   color: var(--text-light);
 
   font-size: 13px;
+
   font-weight: 600;
 }
 
@@ -1038,6 +1399,7 @@ textarea:focus-visible {
   background: white;
 
   border: 1px solid var(--border);
+
   border-radius: 20px;
 
   box-shadow: var(--shadow-md);
@@ -1045,7 +1407,9 @@ textarea:focus-visible {
 
 .dashboard-title {
   display: flex;
+
   align-items: center;
+
   justify-content: space-between;
 
   padding: 5px 5px 15px;
@@ -1053,11 +1417,13 @@ textarea:focus-visible {
   color: var(--text-light);
 
   font-size: 14px;
+
   font-weight: 700;
 }
 
 .dashboard-title > span {
   display: flex;
+
   align-items: center;
 
   gap: 8px;
@@ -1071,8 +1437,13 @@ textarea:focus-visible {
   color: #9ca3af;
 }
 
+/* =========================================================
+   DASHBOARD ITEM
+   ========================================================= */
+
 .dashboard-item {
   display: flex;
+
   align-items: center;
 
   gap: 12px;
@@ -1097,6 +1468,7 @@ textarea:focus-visible {
   height: 38px;
 
   display: flex;
+
   align-items: center;
   justify-content: center;
 
@@ -1105,6 +1477,7 @@ textarea:focus-visible {
   border-radius: 10px;
 
   background: #eff6ff;
+
   color: var(--primary);
 }
 
@@ -1112,6 +1485,7 @@ textarea:focus-visible {
   flex: 1;
 
   font-size: 13px;
+
   font-weight: 600;
 }
 
@@ -1238,7 +1612,7 @@ textarea:focus-visible {
 }
 
 /* =========================================================
-   COMMON BUTTONS FOR CALCULATOR PAGES
+   COMMON BUTTONS
    ========================================================= */
 
 .calculator-page .btn-primary {
@@ -1277,7 +1651,9 @@ textarea:focus-visible {
 
 .history-header {
   display: flex;
+
   align-items: center;
+
   justify-content: space-between;
 
   gap: 10px;
@@ -1287,6 +1663,7 @@ textarea:focus-visible {
 
 .history-title {
   display: flex;
+
   align-items: center;
 
   gap: 10px;
@@ -1324,8 +1701,93 @@ footer {
   color: #9ca3af;
 }
 
+/* =========================================================
+   FOOTER PROFILE
+   ========================================================= */
+
+.footer-profile {
+  display: flex;
+
+  align-items: center;
+
+  gap: 15px;
+
+  margin-bottom: 18px;
+}
+
+.footer-profile-image {
+  width: 58px;
+  height: 58px;
+
+  min-width: 58px;
+
+  overflow: hidden;
+
+  border-radius: 50%;
+
+  border: 2px solid rgba(255, 255, 255, 0.2);
+
+  background: #1f2937;
+
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+
+  transition: 0.25s ease;
+}
+
+.footer-profile-image:hover {
+  transform: translateY(-2px);
+
+  border-color: rgba(255, 255, 255, 0.45);
+
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
+}
+
+.footer-profile-image img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  display: block;
+}
+
+/* =========================================================
+   FOOTER PROFILE INFO
+   ========================================================= */
+
+.footer-profile-info {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 3px;
+}
+
+.footer-profile-info strong {
+  color: #ffffff;
+
+  font-size: 18px;
+
+  font-weight: 700;
+
+  line-height: 1.3;
+}
+
+.footer-profile-info span {
+  color: #9ca3af;
+
+  font-size: 13px;
+
+  font-weight: 500;
+}
+
+/* =========================================================
+   FOOTER BRAND
+   ========================================================= */
+
 .footer-brand {
   display: flex;
+
   align-items: center;
 
   gap: 12px;
@@ -1343,6 +1805,10 @@ footer {
   font-size: 17px;
 }
 
+/* =========================================================
+   FOOTER DESCRIPTION
+   ========================================================= */
+
 footer p {
   max-width: 400px;
 
@@ -1353,14 +1819,33 @@ footer p {
   font-size: 13px;
 }
 
+.footer-description {
+  max-width: 430px;
+
+  color: #9ca3af;
+
+  line-height: 1.8;
+
+  font-size: 13px;
+}
+
+/* =========================================================
+   FOOTER HEADINGS
+   ========================================================= */
+
 footer h5 {
   margin-bottom: 18px;
 
   color: white;
 
   font-size: 14px;
+
   font-weight: 700;
 }
+
+/* =========================================================
+   FOOTER LINKS
+   ========================================================= */
 
 footer a {
   display: block;
@@ -1378,6 +1863,10 @@ footer a:hover {
   color: white;
 }
 
+/* =========================================================
+   SOCIAL ICONS
+   ========================================================= */
+
 .social-icons {
   display: flex;
 
@@ -1389,6 +1878,7 @@ footer a:hover {
   height: 38px;
 
   display: flex;
+
   align-items: center;
   justify-content: center;
 
@@ -1409,6 +1899,10 @@ footer a:hover {
   transform: translateY(-2px);
 }
 
+/* =========================================================
+   FOOTER BOTTOM
+   ========================================================= */
+
 footer hr {
   margin: 40px 0 20px;
 
@@ -1419,7 +1913,9 @@ footer hr {
 
 .footer-bottom {
   display: flex;
+
   align-items: center;
+
   justify-content: space-between;
 
   gap: 15px;
@@ -1436,6 +1932,7 @@ footer hr {
 
 @media (max-width: 991.98px) {
   /* Navbar */
+
   .navbar {
     min-height: 68px;
   }
@@ -1461,6 +1958,7 @@ footer hr {
   }
 
   /* Hero */
+
   .hero-section {
     padding: 70px 0 75px;
   }
@@ -1480,6 +1978,7 @@ footer hr {
   }
 
   /* Sections */
+
   .popular-section,
   .calculators-section {
     padding: 75px 0;
@@ -1494,6 +1993,7 @@ footer hr {
   }
 
   /* Cards */
+
   .calculator-card {
     padding: 23px;
   }
@@ -1506,6 +2006,7 @@ footer hr {
 
 @media (max-width: 767.98px) {
   /* Navbar */
+
   .navbar {
     min-height: 64px;
   }
@@ -1537,6 +2038,7 @@ footer hr {
   }
 
   /* Hero */
+
   .hero-section {
     padding: 55px 0 65px;
   }
@@ -1558,6 +2060,7 @@ footer hr {
   }
 
   /* Search */
+
   .search-box {
     height: 56px;
   }
@@ -1570,12 +2073,55 @@ footer hr {
     padding: 0 15px;
   }
 
+  /* Search Results */
+
+  .search-results {
+    width: 100%;
+
+    margin-top: 10px;
+
+    padding: 10px;
+
+    border-radius: 14px;
+
+    max-height: 350px;
+  }
+
+  .search-results h5 {
+    font-size: 14px;
+
+    margin: 3px 4px 10px;
+  }
+
+  .search-result-item {
+    padding: 12px;
+
+    border-radius: 10px;
+  }
+
+  .search-result-item strong {
+    font-size: 13px;
+  }
+
+  .search-result-item small {
+    font-size: 11px;
+  }
+
+  .search-result-item i {
+    width: 30px;
+    height: 30px;
+
+    font-size: 14px;
+  }
+
   /* Features */
+
   .hero-features {
     gap: 12px 18px;
   }
 
   /* Preview */
+
   .calculator-preview {
     max-width: 100%;
 
@@ -1583,6 +2129,7 @@ footer hr {
   }
 
   /* Sections */
+
   .section-heading {
     display: block;
 
@@ -1600,7 +2147,8 @@ footer hr {
     margin-top: 15px;
   }
 
-  /* Category filter */
+  /* Category Filter */
+
   .category-filter {
     justify-content: flex-start;
 
@@ -1627,7 +2175,8 @@ footer hr {
     padding: 9px 14px;
   }
 
-  /* Calculator cards */
+  /* Calculator Cards */
+
   .calculator-card {
     padding: 22px;
   }
@@ -1642,11 +2191,13 @@ footer hr {
   }
 
   /* Tools */
+
   .tool-list {
     grid-template-columns: 1fr;
   }
 
-  /* Calculator page */
+  /* Calculator Page */
+
   .calculator-page {
     padding: 50px 0;
   }
@@ -1664,12 +2215,28 @@ footer hr {
   }
 
   /* Footer */
+
   .footer-bottom {
     flex-direction: column;
 
     align-items: flex-start;
 
     gap: 10px;
+  }
+
+  .footer-profile {
+    gap: 13px;
+  }
+
+  .footer-profile-image {
+    width: 55px;
+    height: 55px;
+
+    min-width: 55px;
+  }
+
+  .footer-profile-info strong {
+    font-size: 17px;
   }
 }
 
@@ -1680,6 +2247,7 @@ footer hr {
 
 @media (max-width: 576px) {
   /* Hero */
+
   .hero-section {
     padding: 50px 0 60px;
   }
@@ -1699,6 +2267,7 @@ footer hr {
   }
 
   /* Badge */
+
   .hero-badge {
     padding: 7px 12px;
 
@@ -1706,6 +2275,7 @@ footer hr {
   }
 
   /* Search */
+
   .search-box {
     height: auto;
 
@@ -1742,7 +2312,20 @@ footer hr {
     font-size: 13px;
   }
 
-  /* Hero features */
+  /* Search Results */
+
+  .search-results {
+    padding: 9px;
+
+    border-radius: 13px;
+  }
+
+  .search-result-item {
+    padding: 11px 12px;
+  }
+
+  /* Hero Features */
+
   .hero-features {
     gap: 10px 15px;
 
@@ -1750,6 +2333,7 @@ footer hr {
   }
 
   /* Preview */
+
   .calculator-preview {
     padding: 14px;
 
@@ -1777,6 +2361,7 @@ footer hr {
   }
 
   /* Advertisement */
+
   .ad-section {
     padding: 18px 0;
   }
@@ -1786,6 +2371,7 @@ footer hr {
   }
 
   /* Sections */
+
   .popular-section,
   .calculators-section,
   .tools-section,
@@ -1801,6 +2387,7 @@ footer hr {
   }
 
   /* Cards */
+
   .calculator-card {
     padding: 21px;
 
@@ -1826,7 +2413,8 @@ footer hr {
     font-size: 20px;
   }
 
-  /* Category buttons */
+  /* Category Buttons */
+
   .category-filter {
     margin-top: 25px;
   }
@@ -1838,6 +2426,7 @@ footer hr {
   }
 
   /* Dashboard */
+
   .tool-dashboard {
     padding: 15px;
 
@@ -1853,7 +2442,8 @@ footer hr {
     height: 35px;
   }
 
-  /* Calculator pages */
+  /* Calculator Pages */
+
   .calculator-page {
     padding: 40px 0;
   }
@@ -1885,12 +2475,36 @@ footer hr {
   }
 
   /* Footer */
+
   footer {
     padding: 50px 0 20px;
   }
 
   footer hr {
     margin: 30px 0 18px;
+  }
+
+  .footer-profile {
+    gap: 12px;
+  }
+
+  .footer-profile-image {
+    width: 52px;
+    height: 52px;
+
+    min-width: 52px;
+  }
+
+  .footer-profile-info strong {
+    font-size: 16px;
+  }
+
+  .footer-profile-info span {
+    font-size: 12px;
+  }
+
+  .footer-description {
+    font-size: 12px;
   }
 }
 
@@ -1910,6 +2524,8 @@ footer hr {
     font-size: 16px;
   }
 
+  /* Search */
+
   .search-box button {
     padding: 0 10px;
 
@@ -1921,6 +2537,35 @@ footer hr {
 
     font-size: 12px;
   }
+
+  /* Search Results */
+
+  .search-results {
+    padding: 8px;
+
+    border-radius: 12px;
+  }
+
+  .search-result-item {
+    padding: 10px;
+  }
+
+  .search-result-item strong {
+    font-size: 12px;
+  }
+
+  .search-result-item small {
+    font-size: 10px;
+  }
+
+  .search-result-item i {
+    width: 27px;
+    height: 27px;
+
+    font-size: 12px;
+  }
+
+  /* Cards */
 
   .calculator-card {
     padding: 18px;
@@ -1934,8 +2579,27 @@ footer hr {
     font-size: 12px;
   }
 
+  /* Calculator */
+
   .calculator-box {
     padding: 17px;
+  }
+
+  /* Footer */
+
+  .footer-profile-image {
+    width: 48px;
+    height: 48px;
+
+    min-width: 48px;
+  }
+
+  .footer-profile-info strong {
+    font-size: 15px;
+  }
+
+  .footer-profile-info span {
+    font-size: 11px;
   }
 }
 
@@ -1952,7 +2616,9 @@ footer hr {
   *::before,
   *::after {
     transition-duration: 0.01ms !important;
+
     animation-duration: 0.01ms !important;
+
     animation-iteration-count: 1 !important;
   }
 }

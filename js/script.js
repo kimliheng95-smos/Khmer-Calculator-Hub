@@ -1,11 +1,14 @@
+
 const searchInput = document.getElementById("searchInput");
 const searchButton = document.getElementById("searchButton");
+
 
 // ========================================
 // CALCULATOR DATA
 // ========================================
 
 const calculators = [
+
   // ========================================
   // EDUCATION
   // ========================================
@@ -13,8 +16,23 @@ const calculators = [
   {
     name: "GPA Calculator",
     category: "education",
-    keywords: ["gpa", "grade point", "gpa calculator", "គណនា gpa", "គណនា GPA"],
-    url: "calculators/gpa.html",
+    keywords: [
+      "gpa",
+      "grade point",
+      "gpa calculator",
+      "education",
+      "student",
+
+      // Khmer
+      "ការសិក្សា",
+      "សិស្ស",
+      "និស្សិត",
+      "ពិន្ទុ",
+      "មធ្យមភាគ",
+      "គណនា gpa",
+      "គណនា GPA"
+    ],
+    url: "calculators/gpa.html"
   },
 
   {
@@ -25,12 +43,18 @@ const calculators = [
       "score",
       "mark",
       "grade calculator",
+      "education",
+      "student",
+
+      // Khmer
       "ពិន្ទុ",
       "និទ្ទេស",
+      "ការសិក្សា",
+      "សិស្ស",
       "គណនាពិន្ទុ",
-      "គណនានិទ្ទេស",
+      "គណនានិទ្ទេស"
     ],
-    url: "calculators/grade.html",
+    url: "calculators/grade.html"
   },
 
   {
@@ -40,12 +64,21 @@ const calculators = [
       "average",
       "mean",
       "average calculator",
+      "education",
+      "student",
+      "math",
+
+      // Khmer
       "មធ្យម",
       "មធ្យមភាគ",
+      "ការសិក្សា",
+      "សិស្ស",
       "គណនាមធ្យម",
+      "គណនាមធ្យមភាគ"
     ],
-    url: "calculators/average.html",
+    url: "calculators/average.html"
   },
+
 
   // ========================================
   // FINANCE
@@ -59,10 +92,19 @@ const calculators = [
       "sale",
       "discount calculator",
       "discount price",
+      "finance",
+      "money",
+      "price",
+
+      // Khmer
       "បញ្ចុះតម្លៃ",
-      "គណនាបញ្ចុះតម្លៃ",
+      "តម្លៃ",
+      "ហិរញ្ញវត្ថុ",
+      "លក់",
+      "ការបញ្ចុះតម្លៃ",
+      "គណនាបញ្ចុះតម្លៃ"
     ],
-    url: "calculators/discount.html",
+    url: "calculators/discount.html"
   },
 
   {
@@ -72,11 +114,20 @@ const calculators = [
       "profit",
       "profit calculator",
       "profit margin",
+      "business",
+      "money",
+      "finance",
+
+      // Khmer
       "ចំណេញ",
       "ប្រាក់ចំណេញ",
+      "អាជីវកម្ម",
+      "ហិរញ្ញវត្ថុ",
+      "ចំណេញលុយ",
       "គណនាចំណេញ",
+      "ប្រាក់ចំណេញ"
     ],
-    url: "calculators/profit.html",
+    url: "calculators/profit.html"
   },
 
   {
@@ -88,11 +139,19 @@ const calculators = [
       "payment",
       "monthly payment",
       "loan payment",
+      "finance",
+      "money",
+
+      // Khmer
       "កម្ចី",
       "ប្រាក់កម្ចី",
-      "គណនាកម្ចី",
+      "ឥណទាន",
+      "បង់ប្រាក់",
+      "បង់ប្រចាំខែ",
+      "ហិរញ្ញវត្ថុ",
+      "គណនាកម្ចី"
     ],
-    url: "calculators/loan.html",
+    url: "calculators/loan.html"
   },
 
   {
@@ -103,11 +162,19 @@ const calculators = [
       "interest calculator",
       "simple interest",
       "compound interest",
+      "finance",
+      "bank",
+      "money",
+
+      // Khmer
       "ការប្រាក់",
-      "គណនាការប្រាក់",
+      "ការប្រាក់សាមញ្ញ",
       "ការប្រាក់បូកបន្ត",
+      "ធនាគារ",
+      "ប្រាក់",
+      "គណនាការប្រាក់"
     ],
-    url: "calculators/interest.html",
+    url: "calculators/interest.html"
   },
 
   {
@@ -119,11 +186,18 @@ const calculators = [
       "savings calculator",
       "save money",
       "future savings",
+      "finance",
+      "money",
+
+      // Khmer
       "ការសន្សំ",
       "ប្រាក់សន្សំ",
-      "គណនាប្រាក់សន្សំ",
+      "សន្សំប្រាក់",
+      "ប្រាក់អនាគត",
+      "ហិរញ្ញវត្ថុ",
+      "គណនាប្រាក់សន្សំ"
     ],
-    url: "calculators/savings.html",
+    url: "calculators/savings.html"
   },
 
   {
@@ -134,11 +208,18 @@ const calculators = [
       "tax calculator",
       "income tax",
       "tax amount",
+      "finance",
+      "money",
+
+      // Khmer
       "ពន្ធ",
       "ពន្ធលើប្រាក់ចំណូល",
+      "ប្រាក់ចំណូល",
+      "ហិរញ្ញវត្ថុ",
       "គណនាពន្ធ",
+      "ពន្ធប្រាក់ចំណូល"
     ],
-    url: "calculators/tax.html",
+    url: "calculators/tax.html"
   },
 
   {
@@ -151,11 +232,20 @@ const calculators = [
       "monthly salary",
       "net salary",
       "gross salary",
+      "finance",
+      "work",
+      "employee",
+
+      // Khmer
       "ប្រាក់ខែ",
       "ប្រាក់បៀវត្ស",
-      "គណនាប្រាក់ខែ",
+      "ប្រាក់ខែប្រចាំខែ",
+      "បុគ្គលិក",
+      "ការងារ",
+      "ប្រាក់ចំណូល",
+      "គណនាប្រាក់ខែ"
     ],
-    url: "calculators/salary.html",
+    url: "calculators/salary.html"
   },
 
   {
@@ -168,12 +258,20 @@ const calculators = [
       "tax vat",
       "add vat",
       "remove vat",
+      "finance",
+      "tax",
+
+      // Khmer
       "គណនា vat",
       "ពន្ធ vat",
       "ពន្ធលើតម្លៃបន្ថែម",
+      "តម្លៃបន្ថែម",
+      "ពន្ធ",
+      "គណនាពន្ធ vat"
     ],
-    url: "calculators/vat.html",
+    url: "calculators/vat.html"
   },
+
 
   // ========================================
   // BUSINESS
@@ -189,12 +287,22 @@ const calculators = [
       "business break even",
       "profit break even",
       "break even point",
+      "business",
+      "profit",
+      "cost",
+
+      // Khmer
+      "អាជីវកម្ម",
       "ចំណុចស្មើដើម",
+      "ស្មើដើម",
       "គណនាស្មើដើម",
-      "អាជីវកម្មស្មើដើម",
+      "ចំណុចស្មើ",
+      "ចំណាយ",
+      "ចំណេញ"
     ],
-    url: "calculators/break-even.html",
+    url: "calculators/break-even.html"
   },
+
 
   // ========================================
   // HEALTH
@@ -208,11 +316,18 @@ const calculators = [
       "age calculator",
       "calculate age",
       "birthday",
+      "date of birth",
+      "health",
+
+      // Khmer
       "អាយុ",
       "គណនាអាយុ",
       "ថ្ងៃកំណើត",
+      "ខួបកំណើត",
+      "ឆ្នាំកំណើត",
+      "សុខភាព"
     ],
-    url: "calculators/age.html",
+    url: "calculators/age.html"
   },
 
   {
@@ -225,12 +340,19 @@ const calculators = [
       "body mass index",
       "weight",
       "height",
+      "health",
+
+      // Khmer
+      "សុខភាព",
       "ទម្ងន់",
       "កម្ពស់",
+      "ម៉ាសរាងកាយ",
       "សន្ទស្សន៍ម៉ាសរាងកាយ",
+      "គណនា bmi"
     ],
-    url: "calculators/bmi.html",
+    url: "calculators/bmi.html"
   },
+
 
   // ========================================
   // MATH
@@ -244,11 +366,18 @@ const calculators = [
       "percent",
       "percentage calculator",
       "percent calculator",
+      "math",
+
+      // Khmer
       "ភាគរយ",
       "គណនាភាគរយ",
+      "គណិតវិទ្យា",
+      "ភាគរយនៃ",
+      "គណនាភាគ"
     ],
-    url: "calculators/percentage.html",
+    url: "calculators/percentage.html"
   },
+
 
   // ========================================
   // CONVERTER
@@ -265,10 +394,18 @@ const calculators = [
       "length",
       "weight",
       "temperature",
+
+      // Khmer
       "ឯកតា",
+      "បម្លែង",
       "បម្លែងឯកតា",
+      "ប្រវែង",
+      "ទម្ងន់",
+      "សីតុណ្ហភាព",
+      "បម្លែងប្រវែង",
+      "បម្លែងទម្ងន់"
     ],
-    url: "calculators/unit.html",
+    url: "calculators/unit.html"
   },
 
   {
@@ -281,12 +418,20 @@ const calculators = [
       "currency converter",
       "exchange rate",
       "convert money",
+      "converter",
+
+      // Khmer
       "រូបិយប័ណ្ណ",
       "ប្តូរប្រាក់",
       "ប្តូរលុយ",
+      "អត្រាប្តូរប្រាក់",
+      "ប្តូររូបិយប័ណ្ណ",
+      "លុយ",
+      "ប្រាក់"
     ],
-    url: "calculators/currency.html",
+    url: "calculators/currency.html"
   },
+
 
   // ========================================
   // TRANSPORT
@@ -304,115 +449,463 @@ const calculators = [
       "petrol",
       "petrol calculator",
       "fuel consumption",
+      "transport",
+      "car",
+      "vehicle",
+
+      // Khmer
       "ថ្លៃប្រេង",
       "ប្រេងសាំង",
+      "ប្រេង",
+      "សាំង",
       "គណនាថ្លៃប្រេង",
       "ការប្រើប្រាស់ប្រេង",
+      "យានយន្ត",
+      "រថយន្ត",
+      "ឡាន"
     ],
-    url: "calculators/fuel.html",
-  },
+    url: "calculators/fuel.html"
+  }
+
 ];
 
+
 // ========================================
-// SEARCH FUNCTION
+// GET CATEGORY NAME
 // ========================================
 
-function searchCalculator() {
-  // Check input exists
-  if (!searchInput) {
-    return;
+function getCategoryName(category) {
+
+  const names = {
+
+    education: {
+      en: "Education",
+      kh: "ការសិក្សា"
+    },
+
+    finance: {
+      en: "Finance",
+      kh: "ហិរញ្ញវត្ថុ"
+    },
+
+    business: {
+      en: "Business",
+      kh: "អាជីវកម្ម"
+    },
+
+    health: {
+      en: "Health",
+      kh: "សុខភាព"
+    },
+
+    math: {
+      en: "Math",
+      kh: "គណិតវិទ្យា"
+    },
+
+    converter: {
+      en: "Converter",
+      kh: "បម្លែង"
+    },
+
+    transport: {
+      en: "Transport",
+      kh: "យានយន្ត"
+    }
+
+  };
+
+  const language =
+    typeof currentLanguage !== "undefined"
+      ? currentLanguage
+      : "en";
+
+  return names[category]?.[language] || category;
+
+}
+
+
+// ========================================
+// FIND SEARCH RESULTS
+// ========================================
+
+function findResults(keyword) {
+
+  keyword = keyword.trim().toLowerCase();
+
+  if (!keyword) {
+    return [];
   }
 
-  // Get search keyword
-  const keyword = searchInput.value.trim().toLowerCase();
+  return calculators.filter(function (calculator) {
 
-  // ========================================
-  // EMPTY SEARCH
-  // ========================================
+    const name =
+      calculator.name.toLowerCase();
 
-  if (keyword === "") {
-    alert(
-      typeof currentLanguage !== "undefined" && currentLanguage === "kh"
-        ? "សូមបញ្ចូលឈ្មោះម៉ាស៊ីនគណនា។"
-        : "Please enter a calculator name.",
-    );
+    const category =
+      calculator.category.toLowerCase();
 
-    return;
-  }
+    const keywordMatch =
+      calculator.keywords.some(function (word) {
 
-  // ========================================
-  // 1. EXACT MATCH
-  // ========================================
+        return word
+          .trim()
+          .toLowerCase()
+          .includes(keyword);
 
-  let result = calculators.find(function (calculator) {
-    // Exact calculator name
-    const nameMatch = calculator.name.toLowerCase() === keyword;
-
-    // Exact keyword
-    const keywordMatch = calculator.keywords.some(function (word) {
-      return word.toLowerCase() === keyword;
-    });
-
-    return nameMatch || keywordMatch;
-  });
-
-  // ========================================
-  // 2. PARTIAL MATCH
-  // ========================================
-
-  if (!result) {
-    result = calculators.find(function (calculator) {
-      // Partial calculator name
-      const nameMatch = calculator.name.toLowerCase().includes(keyword);
-
-      // Partial keyword
-      const keywordMatch = calculator.keywords.some(function (word) {
-        return word.toLowerCase().includes(keyword);
       });
 
-      return nameMatch || keywordMatch;
-    });
+    return (
+      name.includes(keyword) ||
+      category.includes(keyword) ||
+      keywordMatch
+    );
+
+  });
+
+}
+
+
+// ========================================
+// CREATE SEARCH RESULTS BOX
+// ========================================
+
+function createSearchResultsBox() {
+
+  let resultBox =
+    document.getElementById("searchResults");
+
+  if (!resultBox) {
+
+    resultBox =
+      document.createElement("div");
+
+    resultBox.id =
+      "searchResults";
+
+    resultBox.className =
+      "search-results";
+
+    if (searchInput) {
+
+      searchInput.parentElement.after(
+        resultBox
+      );
+
+    }
+
   }
 
+  return resultBox;
+
+}
+
+
+// ========================================
+// SHOW AUTOCOMPLETE DROPDOWN
+// ========================================
+
+function showAutocomplete(results) {
+
+  const resultBox =
+    createSearchResultsBox();
+
+  resultBox.innerHTML = "";
+
+
   // ========================================
-  // 3. OPEN CALCULATOR
+  // NO RESULT
   // ========================================
 
-  if (result) {
-    window.location.href = result.url;
+  if (results.length === 0) {
+
+    resultBox.innerHTML = `
+      <div class="search-no-result">
+
+        <i class="bi bi-search"></i>
+
+        <span>
+          ${
+            typeof currentLanguage !== "undefined" &&
+            currentLanguage === "kh"
+              ? "រកមិនឃើញម៉ាស៊ីនគណនា"
+              : "No calculator found"
+          }
+        </span>
+
+      </div>
+    `;
 
     return;
+
   }
 
+
   // ========================================
-  // 4. NOT FOUND
+  // SHOW MAX 8 RESULTS
   // ========================================
 
-  alert(
-    typeof currentLanguage !== "undefined" && currentLanguage === "kh"
-      ? "រកមិនឃើញម៉ាស៊ីនគណនា។ សូមព្យាយាមម្ដងទៀត។"
-      : "Calculator not found. Please try again.",
-  );
+  const visibleResults =
+    results.slice(0, 8);
+
+
+  // ========================================
+  // CREATE RESULT ITEMS
+  // ========================================
+
+  visibleResults.forEach(function (calculator) {
+
+    const item =
+      document.createElement("a");
+
+    item.href =
+      calculator.url;
+
+    item.className =
+      "search-result-item";
+
+
+    const categoryName =
+      getCategoryName(
+        calculator.category
+      );
+
+
+    item.innerHTML = `
+      <div class="search-result-content">
+
+        <strong>
+          ${calculator.name}
+        </strong>
+
+        <small>
+          ${categoryName}
+        </small>
+
+      </div>
+
+      <i class="bi bi-arrow-right"></i>
+    `;
+
+
+    resultBox.appendChild(item);
+
+  });
+
 }
+
+
+// ========================================
+// HIDE SEARCH RESULTS
+// ========================================
+
+function hideSearchResults() {
+
+  const resultBox =
+    document.getElementById("searchResults");
+
+  if (resultBox) {
+    resultBox.remove();
+  }
+
+}
+
 
 // ========================================
 // SEARCH BUTTON
 // ========================================
 
 if (searchButton) {
-  searchButton.addEventListener("click", function () {
-    searchCalculator();
-  });
+
+  searchButton.addEventListener(
+    "click",
+    function () {
+
+      const keyword =
+        searchInput.value.trim();
+
+
+      if (!keyword) {
+
+        alert(
+          typeof currentLanguage !== "undefined" &&
+          currentLanguage === "kh"
+            ? "សូមបញ្ចូលឈ្មោះ ឬប្រភេទម៉ាស៊ីនគណនា។"
+            : "Please enter a calculator name or category."
+        );
+
+        return;
+
+      }
+
+
+      const results =
+        findResults(keyword);
+
+
+      if (results.length === 0) {
+
+        alert(
+          typeof currentLanguage !== "undefined" &&
+          currentLanguage === "kh"
+            ? "រកមិនឃើញម៉ាស៊ីនគណនា។"
+            : "Calculator not found."
+        );
+
+        return;
+
+      }
+
+
+      if (results.length === 1) {
+
+        window.location.href =
+          results[0].url;
+
+        return;
+
+      }
+
+
+      showAutocomplete(results);
+
+    }
+  );
+
 }
+
 
 // ========================================
 // ENTER KEY
 // ========================================
 
 if (searchInput) {
-  searchInput.addEventListener("keydown", function (event) {
-    if (event.key === "Enter") {
-      searchCalculator();
+
+  searchInput.addEventListener(
+    "keydown",
+    function (event) {
+
+      if (event.key !== "Enter") {
+        return;
+      }
+
+      event.preventDefault();
+
+
+      const keyword =
+        searchInput.value.trim();
+
+
+      if (!keyword) {
+        return;
+      }
+
+
+      const results =
+        findResults(keyword);
+
+
+      if (results.length === 1) {
+
+        window.location.href =
+          results[0].url;
+
+      } else {
+
+        showAutocomplete(results);
+
+      }
+
     }
-  });
+  );
+
 }
+
+
+// ========================================
+// SEARCH WHILE TYPING
+// ========================================
+
+if (searchInput) {
+
+  searchInput.addEventListener(
+    "input",
+    function () {
+
+      const keyword =
+        searchInput.value.trim();
+
+
+      // ========================================
+      // EMPTY SEARCH
+      // ========================================
+
+      if (keyword === "") {
+
+        hideSearchResults();
+
+        return;
+
+      }
+
+
+      // ========================================
+      // LESS THAN 2 CHARACTERS
+      // ========================================
+
+      if (keyword.length < 2) {
+
+        hideSearchResults();
+
+        return;
+
+      }
+
+
+      // ========================================
+      // 2+ CHARACTERS
+      // ========================================
+
+      const results =
+        findResults(keyword);
+
+      showAutocomplete(results);
+
+    }
+  );
+
+}
+
+
+// ========================================
+// CLOSE DROPDOWN WHEN CLICKING OUTSIDE
+// ========================================
+
+document.addEventListener(
+  "click",
+  function (event) {
+
+    const resultBox =
+      document.getElementById("searchResults");
+
+
+    if (!resultBox || !searchInput) {
+      return;
+    }
+
+
+    const searchBox =
+      searchInput.parentElement;
+
+
+    if (
+      !searchBox.contains(event.target) &&
+      !resultBox.contains(event.target)
+    ) {
+
+      hideSearchResults();
+
+    }
+
+  }
+);
