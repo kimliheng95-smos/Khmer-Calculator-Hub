@@ -1,8 +1,8 @@
 <!doctype html>
+
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- SEO -->
@@ -28,7 +28,6 @@
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
-
     <meta property="og:title" content="BMI Calculator | Khmer Calculator Hub" />
 
     <meta
@@ -42,24 +41,39 @@
     />
 
     <meta property="og:site_name" content="Khmer Calculator Hub" />
-
     <meta name="theme-color" content="#d71920" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="../images/Logo.png" />
+    <link rel="icon" href="../favicon.ico" type="image/x-icon" />
     <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32.png" />
-    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="64x64" href="../images/favicon-64.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="../images/icon-192.png" />
 
     <!-- Open Graph Image -->
-    <meta property="og:image" content="https://kimliheng95-smos.github.io/Khmer-Calculator-Hub/images/Heng.jpg" />
+    <meta
+      property="og:image"
+      content="https://kimliheng95-smos.github.io/Khmer-Calculator-Hub/images/Heng.jpg"
+    />
+
     <meta property="og:image:alt" content="Khmer Calculator Hub" />
 
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="BMI Calculator | Khmer Calculator Hub" />
-    <meta name="twitter:description" content="Calculate your Body Mass Index (BMI) easily with Khmer Calculator Hub. Free BMI calculator using your height and weight." />
-    <meta name="twitter:image" content="https://kimliheng95-smos.github.io/Khmer-Calculator-Hub/images/Heng.jpg" />
+    <meta
+      name="twitter:title"
+      content="BMI Calculator | Khmer Calculator Hub"
+    />
 
+    <meta
+      name="twitter:description"
+      content="Calculate your Body Mass Index (BMI) easily with Khmer Calculator Hub. Free BMI calculator using your height and weight."
+    />
+
+    <meta
+      name="twitter:image"
+      content="https://kimliheng95-smos.github.io/Khmer-Calculator-Hub/images/Heng.jpg"
+    />
 
     <!-- Bootstrap -->
     <link
@@ -75,7 +89,6 @@
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
     <link
@@ -88,7 +101,6 @@
 
     <style>
       /* ================= HISTORY ================= */
-
       .history-box {
         margin-top: 25px;
         background: white;
@@ -143,7 +155,6 @@
       }
 
       /* ================= MOBILE ================= */
-
       @media (max-width: 576px) {
         .history-box {
           padding: 20px;
@@ -160,58 +171,58 @@
         }
       }
     </style>
-  
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "BMI Calculator",
-      "url": "https://kimliheng95-smos.github.io/Khmer-Calculator-Hub/calculators/bmi.html",
-      "description": "Calculate your Body Mass Index (BMI) easily with Khmer Calculator Hub. Free BMI calculator using your height and weight.",
-      "applicationCategory": "UtilityApplication",
-      "operatingSystem": "Any",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      },
-      "inLanguage": ["en", "km"],
-      "isPartOf": {
-        "@type": "WebSite",
-        "name": "Khmer Calculator Hub",
-        "url": "https://kimliheng95-smos.github.io/Khmer-Calculator-Hub/"
-      }
-    }
-    </script>
 
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "BMI Calculator",
+        "url": "https://kimliheng95-smos.github.io/Khmer-Calculator-Hub/calculators/bmi.html",
+        "description": "Calculate your Body Mass Index (BMI) easily with Khmer Calculator Hub. Free BMI calculator using your height and weight.",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Any",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "inLanguage": ["en", "km"],
+        "isPartOf": {
+          "@type": "WebSite",
+          "name": "Khmer Calculator Hub",
+          "url": "https://kimliheng95-smos.github.io/Khmer-Calculator-Hub/"
+        }
+      }
+    </script>
   </head>
 
   <body>
     <!-- ================= NAVBAR ================= -->
-
     <nav
       class="navbar navbar-expand-lg navbar-light bg-white sticky-top border-bottom"
     >
       <div class="container">
         <!-- Logo -->
-
         <a
           class="navbar-brand d-flex align-items-center gap-2"
           href="../index.html"
         >
           <div class="logo">
-            <img src="../images/Logo.png" alt="Khmer Calculator Hub" width="40" height="40" />
+            <img
+              src="../images/Logo.png"
+              alt="Khmer Calculator Hub"
+              width="40"
+              height="40"
+            />
           </div>
 
           <div>
             <span class="brand-name"> Khmer Calculator </span>
-
             <small class="brand-subtitle"> HUB </small>
           </div>
         </a>
 
         <!-- Mobile Button -->
-
         <button
           class="navbar-toggler"
           type="button"
@@ -225,7 +236,6 @@
         </button>
 
         <!-- Menu -->
-
         <div class="collapse navbar-collapse" id="mainNavbar">
           <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
             <li class="nav-item">
@@ -251,9 +261,13 @@
             </li>
 
             <li class="nav-item ms-lg-2">
-              <button type="button" class="language-btn" id="languageButton" aria-label="Switch language">
+              <button
+                type="button"
+                class="language-btn"
+                id="languageButton"
+                aria-label="Switch language"
+              >
                 <i class="bi bi-translate"></i>
-
                 <span id="languageText"> EN </span>
               </button>
             </li>
@@ -263,11 +277,9 @@
     </nav>
 
     <!-- ================= MAIN ================= -->
-
     <main class="py-5">
       <div class="container">
         <!-- Breadcrumb -->
-
         <div class="mb-4">
           <a href="../index.html" class="text-decoration-none" data-i18n="home">
             Home
@@ -281,7 +293,6 @@
         </div>
 
         <!-- Title -->
-
         <div class="row justify-content-center">
           <div class="col-lg-8">
             <div class="text-center mb-4">
@@ -297,7 +308,6 @@
             </div>
 
             <!-- ================= CALCULATOR ================= -->
-
             <div class="calculator-box">
               <h3 class="mb-4" data-i18n="enterInformation">
                 Enter Your Information
@@ -305,7 +315,6 @@
 
               <div class="row g-4">
                 <!-- Weight -->
-
                 <div class="col-md-6">
                   <label
                     for="weight"
@@ -334,7 +343,6 @@
                 </div>
 
                 <!-- Height -->
-
                 <div class="col-md-6">
                   <label
                     for="height"
@@ -364,7 +372,6 @@
               </div>
 
               <!-- Button -->
-
               <button
                 class="btn btn-primary w-100 mt-4 py-3"
                 type="button"
@@ -376,7 +383,6 @@
               </button>
 
               <!-- ================= RESULT ================= -->
-
               <div id="bmiResult" class="result-box mt-4 d-none">
                 <div class="text-center">
                   <small data-i18n="yourBMI"> YOUR BMI </small>
@@ -389,7 +395,6 @@
                 </div>
 
                 <!-- BMI Categories -->
-
                 <hr class="my-4" />
 
                 <h6 class="fw-bold mb-3" data-i18n="bmiCategories">
@@ -398,7 +403,6 @@
 
                 <div class="row text-center g-2">
                   <!-- Underweight -->
-
                   <div class="col-6 col-md-3">
                     <div class="p-2 border rounded">
                       <strong> &lt; 18.5 </strong>
@@ -410,7 +414,6 @@
                   </div>
 
                   <!-- Normal -->
-
                   <div class="col-6 col-md-3">
                     <div class="p-2 border rounded">
                       <strong> 18.5 – 24.9 </strong>
@@ -420,7 +423,6 @@
                   </div>
 
                   <!-- Overweight -->
-
                   <div class="col-6 col-md-3">
                     <div class="p-2 border rounded">
                       <strong> 25 – 29.9 </strong>
@@ -432,7 +434,6 @@
                   </div>
 
                   <!-- Obesity -->
-
                   <div class="col-6 col-md-3">
                     <div class="p-2 border rounded">
                       <strong> 30+ </strong>
@@ -447,7 +448,6 @@
             </div>
 
             <!-- ================= HISTORY ================= -->
-
             <div class="history-box">
               <div class="history-header">
                 <h3 class="history-title">
@@ -470,7 +470,6 @@
               </div>
 
               <!-- History Container -->
-
               <div id="historyContainer"></div>
             </div>
           </div>
@@ -479,7 +478,6 @@
     </main>
 
     <!-- ================= FOOTER ================= -->
-
     <footer>
       <div class="container">
         <div class="row g-4">
@@ -494,6 +492,7 @@
               <!-- Profile Info -->
               <div class="footer-profile-info">
                 <strong>Kim Liheng</strong>
+
                 <span>Founder & Developer</span>
               </div>
             </div>
@@ -508,20 +507,20 @@
           <div class="col-6 col-lg-2">
             <h5 data-i18n="tools">Tools</h5>
 
-            <a href="calculators/gpa.html">
-              <span data-i18n="gpa">GPA Calculator</span>
+            <a href="gpa.html">
+              <span data-i18n="gpa"> GPA Calculator </span>
             </a>
 
-            <a href="calculators/grade.html">
-              <span data-i18n="grade">Grade Calculator</span>
+            <a href="grade.html">
+              <span data-i18n="grade"> Grade Calculator </span>
             </a>
 
-            <a href="calculators/discount.html">
-              <span data-i18n="discount">Discount Calculator</span>
+            <a href="discount.html">
+              <span data-i18n="discount"> Discount Calculator </span>
             </a>
 
-            <a href="calculators/profit.html">
-              <span data-i18n="profit">Profit Calculator</span>
+            <a href="profit.html">
+              <span data-i18n="profit"> Profit Calculator </span>
             </a>
           </div>
 
@@ -529,7 +528,7 @@
           <div class="col-6 col-lg-2">
             <h5 data-i18n="company">Company</h5>
 
-            <a href="#about" data-i18n="about"> About </a>
+            <a href="../index.html#about" data-i18n="about"> About </a>
 
             <a href="#" data-i18n="contact"> Contact </a>
 

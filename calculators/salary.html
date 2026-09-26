@@ -1,8 +1,8 @@
 <!doctype html>
+
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- SEO -->
@@ -49,20 +49,33 @@
     <meta name="theme-color" content="#d71920" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="../images/Logo.png" />
+    <link rel="icon" href="../favicon.ico" type="image/x-icon" />
     <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32.png" />
-    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="64x64" href="../images/favicon-64.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="../images/icon-192.png" />
 
     <!-- Open Graph Image -->
-    <meta property="og:image" content="https://kimliheng95-smos.github.io/Khmer-Calculator-Hub/images/Heng.jpg" />
+    <meta
+      property="og:image"
+      content="https://kimliheng95-smos.github.io/Khmer-Calculator-Hub/images/Heng.jpg"
+    />
     <meta property="og:image:alt" content="Khmer Calculator Hub" />
 
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Salary Calculator | Khmer Calculator Hub" />
-    <meta name="twitter:description" content="Calculate gross salary, deductions, tax and net salary easily with Khmer Calculator Hub." />
-    <meta name="twitter:image" content="https://kimliheng95-smos.github.io/Khmer-Calculator-Hub/images/Heng.jpg" />
-
+    <meta
+      name="twitter:title"
+      content="Salary Calculator | Khmer Calculator Hub"
+    />
+    <meta
+      name="twitter:description"
+      content="Calculate gross salary, deductions, tax and net salary easily with Khmer Calculator Hub."
+    />
+    <meta
+      name="twitter:image"
+      content="https://kimliheng95-smos.github.io/Khmer-Calculator-Hub/images/Heng.jpg"
+    />
 
     <!-- Bootstrap -->
     <link
@@ -180,30 +193,29 @@
         }
       }
     </style>
-  
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "Salary Calculator",
-      "url": "https://kimliheng95-smos.github.io/Khmer-Calculator-Hub/calculators/salary.html",
-      "description": "Calculate gross salary, deductions, tax and net salary easily with Khmer Calculator Hub.",
-      "applicationCategory": "UtilityApplication",
-      "operatingSystem": "Any",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      },
-      "inLanguage": ["en", "km"],
-      "isPartOf": {
-        "@type": "WebSite",
-        "name": "Khmer Calculator Hub",
-        "url": "https://kimliheng95-smos.github.io/Khmer-Calculator-Hub/"
-      }
-    }
-    </script>
 
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Salary Calculator",
+        "url": "https://kimliheng95-smos.github.io/Khmer-Calculator-Hub/calculators/salary.html",
+        "description": "Calculate gross salary, deductions, tax and net salary easily with Khmer Calculator Hub.",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Any",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "inLanguage": ["en", "km"],
+        "isPartOf": {
+          "@type": "WebSite",
+          "name": "Khmer Calculator Hub",
+          "url": "https://kimliheng95-smos.github.io/Khmer-Calculator-Hub/"
+        }
+      }
+    </script>
   </head>
 
   <body>
@@ -220,7 +232,12 @@
           href="../index.html"
         >
           <div class="logo">
-            <img src="../images/Logo.png" alt="Khmer Calculator Hub" width="40" height="40" />
+            <img
+              src="../images/Logo.png"
+              alt="Khmer Calculator Hub"
+              width="40"
+              height="40"
+            />
           </div>
 
           <div>
@@ -264,7 +281,12 @@
             </li>
 
             <li class="nav-item ms-lg-2">
-              <button type="button" class="language-btn" id="languageButton" aria-label="Switch language">
+              <button
+                type="button"
+                class="language-btn"
+                id="languageButton"
+                aria-label="Switch language"
+              >
                 <i class="bi bi-translate"></i>
 
                 <span id="languageText"> EN </span>
@@ -276,9 +298,12 @@
     </nav>
 
     <!-- ========================================
-     MAIN
+ MAIN
+```
+
 ======================================== -->
 
+    ```
     <main>
       <div class="container py-4">
         <!-- Breadcrumb -->
@@ -499,8 +524,8 @@
             </div>
 
             <!-- ========================================
-                     HISTORY
-                ======================================== -->
+                 HISTORY
+            ======================================== -->
 
             <div class="history-box">
               <div class="history-header">
@@ -527,8 +552,8 @@
             </div>
 
             <!-- ========================================
-                     INFO
-                ======================================== -->
+                 INFO
+            ======================================== -->
 
             <div class="mt-4 p-4 bg-white border rounded-4">
               <h5 class="fw-bold">
@@ -551,9 +576,9 @@
     </main>
 
     <!-- ========================================
-     FOOTER
-======================================== -->
+ FOOTER
 
+======================================== -->
     <footer>
       <div class="container">
         <div class="row g-4">
@@ -582,19 +607,19 @@
           <div class="col-6 col-lg-2">
             <h5 data-i18n="tools">Tools</h5>
 
-            <a href="calculators/gpa.html">
+            <a href="gpa.html">
               <span data-i18n="gpa">GPA Calculator</span>
             </a>
 
-            <a href="calculators/grade.html">
+            <a href="grade.html">
               <span data-i18n="grade">Grade Calculator</span>
             </a>
 
-            <a href="calculators/discount.html">
+            <a href="discount.html">
               <span data-i18n="discount">Discount Calculator</span>
             </a>
 
-            <a href="calculators/profit.html">
+            <a href="profit.html">
               <span data-i18n="profit">Profit Calculator</span>
             </a>
           </div>
@@ -603,7 +628,7 @@
           <div class="col-6 col-lg-2">
             <h5 data-i18n="company">Company</h5>
 
-            <a href="#about" data-i18n="about"> About </a>
+            <a href="../index.html#about" data-i18n="about"> About </a>
 
             <a href="#" data-i18n="contact"> Contact </a>
 
