@@ -1,40 +1,27 @@
 // =========================
 // API Configuration
-// Auto-detect so it works on any host, root or subfolder, phone or computer
 // =========================
 
-const API_BASE = (function () {
-  try {
-    if (document.currentScript && document.currentScript.src) {
-      return document.currentScript.src.replace(
-        /\/js\/auth\.js(\?.*)?$/i,
-        "/api"
-      );
-    }
-  } catch (e) {}
+// Backend API is hosted on InfinityFree
+const API_BASE = "https://khmercalculatorhub.infy.click/api";
 
-  const path = window.location.pathname || "";
-  if (path.indexOf("/calculators/") !== -1) {
-    return "../api";
-  }
-  return "api";
-})();
+// =========================
+// Project Root
+// =========================
 
-// Project root (for redirects that work from calculators/ too)
 const SITE_ROOT = (function () {
   try {
     if (document.currentScript && document.currentScript.src) {
-      return document.currentScript.src.replace(
-        /\/js\/auth\.js(\?.*)?$/i,
-        "/"
-      );
+      return document.currentScript.src.replace(/\/js\/auth\.js(\?.*)?$/i, "/");
     }
   } catch (e) {}
 
   const path = window.location.pathname || "";
+
   if (path.indexOf("/calculators/") !== -1) {
     return "../";
   }
+
   return "./";
 })();
 
@@ -54,19 +41,30 @@ async function apiRequest(endpoint, options = {}) {
     });
 
     const text = await response.text();
+
     let data;
+
     try {
       data = JSON.parse(text);
     } catch (e) {
-      console.error("API non-JSON response:", text.slice(0, 200));
-      return { success: false, error: "server_error" };
+      console.error("API non-JSON response:", text.slice(0, 500));
+
+      return {
+        success: false,
+        error: "server_error",
+      };
     }
 
     console.log("API:", endpoint, data);
+
     return data;
   } catch (error) {
     console.error("API Error:", error);
-    return { success: false, error: "network_error" };
+
+    return {
+      success: false,
+      error: "network_error",
+    };
   }
 }
 
@@ -77,7 +75,9 @@ async function apiRequest(endpoint, options = {}) {
 let currentUser = null;
 
 async function loadSession() {
-  const result = await apiRequest("user.php", { method: "GET" });
+  const result = await apiRequest("user.php", {
+    method: "GET",
+  });
 
   if (result.success && result.user) {
     currentUser = result.user;
@@ -85,6 +85,7 @@ async function loadSession() {
   }
 
   currentUser = null;
+
   return null;
 }
 
@@ -105,24 +106,43 @@ async function register(name, email, password) {
   email = (email || "").trim().toLowerCase();
   password = password || "";
 
+  // Check name
   if (!name || name.length < 2) {
-    return { success: false, error: "name_short" };
+    return {
+      success: false,
+      error: "name_short",
+    };
   }
+
+  // Check email
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    return { success: false, error: "invalid_email" };
+    return {
+      success: false,
+      error: "invalid_email",
+    };
   }
+
+  // Check password
   if (password.length < 6) {
-    return { success: false, error: "password_short" };
+    return {
+      success: false,
+      error: "password_short",
+    };
   }
 
   const result = await apiRequest("register.php", {
     method: "POST",
-    body: JSON.stringify({ name, email, password }),
+    body: JSON.stringify({
+      name: name,
+      email: email,
+      password: password,
+    }),
   });
 
   if (result.success && result.user) {
     currentUser = result.user;
   }
+
   return result;
 }
 
@@ -134,13 +154,20 @@ async function login(email, password) {
   email = (email || "").trim().toLowerCase();
   password = password || "";
 
+  // Check empty fields
   if (!email || !password) {
-    return { success: false, error: "empty" };
+    return {
+      success: false,
+      error: "empty",
+    };
   }
 
   const result = await apiRequest("login.php", {
     method: "POST",
-    body: JSON.stringify({ email, password }),
+    body: JSON.stringify({
+      email: email,
+      password: password,
+    }),
   });
 
   console.log("LOGIN RESULT:", result);
@@ -148,6 +175,7 @@ async function login(email, password) {
   if (result.success && result.user) {
     currentUser = result.user;
   }
+
   return result;
 }
 
@@ -156,8 +184,12 @@ async function login(email, password) {
 // =========================
 
 async function logout() {
-  await apiRequest("logout.php", { method: "POST" });
+  await apiRequest("logout.php", {
+    method: "POST",
+  });
+
   currentUser = null;
+
   window.location.href = SITE_ROOT + "index.html";
 }
 
@@ -167,10 +199,12 @@ async function logout() {
 
 async function requireAuth() {
   const user = await loadSession();
+
   if (!user) {
     window.location.href = SITE_ROOT + "login.html";
     return false;
   }
+
   return true;
 }
 
@@ -179,20 +213,30 @@ async function requireAuth() {
 // =========================
 
 async function getAuthHistory() {
-  const result = await apiRequest("history.php", { method: "GET" });
-  if (!result.success) return [];
+  const result = await apiRequest("history.php", {
+    method: "GET",
+  });
+
+  if (!result.success) {
+    return [];
+  }
+
   return result.history || [];
 }
 
 async function saveAuthHistoryItem(item) {
   return await apiRequest("history.php", {
     method: "POST",
+
     body: JSON.stringify({
       calculator_type:
         item.calculator_type || item.calculatorType || item.type || "",
+
       calculator_name:
         item.calculator_name || item.calculator || item.name || "",
+
       data: item.data || item.inputs || {},
+
       result_text: item.result_text || item.result || "",
     }),
   });
@@ -205,7 +249,9 @@ async function deleteAuthHistoryItem(id) {
 }
 
 async function clearAuthHistory() {
-  return await apiRequest("history.php", { method: "DELETE" });
+  return await apiRequest("history.php", {
+    method: "DELETE",
+  });
 }
 
 // =========================
@@ -214,18 +260,30 @@ async function clearAuthHistory() {
 
 async function updateAuthNav() {
   const user = await loadSession();
+
   const logged = user !== null;
 
-  document.querySelectorAll("[data-auth-guest]").forEach((el) => {
+  // Guest elements
+  document.querySelectorAll("[data-auth-guest]").forEach(function (el) {
     el.style.display = logged ? "none" : "";
   });
-  document.querySelectorAll("[data-auth-user]").forEach((el) => {
+
+  // Logged-in elements
+  document.querySelectorAll("[data-auth-user]").forEach(function (el) {
     el.style.display = logged ? "" : "none";
   });
-  document.querySelectorAll("[data-auth-name]").forEach((el) => {
-    if (user) el.textContent = user.name;
+
+  // User name
+  document.querySelectorAll("[data-auth-name]").forEach(function (el) {
+    if (user) {
+      el.textContent = user.name;
+    }
   });
 }
+
+// =========================
+// DOM Ready
+// =========================
 
 document.addEventListener("DOMContentLoaded", function () {
   updateAuthNav();
