@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Register | Khmer Calculator Hub</title>
+
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap Icons -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Kantumruy+Pro:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    <nav
+      class="navbar navbar-expand-lg navbar-light bg-white sticky-top border-bottom"
+    >
+      <div class="container">
+        <a
+          class="navbar-brand d-flex align-items-center gap-2"
+          href="index.html"
+        >
+          <img src="images/Logo.png" alt="Logo" width="40" height="40" />
+
+          <div>
+            <span class="brand-name">Khmer Calculator</span>
+            <small class="brand-subtitle">HUB</small>
+          </div>
+        </a>
+
+        <div class="d-flex gap-2">
+          <a href="login.html" class="btn btn-outline-primary btn-sm">
+            Login
+          </a>
+
+          <a href="index.html" class="btn btn-light btn-sm"> Home </a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Register -->
+    <div class="container py-5">
+      <div class="row justify-content-center">
+        <div class="col-md-5">
+          <div class="card shadow-sm border-0">
+            <div class="card-body p-4">
+              <h2 class="h4 mb-1 text-center">Register</h2>
+
+              <p class="text-secondary text-center small mb-4">
+                ចុះឈ្មោះគណនីថ្មី
+              </p>
+
+              <!-- Alert -->
+              <div id="authAlert" class="alert d-none" role="alert"></div>
+
+              <!-- Register Form -->
+              <form id="registerForm">
+                <!-- Name -->
+                <div class="mb-3">
+                  <label class="form-label" for="name"> Name / ឈ្មោះ </label>
+
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="name"
+                    required
+                    minlength="2"
+                    placeholder="Your name"
+                  />
+                </div>
+
+                <!-- Email -->
+                <div class="mb-3">
+                  <label class="form-label" for="email"> Email </label>
+
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    required
+                    placeholder="you@email.com"
+                  />
+                </div>
+
+                <!-- Password -->
+                <div class="mb-3">
+                  <label class="form-label" for="password"> Password </label>
+
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="password"
+                    required
+                    minlength="6"
+                    placeholder="Min 6 characters"
+                  />
+                </div>
+
+                <!-- Confirm Password -->
+                <div class="mb-3">
+                  <label class="form-label" for="confirm">
+                    Confirm Password
+                  </label>
+
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="confirm"
+                    required
+                    minlength="6"
+                    placeholder="Confirm your password"
+                  />
+                </div>
+
+                <!-- Register Button -->
+                <button type="submit" class="btn btn-primary w-100">
+                  Register / ចុះឈ្មោះ
+                </button>
+              </form>
+
+              <!-- Login Link -->
+              <p class="text-center mt-3 mb-0 small">
+                Already have an account?
+                <a href="login.html">Login</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Auth JS -->
+    <script src="js/auth.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", async function () {
+        const form = document.getElementById("registerForm");
+        const alertEl = document.getElementById("authAlert");
+
+        // Check current session
+        const user = await loadSession();
+
+        if (user) {
+          window.location.href = "dashboard.html";
+          return;
+        }
+
+        // Error messages
+        const msgs = {
+          name_short:
+            "Name must be at least 2 characters / ឈ្មោះយ៉ាងហោចណាស់ ២ តួ",
+
+          invalid_email: "Invalid email / អ៊ីមែលមិនត្រឹមត្រូវ",
+
+          password_short:
+            "Password min 6 characters / ពាក្យសម្ងាត់យ៉ាងហោចណាស់ ៦ តួ",
+
+          password_mismatch:
+            "Passwords do not match / ពាក្យសម្ងាត់មិនត្រូវគ្នា",
+
+          email_exists: "Email already registered / អ៊ីមែលនេះមានគណនីរួចហើយ",
+
+          network_error:
+            "Cannot connect to server / មិនអាចភ្ជាប់ទៅ Server បានទេ",
+
+          server_error:
+            "Server error. Please try again / មានបញ្ហា Server សូមព្យាយាមម្តងទៀត",
+
+          database_error: "Database error / មានបញ្ហាជាមួយ Database",
+
+          empty: "Please fill in all fields / សូមបំពេញព័ត៌មានទាំងអស់",
+        };
+
+        // Show error
+        function showError(message) {
+          alertEl.className = "alert alert-danger";
+          alertEl.textContent = message;
+          alertEl.classList.remove("d-none");
+        }
+
+        // Show success
+        function showSuccess(message) {
+          alertEl.className = "alert alert-success";
+          alertEl.textContent = message;
+          alertEl.classList.remove("d-none");
+        }
+
+        // Register
+        form.addEventListener("submit", async function (e) {
+          e.preventDefault();
+
+          // Hide old alert
+          alertEl.className = "alert d-none";
+          alertEl.textContent = "";
+
+          // Get values
+          const name = document.getElementById("name").value.trim();
+
+          const email = document.getElementById("email").value.trim();
+
+          const password = document.getElementById("password").value;
+
+          const confirm = document.getElementById("confirm").value;
+
+          // Validation
+          if (!name || !email || !password || !confirm) {
+            showError(msgs.empty);
+            return;
+          }
+
+          if (name.length < 2) {
+            showError(msgs.name_short);
+            return;
+          }
+
+          if (password.length < 6) {
+            showError(msgs.password_short);
+            return;
+          }
+
+          if (password !== confirm) {
+            showError(msgs.password_mismatch);
+            return;
+          }
+
+          // Register
+          const result = await register(name, email, password);
+
+          console.log("REGISTER RESULT:", result);
+
+          // Register failed
+          if (!result.success) {
+            showError(
+              msgs[result.error] || "Registration failed / ចុះឈ្មោះមិនបាន",
+            );
+
+            return;
+          }
+
+          // Register success
+          showSuccess("Registration successful! / ចុះឈ្មោះជោគជ័យ");
+
+          // Redirect
+          setTimeout(function () {
+            window.location.href = "dashboard.html";
+          }, 800);
+        });
+      });
+    </script>
+  </body>
+</html>
