@@ -33,14 +33,30 @@ async function apiRequest(endpoint, options = {}) {
   try {
     const response = await fetch(`${API_BASE}/${endpoint}`, {
       ...options,
+
+      // Important for PHP session cookie
       credentials: "include",
+
       headers: {
-        "Content-Type": "application/json",
+        /*
+         * Use text/plain to avoid
+         * CORS preflight OPTIONS request.
+         */
+        "Content-Type": "text/plain;charset=UTF-8",
+
         ...(options.headers || {}),
       },
     });
 
+    // =========================
+    // Read Response
+    // =========================
+
     const text = await response.text();
+
+    // =========================
+    // Parse JSON
+    // =========================
 
     let data;
 
@@ -54,6 +70,10 @@ async function apiRequest(endpoint, options = {}) {
         error: "server_error",
       };
     }
+
+    // =========================
+    // Debug
+    // =========================
 
     console.log("API:", endpoint, data);
 
@@ -74,6 +94,10 @@ async function apiRequest(endpoint, options = {}) {
 
 let currentUser = null;
 
+// =========================
+// Load Session
+// =========================
+
 async function loadSession() {
   const result = await apiRequest("user.php", {
     method: "GET",
@@ -81,6 +105,7 @@ async function loadSession() {
 
   if (result.success && result.user) {
     currentUser = result.user;
+
     return result.user;
   }
 
@@ -89,9 +114,17 @@ async function loadSession() {
   return null;
 }
 
+// =========================
+// Get Current User
+// =========================
+
 function getCurrentUser() {
   return currentUser;
 }
+
+// =========================
+// Check Login
+// =========================
 
 function isLoggedIn() {
   return currentUser !== null;
@@ -103,10 +136,15 @@ function isLoggedIn() {
 
 async function register(name, email, password) {
   name = (name || "").trim();
+
   email = (email || "").trim().toLowerCase();
+
   password = password || "";
 
-  // Check name
+  // =========================
+  // Check Name
+  // =========================
+
   if (!name || name.length < 2) {
     return {
       success: false,
@@ -114,7 +152,10 @@ async function register(name, email, password) {
     };
   }
 
-  // Check email
+  // =========================
+  // Check Email
+  // =========================
+
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return {
       success: false,
@@ -122,7 +163,10 @@ async function register(name, email, password) {
     };
   }
 
-  // Check password
+  // =========================
+  // Check Password
+  // =========================
+
   if (password.length < 6) {
     return {
       success: false,
@@ -130,14 +174,23 @@ async function register(name, email, password) {
     };
   }
 
+  // =========================
+  // API Request
+  // =========================
+
   const result = await apiRequest("register.php", {
     method: "POST",
+
     body: JSON.stringify({
       name: name,
       email: email,
       password: password,
     }),
   });
+
+  // =========================
+  // Save Current User
+  // =========================
 
   if (result.success && result.user) {
     currentUser = result.user;
@@ -152,9 +205,13 @@ async function register(name, email, password) {
 
 async function login(email, password) {
   email = (email || "").trim().toLowerCase();
+
   password = password || "";
 
-  // Check empty fields
+  // =========================
+  // Check Empty Fields
+  // =========================
+
   if (!email || !password) {
     return {
       success: false,
@@ -162,15 +219,28 @@ async function login(email, password) {
     };
   }
 
+  // =========================
+  // API Request
+  // =========================
+
   const result = await apiRequest("login.php", {
     method: "POST",
+
     body: JSON.stringify({
       email: email,
       password: password,
     }),
   });
 
+  // =========================
+  // Debug Login
+  // =========================
+
   console.log("LOGIN RESULT:", result);
+
+  // =========================
+  // Save User
+  // =========================
 
   if (result.success && result.user) {
     currentUser = result.user;
@@ -202,6 +272,7 @@ async function requireAuth() {
 
   if (!user) {
     window.location.href = SITE_ROOT + "login.html";
+
     return false;
   }
 
@@ -224,6 +295,10 @@ async function getAuthHistory() {
   return result.history || [];
 }
 
+// =========================
+// Save History Item
+// =========================
+
 async function saveAuthHistoryItem(item) {
   return await apiRequest("history.php", {
     method: "POST",
@@ -242,11 +317,19 @@ async function saveAuthHistoryItem(item) {
   });
 }
 
+// =========================
+// Delete History Item
+// =========================
+
 async function deleteAuthHistoryItem(id) {
   return await apiRequest(`history.php?id=${encodeURIComponent(id)}`, {
     method: "DELETE",
   });
 }
+
+// =========================
+// Clear History
+// =========================
 
 async function clearAuthHistory() {
   return await apiRequest("history.php", {
@@ -263,17 +346,26 @@ async function updateAuthNav() {
 
   const logged = user !== null;
 
-  // Guest elements
+  // =========================
+  // Guest Elements
+  // =========================
+
   document.querySelectorAll("[data-auth-guest]").forEach(function (el) {
     el.style.display = logged ? "none" : "";
   });
 
-  // Logged-in elements
+  // =========================
+  // Logged-in Elements
+  // =========================
+
   document.querySelectorAll("[data-auth-user]").forEach(function (el) {
     el.style.display = logged ? "" : "none";
   });
 
-  // User name
+  // =========================
+  // User Name
+  // =========================
+
   document.querySelectorAll("[data-auth-name]").forEach(function (el) {
     if (user) {
       el.textContent = user.name;
