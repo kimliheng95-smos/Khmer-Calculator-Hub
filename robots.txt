@@ -1,9 +1,0 @@
-User-agent: *
-Allow: /
-
-Disallow: /api/
-Disallow: /dashboard.html
-Disallow: /login.html
-Disallow: /register.html
-
-Sitemap: https://khmercalculatorhub.infy.click/sitemap.xml

@@ -104,63 +104,51 @@
       </div>
     </div>
 
-    <!-- Auth JS -->
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore-compat.js"></script>
+    <script src="js/firebase-config.js"></script>
     <script src="js/auth.js"></script>
 
     <script>
       document.addEventListener("DOMContentLoaded", async function () {
-        // Check current session
         const user = await loadSession();
-
-        // If already logged in
         if (user) {
           window.location.href = "dashboard.html";
           return;
         }
 
-        // Login form
         document
           .getElementById("loginForm")
           .addEventListener("submit", async function (e) {
             e.preventDefault();
 
             const email = document.getElementById("email").value.trim();
-
             const password = document.getElementById("password").value;
-
             const alertEl = document.getElementById("authAlert");
 
-            // Call login API
             const result = await login(email, password);
 
-            // Login failed
             if (!result.success) {
               const messages = {
-                empty:
-                  "Please enter email and password / សូមបញ្ចូលអ៊ីមែល និងពាក្យសម្ងាត់",
-                login_failed:
-                  "Email or password incorrect / អ៊ីមែល ឬ ពាក្យសម្ងាត់មិនត្រឹមត្រូវ",
-                network_error:
-                  "Cannot connect to server / មិនអាចភ្ជាប់ទៅ Server បានទេ",
-                server_error:
-                  "Server error. Please try again / មានបញ្ហា Server សូមព្យាយាមម្តងទៀត",
-                database_error: "Database error / មានបញ្ហាជាមួយ Database",
+                empty: "Please enter email and password / សូមបញ្ចូលអ៊ីមែល និងពាក្យសម្ងាត់",
+                invalid: "Email or password incorrect / អ៊ីមែល ឬ ពាក្យសម្ងាត់មិនត្រឹមត្រូវ",
+                too_many: "Too many attempts. Try later / ព្យាយាមច្រើនពេក សូមរង់ចាំ",
+                network_error: "Cannot connect / មិនអាចភ្ជាប់បានទេ",
+                server_error: "Server error. Please try again / មានបញ្ហា សូមព្យាយាមម្តងទៀត",
               };
 
               alertEl.className = "alert alert-danger";
-
-              alertEl.textContent =
-                messages[result.error] || "Login failed / ចូលគណនីមិនបាន";
-
+              alertEl.textContent = messages[result.error] || "Login failed / ចូលគណនីមិនបាន";
               alertEl.classList.remove("d-none");
-
               return;
             }
 
-            // Login success
             window.location.href = "dashboard.html";
           });
       });
     </script>
   </body>
 </html>
+

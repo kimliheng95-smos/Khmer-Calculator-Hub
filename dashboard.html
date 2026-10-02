@@ -172,14 +172,18 @@
       </div>
     </div>
 
-    <!-- JavaScript -->
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore-compat.js"></script>
+    <script src="js/firebase-config.js"></script>
     <script src="js/auth.js"></script>
     <script src="js/history.js"></script>
 
     <script>
       document.addEventListener("DOMContentLoaded", async function () {
         // =========================
-        // Check PHP Session
+        // Check Firebase Auth
         // =========================
 
         const user = await loadSession();
@@ -187,6 +191,7 @@
         if (!user) {
           window.location.href = "login.html";
           return;
+
         }
 
         // =========================

@@ -1,12 +1,5 @@
 // =========================
-// API Configuration
-// =========================
-
-// Backend API is hosted on InfinityFree
-const API_BASE = "https://khmercalculatorhub.infy.click/api";
-
-// =========================
-// Project Root
+// Khmer Calculator Hub - Auth (Firebase)
 // =========================
 
 const SITE_ROOT = (function () {
@@ -17,107 +10,47 @@ const SITE_ROOT = (function () {
   } catch (e) {}
 
   const path = window.location.pathname || "";
-
   if (path.indexOf("/calculators/") !== -1) {
     return "../";
   }
-
   return "./";
 })();
-
-// =========================
-// API Helper
-// =========================
-
-async function apiRequest(endpoint, options = {}) {
-  try {
-    const response = await fetch(`${API_BASE}/${endpoint}`, {
-      ...options,
-
-      // Important for PHP session cookie
-      credentials: "include",
-
-      headers: {
-        /*
-         * Use text/plain to avoid
-         * CORS preflight OPTIONS request.
-         */
-        "Content-Type": "text/plain;charset=UTF-8",
-
-        ...(options.headers || {}),
-      },
-    });
-
-    // =========================
-    // Read Response
-    // =========================
-
-    const text = await response.text();
-
-    // =========================
-    // Parse JSON
-    // =========================
-
-    let data;
-
-    try {
-      data = JSON.parse(text);
-    } catch (e) {
-      console.error("API non-JSON response:", text.slice(0, 500));
-
-      return {
-        success: false,
-        error: "server_error",
-      };
-    }
-
-    // =========================
-    // Debug
-    // =========================
-
-    console.log("API:", endpoint, data);
-
-    return data;
-  } catch (error) {
-    console.error("API Error:", error);
-
-    return {
-      success: false,
-      error: "network_error",
-    };
-  }
-}
-
-// =========================
-// Current Session
-// =========================
 
 let currentUser = null;
 
 // =========================
-// Load Session
+// Listen to Auth State
 // =========================
+auth.onAuthStateChanged(async function (user) {
+  if (user) {
+    // Get extra profile data from Firestore
+    let profile = { name: user.displayName || user.email.split("@")[0] };
 
-async function loadSession() {
-  const result = await apiRequest("user.php", {
-    method: "GET",
-  });
+    try {
+      const doc = await db.collection("users").doc(user.uid).get();
+      if (doc.exists) {
+        profile = { ...profile, ...doc.data() };
+      }
+    } catch (e) {
+      console.warn("Could not load user profile:", e);
+    }
 
-  if (result.success && result.user) {
-    currentUser = result.user;
-
-    return result.user;
+    currentUser = {
+      id: user.uid,
+      uid: user.uid,
+      email: user.email,
+      name: profile.name || user.displayName || "User",
+    };
+  } else {
+    currentUser = null;
   }
 
-  currentUser = null;
-
-  return null;
-}
+  updateAuthNav();
+});
 
 // =========================
 // Get Current User
 // =========================
-
 function getCurrentUser() {
   return currentUser;
 }
@@ -125,250 +58,264 @@ function getCurrentUser() {
 // =========================
 // Check Login
 // =========================
-
 function isLoggedIn() {
   return currentUser !== null;
 }
 
 // =========================
+// Load Session (compatibility)
+// =========================
+async function loadSession() {
+  // Wait a bit for auth state if needed
+  if (auth.currentUser) {
+    return getCurrentUser();
+  }
+  return new Promise(function (resolve) {
+    const unsubscribe = auth.onAuthStateChanged(function (user) {
+      unsubscribe();
+      resolve(getCurrentUser());
+    });
+  });
+}
+
+// =========================
 // Register
 // =========================
-
 async function register(name, email, password) {
   name = (name || "").trim();
-
   email = (email || "").trim().toLowerCase();
-
   password = password || "";
 
-  // =========================
-  // Check Name
-  // =========================
-
   if (!name || name.length < 2) {
-    return {
-      success: false,
-      error: "name_short",
-    };
+    return { success: false, error: "name_short" };
   }
-
-  // =========================
-  // Check Email
-  // =========================
-
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    return {
-      success: false,
-      error: "invalid_email",
-    };
+    return { success: false, error: "invalid_email" };
   }
-
-  // =========================
-  // Check Password
-  // =========================
-
   if (password.length < 6) {
-    return {
-      success: false,
-      error: "password_short",
-    };
+    return { success: false, error: "password_short" };
   }
 
-  // =========================
-  // API Request
-  // =========================
+  try {
+    const cred = await auth.createUserWithEmailAndPassword(email, password);
 
-  const result = await apiRequest("register.php", {
-    method: "POST",
+    // Update display name
+    await cred.user.updateProfile({ displayName: name });
 
-    body: JSON.stringify({
+    // Save profile to Firestore
+    await db.collection("users").doc(cred.user.uid).set({
       name: name,
       email: email,
-      password: password,
-    }),
-  });
+      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+    });
 
-  // =========================
-  // Save Current User
-  // =========================
+    currentUser = {
+      id: cred.user.uid,
+      uid: cred.user.uid,
+      email: email,
+      name: name,
+    };
 
-  if (result.success && result.user) {
-    currentUser = result.user;
+    return {
+      success: true,
+      user: currentUser,
+    };
+  } catch (error) {
+    console.error("Register error:", error);
+    let errorCode = "server_error";
+    if (error.code === "auth/email-already-in-use") errorCode = "email_exists";
+    if (error.code === "auth/weak-password") errorCode = "password_short";
+    if (error.code === "auth/invalid-email") errorCode = "invalid_email";
+    return { success: false, error: errorCode, message: error.message };
   }
-
-  return result;
 }
 
 // =========================
 // Login
 // =========================
-
 async function login(email, password) {
   email = (email || "").trim().toLowerCase();
-
   password = password || "";
 
-  // =========================
-  // Check Empty Fields
-  // =========================
-
   if (!email || !password) {
-    return {
-      success: false,
-      error: "empty",
+    return { success: false, error: "empty" };
+  }
+
+  try {
+    const cred = await auth.signInWithEmailAndPassword(email, password);
+
+    let name = cred.user.displayName || email.split("@")[0];
+    try {
+      const doc = await db.collection("users").doc(cred.user.uid).get();
+      if (doc.exists && doc.data().name) {
+        name = doc.data().name;
+      }
+    } catch (e) {}
+
+    currentUser = {
+      id: cred.user.uid,
+      uid: cred.user.uid,
+      email: cred.user.email,
+      name: name,
     };
+
+    return {
+      success: true,
+      user: currentUser,
+    };
+  } catch (error) {
+    console.error("Login error:", error);
+    let errorCode = "invalid";
+    if (error.code === "auth/user-not-found" || error.code === "auth/wrong-password" || error.code === "auth/invalid-credential") {
+      errorCode = "invalid";
+    }
+    if (error.code === "auth/too-many-requests") errorCode = "too_many";
+    return { success: false, error: errorCode, message: error.message };
   }
-
-  // =========================
-  // API Request
-  // =========================
-
-  const result = await apiRequest("login.php", {
-    method: "POST",
-
-    body: JSON.stringify({
-      email: email,
-      password: password,
-    }),
-  });
-
-  // =========================
-  // Debug Login
-  // =========================
-
-  console.log("LOGIN RESULT:", result);
-
-  // =========================
-  // Save User
-  // =========================
-
-  if (result.success && result.user) {
-    currentUser = result.user;
-  }
-
-  return result;
 }
 
 // =========================
 // Logout
 // =========================
-
 async function logout() {
-  await apiRequest("logout.php", {
-    method: "POST",
-  });
-
+  try {
+    await auth.signOut();
+  } catch (e) {
+    console.error("Logout error:", e);
+  }
   currentUser = null;
-
   window.location.href = SITE_ROOT + "index.html";
 }
 
 // =========================
 // Authentication Guard
 // =========================
-
 async function requireAuth() {
   const user = await loadSession();
-
   if (!user) {
     window.location.href = SITE_ROOT + "login.html";
-
     return false;
   }
-
   return true;
 }
 
 // =========================
-// History API
+// History API (Firestore)
 // =========================
-
 async function getAuthHistory() {
-  const result = await apiRequest("history.php", {
-    method: "GET",
-  });
+  if (!currentUser) return [];
 
-  if (!result.success) {
+  try {
+    const snapshot = await db
+      .collection("users")
+      .doc(currentUser.uid)
+      .collection("history")
+      .orderBy("createdAt", "desc")
+      .limit(100)
+      .get();
+
+    return snapshot.docs.map(function (doc) {
+      const data = doc.data();
+      return {
+        id: doc.id,
+        calculator_type: data.calculator_type || "",
+        calculator_name: data.calculator_name || "",
+        data: data.data || {},
+        result_text: data.result_text || "",
+        createdAt: data.createdAt,
+      };
+    });
+  } catch (e) {
+    console.error("getAuthHistory error:", e);
     return [];
   }
-
-  return result.history || [];
 }
-
-// =========================
-// Save History Item
-// =========================
 
 async function saveAuthHistoryItem(item) {
-  return await apiRequest("history.php", {
-    method: "POST",
+  if (!currentUser) {
+    return { success: false, error: "Unauthorized" };
+  }
 
-    body: JSON.stringify({
-      calculator_type:
-        item.calculator_type || item.calculatorType || item.type || "",
+  try {
+    const ref = await db
+      .collection("users")
+      .doc(currentUser.uid)
+      .collection("history")
+      .add({
+        calculator_type: item.calculator_type || item.calculatorType || item.type || "",
+        calculator_name: item.calculator_name || item.calculator || item.name || "",
+        data: item.data || item.inputs || {},
+        result_text: item.result_text || item.result || "",
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      });
 
-      calculator_name:
-        item.calculator_name || item.calculator || item.name || "",
-
-      data: item.data || item.inputs || {},
-
-      result_text: item.result_text || item.result || "",
-    }),
-  });
+    return { success: true, id: ref.id };
+  } catch (e) {
+    console.error("saveAuthHistoryItem error:", e);
+    return { success: false, error: "server_error" };
+  }
 }
-
-// =========================
-// Delete History Item
-// =========================
 
 async function deleteAuthHistoryItem(id) {
-  return await apiRequest(`history.php?id=${encodeURIComponent(id)}`, {
-    method: "DELETE",
-  });
+  if (!currentUser) {
+    return { success: false, error: "Unauthorized" };
+  }
+
+  try {
+    await db
+      .collection("users")
+      .doc(currentUser.uid)
+      .collection("history")
+      .doc(String(id))
+      .delete();
+    return { success: true };
+  } catch (e) {
+    console.error("deleteAuthHistoryItem error:", e);
+    return { success: false, error: "server_error" };
+  }
 }
 
-// =========================
-// Clear History
-// =========================
-
 async function clearAuthHistory() {
-  return await apiRequest("history.php", {
-    method: "DELETE",
-  });
+  if (!currentUser) {
+    return { success: false, error: "Unauthorized" };
+  }
+
+  try {
+    const snapshot = await db
+      .collection("users")
+      .doc(currentUser.uid)
+      .collection("history")
+      .get();
+
+    const batch = db.batch();
+    snapshot.docs.forEach(function (doc) {
+      batch.delete(doc.ref);
+    });
+    await batch.commit();
+    return { success: true };
+  } catch (e) {
+    console.error("clearAuthHistory error:", e);
+    return { success: false, error: "server_error" };
+  }
 }
 
 // =========================
 // Update Navigation
 // =========================
-
-async function updateAuthNav() {
-  const user = await loadSession();
-
-  const logged = user !== null;
-
-  // =========================
-  // Guest Elements
-  // =========================
+function updateAuthNav() {
+  const logged = currentUser !== null;
 
   document.querySelectorAll("[data-auth-guest]").forEach(function (el) {
     el.style.display = logged ? "none" : "";
   });
 
-  // =========================
-  // Logged-in Elements
-  // =========================
-
   document.querySelectorAll("[data-auth-user]").forEach(function (el) {
     el.style.display = logged ? "" : "none";
   });
 
-  // =========================
-  // User Name
-  // =========================
-
   document.querySelectorAll("[data-auth-name]").forEach(function (el) {
-    if (user) {
-      el.textContent = user.name;
+    if (currentUser) {
+      el.textContent = currentUser.name;
     }
   });
 }
@@ -376,7 +323,6 @@ async function updateAuthNav() {
 // =========================
 // DOM Ready
 // =========================
-
 document.addEventListener("DOMContentLoaded", function () {
-  updateAuthNav();
+  // Auth state listener will call updateAuthNav
 });
