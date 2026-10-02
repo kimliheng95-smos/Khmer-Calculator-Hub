@@ -1,26 +1,28 @@
 // ========================================
-// Firebase Configuration
+// FIREBASE CONFIGURATION
+// Khmer Calculator Hub
 // ========================================
-// 
-// 1. Go to https://console.firebase.google.com
-// 2. Create a project (or use existing)
-// 3. Enable Authentication > Sign-in method > Email/Password
-// 4. Create Firestore Database (start in test mode, then secure later)
-// 5. Project Settings > Your apps > Add web app
-// 6. Copy the firebaseConfig object below and replace the values
-// ========================================
+
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.appspot.com",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyAE37a7JTFPBYYNuadZF_oXs5d8RaAFzl8",
+  authDomain: "khmer-calculator-hub.firebaseapp.com",
+  projectId: "khmer-calculator-hub",
+  storageBucket: "khmer-calculator-hub.firebasestorage.app",
+  messagingSenderId: "334769113777",
+  appId: "1:334769113777:web:bb437c148659937ce9b090",
 };
 
-// Initialize Firebase (using compat SDK for simplicity)
-firebase.initializeApp(firebaseConfig);
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
 
-const auth = firebase.auth();
-const db = firebase.firestore();
+// Firebase Authentication
+const auth = getAuth(app);
+
+// Firestore Database
+const db = getFirestore(app);
+
+export { auth, db };

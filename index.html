@@ -1,5 +1,4 @@
 <!doctype html>
-
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -35,7 +34,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
 
     <!-- ================================================= -->
-    <!-- ================= CANONICAL ===================== -->
+    <!-- ================= CANONICAL ====================== -->
     <!-- ================================================= -->
 
     <link rel="canonical" href="/" />
@@ -97,10 +96,7 @@
 
     <meta property="og:locale:alternate" content="km_KH" />
 
-    <meta
-      property="og:image"
-      content="/images/Heng.jpg"
-    />
+    <meta property="og:image" content="/images/Heng.jpg" />
 
     <meta property="og:image:alt" content="Khmer Calculator Hub" />
 
@@ -120,10 +116,7 @@
       content="Free online calculators for students, businesses and everyday use."
     />
 
-    <meta
-      name="twitter:image"
-      content="/images/Heng.jpg"
-    />
+    <meta name="twitter:image" content="/images/Heng.jpg" />
 
     <!-- ================================================= -->
     <!-- =================== BOOTSTRAP =================== -->
@@ -163,7 +156,7 @@
     <link rel="stylesheet" href="css/style.css" />
 
     <!-- ================================================= -->
-    <!-- ================= STRUCTURED DATA ================ -->
+    <!-- ================= STRUCTURED DATA =============== -->
     <!-- ================================================= -->
 
     <script type="application/ld+json">
@@ -187,7 +180,7 @@
     </script>
 
     <!-- ================================================= -->
-    <!-- ================= CALCULATOR LIST ================ -->
+    <!-- ================= CALCULATOR LIST =============== -->
     <!-- ================================================= -->
 
     <script type="application/ld+json">
@@ -319,6 +312,7 @@
     >
       <div class="container">
         <!-- Logo -->
+
         <a
           class="navbar-brand d-flex align-items-center gap-2"
           href="index.html"
@@ -333,12 +327,14 @@
           </div>
 
           <div>
-            <span class="brand-name">Khmer Calculator</span>
-            <small class="brand-subtitle">HUB</small>
+            <span class="brand-name"> Khmer Calculator </span>
+
+            <small class="brand-subtitle"> HUB </small>
           </div>
         </a>
 
         <!-- Mobile Menu Button -->
+
         <button
           class="navbar-toggler"
           type="button"
@@ -352,14 +348,17 @@
         </button>
 
         <!-- Navigation -->
+
         <div class="collapse navbar-collapse" id="mainNavbar">
           <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
             <!-- Home -->
+
             <li class="nav-item">
               <a class="nav-link active" href="#" data-i18n="home"> Home </a>
             </li>
 
             <!-- Calculators -->
+
             <li class="nav-item">
               <a class="nav-link" href="#calculators" data-i18n="calculators">
                 Calculators
@@ -367,40 +366,47 @@
             </li>
 
             <!-- About -->
+
             <li class="nav-item">
               <a class="nav-link" href="#about" data-i18n="about"> About </a>
             </li>
 
-            <!-- Auth Guest -->
+            <!-- =============================== -->
+            <!-- AUTH GUEST -->
+            <!-- =============================== -->
+
             <li class="nav-item" data-auth-guest>
-              <a class="nav-link" href="login.html">Login</a>
-            </li>
-            <li class="nav-item" data-auth-guest>
-              <a class="nav-link" href="register.html">Register</a>
+              <a class="nav-link" href="login.html"> Login </a>
             </li>
 
-            <!-- Auth User -->
-            <li class="nav-item" data-auth-user style="display: none">
-              <a class="nav-link" href="dashboard.html">Dashboard</a>
+            <li class="nav-item" data-auth-guest>
+              <a class="nav-link" href="register.html"> Register </a>
             </li>
+
+            <!-- =============================== -->
+            <!-- AUTH USER -->
+            <!-- =============================== -->
+
             <li class="nav-item" data-auth-user style="display: none">
-              <span class="nav-link"
-                ><i class="bi bi-person-circle"></i> <span data-auth-name></span
-              ></span>
+              <a class="nav-link" href="dashboard.html"> Dashboard </a>
             </li>
+
             <li class="nav-item" data-auth-user style="display: none">
-              <a
-                class="nav-link text-danger"
-                href="#"
-                onclick="
-                  logout();
-                  return false;
-                "
-                >Logout</a
-              >
+              <span class="nav-link">
+                <i class="bi bi-person-circle"></i>
+
+                <span data-auth-name></span>
+              </span>
+            </li>
+
+            <li class="nav-item" data-auth-user style="display: none">
+              <a class="nav-link text-danger" href="#" id="logoutButton">
+                Logout
+              </a>
             </li>
 
             <!-- Language -->
+
             <li class="nav-item ms-lg-2">
               <button
                 type="button"
@@ -409,7 +415,8 @@
                 aria-label="Switch language"
               >
                 <i class="bi bi-translate"></i>
-                <span id="languageText">EN</span>
+
+                <span id="languageText"> EN </span>
               </button>
             </li>
           </ul>
@@ -425,14 +432,18 @@
       <div class="container">
         <div class="row align-items-center g-5">
           <!-- HERO CONTENT -->
+
           <div class="col-lg-7">
             <!-- Badge -->
+
             <div class="hero-badge" data-i18n="heroBadge">
               <i class="bi bi-stars"></i>
+
               Free Online Tools for Everyone
             </div>
 
             <!-- Title -->
+
             <h1 class="hero-title">
               <span data-i18n="heroTitleMain"> Calculate Anything, </span>
 
@@ -440,17 +451,20 @@
             </h1>
 
             <!-- Khmer Text -->
+
             <p class="hero-khmer" data-i18n="heroKhmer">
               គណនារហ័ស • ងាយស្រួល • ឥតគិតថ្លៃ
             </p>
 
             <!-- Description -->
+
             <p class="hero-description" data-i18n="heroDescription">
               Khmer Calculator Hub provides simple and useful calculators for
               students, businesses and everyday life.
             </p>
 
             <!-- SEARCH -->
+
             <div class="search-box">
               <i class="bi bi-search" aria-hidden="true"></i>
 
@@ -483,28 +497,34 @@
             </div>
 
             <!-- FEATURES -->
+
             <div class="hero-features">
               <div>
                 <i class="bi bi-check-circle-fill"></i>
+
                 <span data-i18n="free"> Free </span>
               </div>
 
               <div>
                 <i class="bi bi-check-circle-fill"></i>
+
                 <span data-i18n="fast"> Fast </span>
               </div>
 
               <div>
                 <i class="bi bi-check-circle-fill"></i>
+
                 <span data-i18n="mobileFriendly"> Mobile Friendly </span>
               </div>
             </div>
           </div>
 
           <!-- HERO PREVIEW -->
+
           <div class="col-lg-5">
             <div class="calculator-preview">
               <!-- Preview Header -->
+
               <div class="preview-header">
                 <div>
                   <span></span>
@@ -516,6 +536,7 @@
               </div>
 
               <!-- Screen -->
+
               <div class="preview-screen">
                 <small data-i18n="gpaResult"> GPA RESULT </small>
 
@@ -527,6 +548,7 @@
               </div>
 
               <!-- Buttons -->
+
               <div class="preview-buttons">
                 <div>7</div>
                 <div>8</div>
@@ -573,6 +595,7 @@
     <section class="popular-section" id="calculators">
       <div class="container">
         <!-- Section Heading -->
+
         <div class="section-heading">
           <div>
             <span class="section-label" data-i18n="tools"> TOOLS </span>
@@ -592,8 +615,10 @@
         </div>
 
         <!-- POPULAR CARDS -->
+
         <div class="row g-4">
           <!-- GPA -->
+
           <div class="col-12 col-sm-6 col-lg-3">
             <div class="calculator-card">
               <div class="calculator-icon icon-blue">
@@ -615,6 +640,7 @@
           </div>
 
           <!-- GRADE -->
+
           <div class="col-12 col-sm-6 col-lg-3">
             <div class="calculator-card">
               <div class="calculator-icon icon-purple">
@@ -636,6 +662,7 @@
           </div>
 
           <!-- DISCOUNT -->
+
           <div class="col-12 col-sm-6 col-lg-3">
             <div class="calculator-card">
               <div class="calculator-icon icon-orange">
@@ -657,6 +684,7 @@
           </div>
 
           <!-- PROFIT -->
+
           <div class="col-12 col-sm-6 col-lg-3">
             <div class="calculator-card">
               <div class="calculator-icon icon-green">
@@ -687,6 +715,7 @@
     <section class="calculators-section py-5" id="all-calculators">
       <div class="container">
         <!-- Section Heading -->
+
         <div class="text-center mb-4">
           <span class="section-label" data-i18n="allTools"> ALL TOOLS </span>
 
@@ -700,51 +729,62 @@
         </div>
 
         <!-- CATEGORY FILTER -->
+
         <div class="category-filter mb-5">
           <button type="button" class="category-btn active" data-category="all">
             <i class="bi bi-grid"></i>
+
             <span data-i18n="all"> All </span>
           </button>
 
           <button type="button" class="category-btn" data-category="education">
             <i class="bi bi-mortarboard"></i>
+
             <span data-i18n="education"> Education </span>
           </button>
 
           <button type="button" class="category-btn" data-category="finance">
             <i class="bi bi-cash-stack"></i>
+
             <span data-i18n="finance"> Finance </span>
           </button>
 
           <button type="button" class="category-btn" data-category="business">
             <i class="bi bi-briefcase"></i>
+
             <span data-i18n="business"> Business </span>
           </button>
 
           <button type="button" class="category-btn" data-category="health">
             <i class="bi bi-heart-pulse"></i>
+
             <span data-i18n="health"> Health </span>
           </button>
 
           <button type="button" class="category-btn" data-category="math">
             <i class="bi bi-percent"></i>
+
             <span data-i18n="math"> Math </span>
           </button>
 
           <button type="button" class="category-btn" data-category="converter">
             <i class="bi bi-arrow-left-right"></i>
+
             <span data-i18n="converter"> Converter </span>
           </button>
 
           <button type="button" class="category-btn" data-category="transport">
             <i class="bi bi-car-front"></i>
+
             <span data-i18n="transport"> Transport </span>
           </button>
         </div>
 
         <!-- CALCULATOR GRID -->
+
         <div class="row g-4" id="calculatorGrid">
           <!-- GPA -->
+
           <div
             class="col-12 col-sm-6 col-lg-3 calculator-card-wrapper"
             data-category="education"
@@ -762,12 +802,14 @@
 
               <a href="calculators/gpa.html" class="calculator-link">
                 <span data-i18n="calculate"> Calculate </span>
+
                 <i class="bi bi-arrow-right"></i>
               </a>
             </div>
           </div>
 
           <!-- GRADE -->
+
           <div
             class="col-12 col-sm-6 col-lg-3 calculator-card-wrapper"
             data-category="education"
@@ -785,12 +827,14 @@
 
               <a href="calculators/grade.html" class="calculator-link">
                 <span data-i18n="calculate"> Calculate </span>
+
                 <i class="bi bi-arrow-right"></i>
               </a>
             </div>
           </div>
 
           <!-- AVERAGE -->
+
           <div
             class="col-12 col-sm-6 col-lg-3 calculator-card-wrapper"
             data-category="education"
@@ -808,12 +852,14 @@
 
               <a href="calculators/average.html" class="calculator-link">
                 <span data-i18n="calculate"> Calculate </span>
+
                 <i class="bi bi-arrow-right"></i>
               </a>
             </div>
           </div>
 
           <!-- DISCOUNT -->
+
           <div
             class="col-12 col-sm-6 col-lg-3 calculator-card-wrapper"
             data-category="finance"
@@ -831,12 +877,14 @@
 
               <a href="calculators/discount.html" class="calculator-link">
                 <span data-i18n="calculate"> Calculate </span>
+
                 <i class="bi bi-arrow-right"></i>
               </a>
             </div>
           </div>
 
           <!-- PROFIT -->
+
           <div
             class="col-12 col-sm-6 col-lg-3 calculator-card-wrapper"
             data-category="finance"
@@ -854,12 +902,14 @@
 
               <a href="calculators/profit.html" class="calculator-link">
                 <span data-i18n="calculate"> Calculate </span>
+
                 <i class="bi bi-arrow-right"></i>
               </a>
             </div>
           </div>
 
           <!-- LOAN -->
+
           <div
             class="col-12 col-sm-6 col-lg-3 calculator-card-wrapper"
             data-category="finance"
@@ -877,12 +927,14 @@
 
               <a href="calculators/loan.html" class="calculator-link">
                 <span data-i18n="calculate"> Calculate </span>
+
                 <i class="bi bi-arrow-right"></i>
               </a>
             </div>
           </div>
 
           <!-- INTEREST -->
+
           <div
             class="col-12 col-sm-6 col-lg-3 calculator-card-wrapper"
             data-category="finance"
@@ -900,12 +952,14 @@
 
               <a href="calculators/interest.html" class="calculator-link">
                 <span data-i18n="calculate"> Calculate </span>
+
                 <i class="bi bi-arrow-right"></i>
               </a>
             </div>
           </div>
 
           <!-- SAVINGS -->
+
           <div
             class="col-12 col-sm-6 col-lg-3 calculator-card-wrapper"
             data-category="finance"
@@ -923,12 +977,14 @@
 
               <a href="calculators/savings.html" class="calculator-link">
                 <span data-i18n="calculate"> Calculate </span>
+
                 <i class="bi bi-arrow-right"></i>
               </a>
             </div>
           </div>
 
           <!-- TAX -->
+
           <div
             class="col-12 col-sm-6 col-lg-3 calculator-card-wrapper"
             data-category="finance"
@@ -946,12 +1002,14 @@
 
               <a href="calculators/tax.html" class="calculator-link">
                 <span data-i18n="calculate"> Calculate </span>
+
                 <i class="bi bi-arrow-right"></i>
               </a>
             </div>
           </div>
 
           <!-- SALARY -->
+
           <div
             class="col-12 col-sm-6 col-lg-3 calculator-card-wrapper"
             data-category="finance"
@@ -969,12 +1027,14 @@
 
               <a href="calculators/salary.html" class="calculator-link">
                 <span data-i18n="calculate"> Calculate </span>
+
                 <i class="bi bi-arrow-right"></i>
               </a>
             </div>
           </div>
 
           <!-- VAT -->
+
           <div
             class="col-12 col-sm-6 col-lg-3 calculator-card-wrapper"
             data-category="finance"
@@ -990,12 +1050,14 @@
 
               <a href="calculators/vat.html" class="calculator-link">
                 <span data-i18n="calculate"> Calculate </span>
+
                 <i class="bi bi-arrow-right"></i>
               </a>
             </div>
           </div>
 
           <!-- BREAK EVEN -->
+
           <div
             class="col-12 col-sm-6 col-lg-3 calculator-card-wrapper"
             data-category="business"
@@ -1013,12 +1075,14 @@
 
               <a href="calculators/break-even.html" class="calculator-link">
                 <span data-i18n="calculate"> Calculate </span>
+
                 <i class="bi bi-arrow-right"></i>
               </a>
             </div>
           </div>
 
           <!-- AGE -->
+
           <div
             class="col-12 col-sm-6 col-lg-3 calculator-card-wrapper"
             data-category="health"
@@ -1034,12 +1098,14 @@
 
               <a href="calculators/age.html" class="calculator-link">
                 <span data-i18n="calculate"> Calculate </span>
+
                 <i class="bi bi-arrow-right"></i>
               </a>
             </div>
           </div>
 
           <!-- BMI -->
+
           <div
             class="col-12 col-sm-6 col-lg-3 calculator-card-wrapper"
             data-category="health"
@@ -1055,12 +1121,14 @@
 
               <a href="calculators/bmi.html" class="calculator-link">
                 <span data-i18n="calculate"> Calculate </span>
+
                 <i class="bi bi-arrow-right"></i>
               </a>
             </div>
           </div>
 
           <!-- PERCENTAGE -->
+
           <div
             class="col-12 col-sm-6 col-lg-3 calculator-card-wrapper"
             data-category="math"
@@ -1078,12 +1146,14 @@
 
               <a href="calculators/percentage.html" class="calculator-link">
                 <span data-i18n="calculate"> Calculate </span>
+
                 <i class="bi bi-arrow-right"></i>
               </a>
             </div>
           </div>
 
           <!-- UNIT -->
+
           <div
             class="col-12 col-sm-6 col-lg-3 calculator-card-wrapper"
             data-category="converter"
@@ -1108,6 +1178,7 @@
           </div>
 
           <!-- CURRENCY -->
+
           <div
             class="col-12 col-sm-6 col-lg-3 calculator-card-wrapper"
             data-category="converter"
@@ -1132,6 +1203,7 @@
           </div>
 
           <!-- FUEL -->
+
           <div
             class="col-12 col-sm-6 col-lg-3 calculator-card-wrapper"
             data-category="transport"
@@ -1166,6 +1238,7 @@
       <div class="container">
         <div class="row align-items-center g-5">
           <!-- LEFT -->
+
           <div class="col-lg-6">
             <span class="section-label" data-i18n="moreTools">
               MORE TOOLS
@@ -1183,8 +1256,10 @@
             </p>
 
             <!-- Tool List -->
+
             <div class="tool-list">
               <!-- Age -->
+
               <a
                 href="calculators/age.html"
                 class="text-decoration-none text-dark"
@@ -1197,6 +1272,7 @@
               </a>
 
               <!-- BMI -->
+
               <a
                 href="calculators/bmi.html"
                 class="text-decoration-none text-dark"
@@ -1209,6 +1285,7 @@
               </a>
 
               <!-- Unit -->
+
               <a
                 href="calculators/unit.html"
                 class="text-decoration-none text-dark"
@@ -1221,6 +1298,7 @@
               </a>
 
               <!-- Currency -->
+
               <a
                 href="calculators/currency.html"
                 class="text-decoration-none text-dark"
@@ -1235,9 +1313,11 @@
           </div>
 
           <!-- RIGHT DASHBOARD -->
+
           <div class="col-lg-6">
             <div class="tool-dashboard">
               <!-- Dashboard Header -->
+
               <div class="dashboard-title">
                 <span>
                   <i class="bi bi-grid-fill"></i>
@@ -1249,6 +1329,7 @@
               </div>
 
               <!-- Age -->
+
               <a
                 href="calculators/age.html"
                 class="dashboard-item text-decoration-none"
@@ -1261,6 +1342,7 @@
               </a>
 
               <!-- BMI -->
+
               <a
                 href="calculators/bmi.html"
                 class="dashboard-item text-decoration-none"
@@ -1273,6 +1355,7 @@
               </a>
 
               <!-- Unit -->
+
               <a
                 href="calculators/unit.html"
                 class="dashboard-item text-decoration-none"
@@ -1285,6 +1368,7 @@
               </a>
 
               <!-- Currency -->
+
               <a
                 href="calculators/currency.html"
                 class="dashboard-item text-decoration-none"
@@ -1326,14 +1410,17 @@
       <div class="container">
         <div class="row g-4">
           <!-- PROFILE / BRAND -->
+
           <div class="col-lg-5">
             <div class="footer-profile">
               <!-- Profile Image -->
+
               <div class="footer-profile-image">
                 <img src="images/Heng.jpg" alt="Kim Liheng" />
               </div>
 
               <!-- Profile Info -->
+
               <div class="footer-profile-info">
                 <strong> Kim Liheng </strong>
 
@@ -1348,6 +1435,7 @@
           </div>
 
           <!-- TOOLS -->
+
           <div class="col-6 col-lg-2">
             <h5 data-i18n="tools">Tools</h5>
 
@@ -1369,6 +1457,7 @@
           </div>
 
           <!-- COMPANY -->
+
           <div class="col-6 col-lg-2">
             <h5 data-i18n="company">Company</h5>
 
@@ -1382,6 +1471,7 @@
           </div>
 
           <!-- SOCIAL -->
+
           <div class="col-lg-3">
             <h5 data-i18n="followUs">Follow Us</h5>
 
@@ -1389,6 +1479,7 @@
               <a
                 href="https://www.facebook.com/KimLiheng.77/?_rdc=6&_rdr#"
                 target="_blank"
+                rel="noopener noreferrer"
                 aria-label="Facebook"
               >
                 <i class="bi bi-facebook"></i>
@@ -1397,6 +1488,7 @@
               <a
                 href="https://t.me/Heng77777"
                 target="_blank"
+                rel="noopener noreferrer"
                 aria-label="Telegram"
               >
                 <i class="bi bi-telegram"></i>
@@ -1405,6 +1497,7 @@
               <a
                 href="https://www.tiktok.com/@hengg899?_r=1&_t=ZS-9A1HcAsdsLh"
                 target="_blank"
+                rel="noopener noreferrer"
                 aria-label="TikTok"
               >
                 <i class="bi bi-tiktok"></i>
@@ -1416,6 +1509,7 @@
         <hr />
 
         <!-- FOOTER BOTTOM -->
+
         <div class="footer-bottom">
           <span data-i18n="copyright"> © 2026 Khmer Calculator Hub </span>
 
@@ -1425,26 +1519,26 @@
     </footer>
 
     <!-- ================================================= -->
-    <!-- ================= BOOTSTRAP JS ================= -->
+    <!-- ================= BOOTSTRAP JS ================== -->
     <!-- ================================================= -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore-compat.js"></script>
-    <script src="js/firebase-config.js"></script>
 
     <!-- ================================================= -->
     <!-- ================= CUSTOM JS ===================== -->
     <!-- ================================================= -->
 
-    <script src="js/auth.js"></script>
-    <script src="js/script.js"></script>
-    <script src="js/history.js"></script>
-    <script src="js/language.js"></script>
+    <!-- Firebase Authentication + Firestore -->
+    <script type="module" src="js/auth.js"></script>
 
+    <!-- Calculator History -->
+    <script type="module" src="js/history.js"></script>
+
+    <!-- Normal JavaScript -->
+    <script src="js/script.js"></script>
+
+    <!-- Language -->
+    <script src="js/language.js"></script>
 
     <!-- ================================================= -->
     <!-- ================ CATEGORY FILTER ================ -->
@@ -1465,12 +1559,12 @@
         button.addEventListener("click", function () {
           const selectedCategory = button.getAttribute("data-category");
 
-          // Remove active from all buttons
+          // Remove active
           categoryButtons.forEach(function (btn) {
             btn.classList.remove("active");
           });
 
-          // Add active to selected button
+          // Add active
           button.classList.add("active");
 
           // Filter cards
