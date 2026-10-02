@@ -14,13 +14,11 @@ const translations = {
     // ================= HERO =================
     heroBadge: "Free Online Tools for Everyone",
 
-    // SEO: Main H1
     heroTitleMain: "Khmer Calculator Hub",
     heroTitleSimple: " – Free Online Calculators",
 
     heroKhmer: "Fast • Easy • Free",
 
-    // SEO: Main description
     heroDescription:
       "Khmer Calculator Hub provides free online calculators for students, businesses and everyday life in Cambodia. Calculate GPA, grades, percentage, salary, loan, tax, BMI and more.",
 
@@ -164,14 +162,11 @@ const translations = {
     example10000: "Example: 10000",
 
     enterAllValues: "Please enter all values.",
-
     invalidValues: "Please enter valid values.",
 
     // ================= PERCENTAGE =================
     percentageCalculator: "Percentage Calculator",
-
     percentageDescription: "Calculate percentages quickly and easily.",
-
     calculationType: "Calculation Type",
 
     percentOf: "What is X% of Y?",
@@ -184,7 +179,6 @@ const translations = {
 
     // ================= AVERAGE =================
     averageCalculator: "Average Calculator",
-
     averageDescription: "Calculate sum, average, minimum and maximum.",
 
     enterNumbers: "Enter Numbers",
@@ -196,7 +190,6 @@ const translations = {
     maximum: "Maximum",
 
     enterAtLeastOneNumber: "Please enter at least one number.",
-
     averageOfNumbers: "Average of",
     numbers: "numbers",
 
@@ -209,15 +202,11 @@ const translations = {
       "Calculate monthly payment, total payment and total interest.",
 
     loanAmount: "Loan Amount",
-
     interestRate: "Annual Interest Rate (%)",
-
     loanTerm: "Loan Term (Years)",
 
     monthlyPayment: "Monthly Payment",
-
     totalPayment: "Total Payment",
-
     totalInterest: "Total Interest",
 
     loanExampleTitle: "Example",
@@ -234,7 +223,6 @@ const translations = {
     interestType: "Interest Type",
 
     simpleInterest: "Simple Interest",
-
     compoundInterest: "Compound Interest",
 
     principal: "Principal Amount",
@@ -246,17 +234,12 @@ const translations = {
     compoundFrequency: "Compound Frequency",
 
     annually: "Annually",
-
     semiAnnually: "Semi-annually",
-
     quarterly: "Quarterly",
-
     monthly: "Monthly",
-
     daily: "Daily",
 
     interestEarned: "Interest",
-
     totalAmount: "Total Amount",
 
     interestExampleTitle: "Example",
@@ -518,6 +501,34 @@ const translations = {
     value: "Value",
 
     conversionResult: "CONVERSION RESULT",
+    login: "Login",
+    register: "Register",
+    home: "Home",
+
+    registerDescription: "Create a new account",
+
+    name: "Name",
+    namePlaceholder: "Your name",
+
+    email: "Email",
+    emailPlaceholder: "you@email.com",
+
+    password: "Password",
+    passwordPlaceholder: "Min 6 characters",
+
+    confirmPassword: "Confirm Password",
+    confirmPasswordPlaceholder: "Confirm your password",
+
+    alreadyAccount: "Already have an account?",
+    dashboard: "Dashboard",
+    hello: "Hello,",
+    logout: "Logout",
+    totalCalculations: "Total Calculations",
+    account: "Account",
+    quickLinks: "Quick Links",
+    myCalculationHistory: "My Calculation History",
+    clearAll: "Clear All",
+    loading: "Loading...",
   },
 
   // =========================================================
@@ -531,17 +542,14 @@ const translations = {
     about: "អំពីយើង",
 
     // ================= HERO =================
-
     heroBadge: "ឧបករណ៍អនឡាញឥតគិតថ្លៃ សម្រាប់អ្នកគ្រប់គ្នា",
 
-    // SEO: Khmer H1
     heroTitleMain: "Khmer Calculator Hub",
 
     heroTitleSimple: " – ម៉ាស៊ីនគណនាអនឡាញឥតគិតថ្លៃ",
 
     heroKhmer: "រហ័ស • ងាយស្រួល • ឥតគិតថ្លៃ",
 
-    // SEO: Khmer description
     heroDescription:
       "Khmer Calculator Hub ផ្តល់ជូនម៉ាស៊ីនគណនាអនឡាញឥតគិតថ្លៃ សម្រាប់សិស្ស និស្សិត អាជីវកម្ម និងការប្រើប្រាស់ប្រចាំថ្ងៃនៅកម្ពុជា។ គណនា GPA ពិន្ទុ ភាគរយ ប្រាក់ខែ ប្រាក់កម្ចី ពន្ធ BMI និងច្រើនទៀត។",
 
@@ -1106,9 +1114,45 @@ const translations = {
     value: "តម្លៃ",
 
     conversionResult: "លទ្ធផលបម្លែង",
+    login: "ចូលគណនី",
+    register: "ចុះឈ្មោះ",
+    home: "ទំព័រដើម",
+
+    registerDescription: "បង្កើតគណនីថ្មី",
+
+    name: "ឈ្មោះ",
+    namePlaceholder: "ឈ្មោះរបស់អ្នក",
+
+    email: "អ៊ីមែល",
+    emailPlaceholder: "you@email.com",
+
+    password: "ពាក្យសម្ងាត់",
+    passwordPlaceholder: "យ៉ាងតិច 6 តួអក្សរ",
+
+    confirmPassword: "បញ្ជាក់ពាក្យសម្ងាត់",
+    confirmPasswordPlaceholder: "បញ្ជាក់ពាក្យសម្ងាត់របស់អ្នក",
+
+    alreadyAccount: "មានគណនីរួចហើយ?",
+    dashboard: "ផ្ទាំងគ្រប់គ្រង",
+    hello: "សួស្តី,",
+    logout: "ចាកចេញ",
+    totalCalculations: "ចំនួនការគណនាសរុប",
+    account: "គណនី",
+    quickLinks: "តំណភ្ជាប់រហ័ស",
+    myCalculationHistory: "ប្រវត្តិការគណនារបស់ខ្ញុំ",
+    clearAll: "លុបទាំងអស់",
+    loading: "កំពុងផ្ទុក...",
   },
 };
 
+// =========================================================
+// APPLY LANGUAGE
+// =========================================================
+// =========================================================
+// GLOBAL LANGUAGE SYSTEM
+// =========================================================
+
+// Get saved language
 // =========================================================
 // APPLY LANGUAGE
 // =========================================================
@@ -1116,19 +1160,16 @@ const translations = {
 function applyLanguage() {
   const language = translations[currentLanguage];
 
+  // Safety check
   if (!language) {
-    console.error("Language not found:", currentLanguage);
-
     currentLanguage = "en";
-
-    localStorage.setItem("language", currentLanguage);
-
+    localStorage.setItem("language", "en");
     return;
   }
 
-  // -----------------------------------------
-  // Text
-  // -----------------------------------------
+  // =======================================================
+  // TEXT
+  // =======================================================
 
   document.querySelectorAll("[data-i18n]").forEach((element) => {
     const key = element.getAttribute("data-i18n");
@@ -1138,9 +1179,9 @@ function applyLanguage() {
     }
   });
 
-  // -----------------------------------------
-  // Placeholder
-  // -----------------------------------------
+  // =======================================================
+  // PLACEHOLDER
+  // =======================================================
 
   document.querySelectorAll("[data-i18n-placeholder]").forEach((element) => {
     const key = element.getAttribute("data-i18n-placeholder");
@@ -1150,9 +1191,9 @@ function applyLanguage() {
     }
   });
 
-  // -----------------------------------------
-  // Title attribute
-  // -----------------------------------------
+  // =======================================================
+  // TITLE
+  // =======================================================
 
   document.querySelectorAll("[data-i18n-title]").forEach((element) => {
     const key = element.getAttribute("data-i18n-title");
@@ -1162,12 +1203,11 @@ function applyLanguage() {
     }
   });
 
-  // -----------------------------------------
-  // Language Button
-  // -----------------------------------------
+  // =======================================================
+  // LANGUAGE BUTTON
+  // =======================================================
 
   const languageText = document.getElementById("languageText");
-
   const languageButton = document.getElementById("languageButton");
 
   if (languageText) {
@@ -1181,9 +1221,9 @@ function applyLanguage() {
     );
   }
 
-  // -----------------------------------------
-  // HTML lang
-  // -----------------------------------------
+  // =======================================================
+  // HTML LANGUAGE
+  // =======================================================
 
   document.documentElement.lang = currentLanguage === "en" ? "en" : "km";
 }
@@ -1193,28 +1233,54 @@ function applyLanguage() {
 // =========================================================
 
 function toggleLanguage() {
+  // Change language
   currentLanguage = currentLanguage === "en" ? "kh" : "en";
 
+  // Save globally
   localStorage.setItem("language", currentLanguage);
 
+  // Apply immediately
   applyLanguage();
 
-  // Refresh calculation history
-  if (typeof displayHistory === "function") {
-    displayHistory("historyContainer");
+  // Refresh history if available
+  if (typeof window.displayHistory === "function") {
+    window.displayHistory("historyContainer");
   }
 }
+
+// =========================================================
+// GET CURRENT LANGUAGE
+// =========================================================
+
+function getCurrentLanguage() {
+  return currentLanguage;
+}
+
+// Make functions available globally
+window.applyLanguage = applyLanguage;
+window.toggleLanguage = toggleLanguage;
+window.getCurrentLanguage = getCurrentLanguage;
 
 // =========================================================
 // START
 // =========================================================
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
   const languageButton = document.getElementById("languageButton");
 
   if (languageButton) {
+    // Prevent duplicate event listeners
+    languageButton.removeEventListener("click", toggleLanguage);
+
     languageButton.addEventListener("click", toggleLanguage);
   }
 
+  // Apply saved language immediately
   applyLanguage();
 });
+
+// =========================================================
+// EXPORT
+// =========================================================
+
+export { applyLanguage, toggleLanguage, getCurrentLanguage };

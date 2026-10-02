@@ -3,17 +3,31 @@
 // ========================================
 
 // ========================================
+// IMPORT LANGUAGE
+// ========================================
+
+import { getCurrentLanguage, translations } from "./language.js";
+
+// ========================================
+// IMPORT HISTORY
+// ========================================
+
+import {
+  getHistory,
+  displayHistory,
+  clearHistory,
+  HISTORY_KEY,
+} from "./history.js";
+
+// ========================================
 // GET TRANSLATION
 // ========================================
 
 function getProfitText(key, fallback) {
-  if (
-    typeof translations !== "undefined" &&
-    typeof currentLanguage !== "undefined" &&
-    translations[currentLanguage] &&
-    translations[currentLanguage][key]
-  ) {
-    return translations[currentLanguage][key];
+  const language = getCurrentLanguage();
+
+  if (translations && translations[language] && translations[language][key]) {
+    return translations[language][key];
   }
 
   return fallback;
@@ -38,7 +52,7 @@ function calculateProfit() {
   // CHECK EMPTY INPUT
   // ========================================
 
-  if (costInput.value === "" || sellingInput.value === "") {
+  if (costInput.value.trim() === "" || sellingInput.value.trim() === "") {
     alert(
       getProfitText(
         "enterCostSelling",
@@ -96,7 +110,7 @@ function calculateProfit() {
   document.getElementById("margin").textContent = margin.toFixed(2) + "%";
 
   // ========================================
-  // SAVE TYPED HISTORY
+  // SAVE HISTORY
   // ========================================
 
   const history = getHistory();
@@ -156,9 +170,29 @@ function clearProfitHistory() {
 }
 
 // ========================================
+// EVENT LISTENERS
+// ========================================
+
+const calculateButton = document.getElementById("calculateProfitButton");
+
+const clearHistoryButton = document.getElementById("clearProfitHistoryButton");
+
+if (calculateButton) {
+  calculateButton.addEventListener("click", calculateProfit);
+}
+
+if (clearHistoryButton) {
+  clearHistoryButton.addEventListener("click", clearProfitHistory);
+}
+
+// ========================================
 // LOAD HISTORY
 // ========================================
 
-document.addEventListener("DOMContentLoaded", function () {
-  displayHistory("historyContainer");
-});
+displayHistory("historyContainer");
+
+// ========================================
+// EXPORT
+// ========================================
+
+export { calculateProfit, clearProfitHistory };

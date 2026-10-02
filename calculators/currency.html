@@ -1,8 +1,8 @@
 <!doctype html>
-
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- ================= SEO ================= -->
@@ -22,7 +22,9 @@
     <meta name="robots" content="index, follow" />
     <meta name="author" content="Kim Liheng" />
     <meta name="theme-color" content="#d71920" />
+
     <meta name="application-name" content="Khmer Calculator Hub" />
+
     <meta name="apple-mobile-web-app-title" content="Khmer Calculator Hub" />
 
     <!-- ================= CANONICAL ================= -->
@@ -85,6 +87,7 @@
     <meta property="og:site_name" content="Khmer Calculator Hub" />
 
     <meta property="og:locale" content="en_US" />
+
     <meta property="og:locale:alternate" content="km_KH" />
 
     <meta
@@ -123,7 +126,7 @@
       rel="stylesheet"
     />
 
-    <!-- Bootstrap Icons -->
+    <!-- ================= BOOTSTRAP ICONS ================= -->
 
     <link
       rel="stylesheet"
@@ -150,7 +153,7 @@
 
       .history-box {
         margin-top: 25px;
-        background: white;
+        background: #ffffff;
         border: 1px solid #e5e7eb;
         border-radius: 20px;
         padding: 25px;
@@ -217,6 +220,10 @@
 
         .history-title {
           font-size: 18px;
+        }
+
+        .history-header button {
+          white-space: nowrap;
         }
       }
     </style>
@@ -285,10 +292,13 @@
 
   <body>
     <!-- ================= NAVBAR ================= -->
+
     <nav
       class="navbar navbar-expand-lg navbar-light bg-white sticky-top border-bottom"
     >
       <div class="container">
+        <!-- Logo -->
+
         <a
           class="navbar-brand d-flex align-items-center gap-2"
           href="../index.html"
@@ -304,18 +314,26 @@
 
           <div>
             <span class="brand-name"> Khmer Calculator </span>
+
             <small class="brand-subtitle"> HUB </small>
           </div>
         </a>
+
+        <!-- Mobile Button -->
 
         <button
           class="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#mainNavbar"
+          aria-controls="mainNavbar"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
         >
           <span class="navbar-toggler-icon"></span>
         </button>
+
+        <!-- Menu -->
 
         <div class="collapse navbar-collapse" id="mainNavbar">
           <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
@@ -341,6 +359,8 @@
               </a>
             </li>
 
+            <!-- Language -->
+
             <li class="nav-item ms-lg-2">
               <button
                 type="button"
@@ -349,7 +369,8 @@
                 aria-label="Switch language"
               >
                 <i class="bi bi-translate"></i>
-                <span id="languageText">EN</span>
+
+                <span id="languageText"> EN </span>
               </button>
             </li>
           </ul>
@@ -358,9 +379,11 @@
     </nav>
 
     <!-- ================= MAIN ================= -->
+
     <main>
       <div class="container py-5">
         <!-- Breadcrumb -->
+
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
@@ -380,6 +403,7 @@
         </nav>
 
         <!-- Title -->
+
         <div class="text-center mb-5">
           <div class="mb-3">
             <i
@@ -397,7 +421,8 @@
           </p>
         </div>
 
-        <!-- Calculator -->
+        <!-- ================= CALCULATOR ================= -->
+
         <div class="row justify-content-center">
           <div class="col-lg-7 col-md-9">
             <div class="calculator-box">
@@ -406,6 +431,7 @@
               </h3>
 
               <!-- Amount -->
+
               <div class="mb-3">
                 <label
                   for="amount"
@@ -427,6 +453,7 @@
               </div>
 
               <!-- From Currency -->
+
               <div class="mb-3">
                 <label
                   for="fromCurrency"
@@ -440,17 +467,20 @@
               </div>
 
               <!-- Swap -->
+
               <div class="text-center my-3">
                 <button
                   type="button"
                   class="btn btn-outline-secondary rounded-circle"
                   onclick="swapCurrency()"
+                  aria-label="Swap currencies"
                 >
                   <i class="bi bi-arrow-down-up"></i>
                 </button>
               </div>
 
               <!-- To Currency -->
+
               <div class="mb-4">
                 <label
                   for="toCurrency"
@@ -464,6 +494,7 @@
               </div>
 
               <!-- Button -->
+
               <button
                 type="button"
                 class="btn btn-danger w-100 py-2"
@@ -475,6 +506,7 @@
               </button>
 
               <!-- Result -->
+
               <div
                 id="currencyResult"
                 class="result-box mt-4 d-none text-center"
@@ -490,6 +522,7 @@
         </div>
 
         <!-- ================= HISTORY ================= -->
+
         <div class="row justify-content-center">
           <div class="col-lg-7 col-md-9">
             <div class="history-box">
@@ -519,6 +552,7 @@
         </div>
 
         <!-- ================= CURRENCY LIST ================= -->
+
         <div class="row justify-content-center mt-5">
           <div class="col-lg-7 col-md-9">
             <div class="calculator-box">
@@ -528,27 +562,45 @@
 
               <div class="row g-3">
                 <div class="col-6">
-                  <div class="border rounded p-3">🇺🇸 USD - US Dollar</div>
+                  <div class="border rounded p-3">
+                    🇺🇸 USD -
+                    <span data-i18n="usDollar"> US Dollar </span>
+                  </div>
                 </div>
 
                 <div class="col-6">
-                  <div class="border rounded p-3">🇰🇭 KHR - Cambodian Riel</div>
+                  <div class="border rounded p-3">
+                    🇰🇭 KHR -
+                    <span data-i18n="cambodianRiel"> Cambodian Riel </span>
+                  </div>
                 </div>
 
                 <div class="col-6">
-                  <div class="border rounded p-3">🇹🇭 THB - Thai Baht</div>
+                  <div class="border rounded p-3">
+                    🇹🇭 THB -
+                    <span data-i18n="thaiBaht"> Thai Baht </span>
+                  </div>
                 </div>
 
                 <div class="col-6">
-                  <div class="border rounded p-3">🇻🇳 VND - Vietnamese Dong</div>
+                  <div class="border rounded p-3">
+                    🇻🇳 VND -
+                    <span data-i18n="vietnameseDong"> Vietnamese Dong </span>
+                  </div>
                 </div>
 
                 <div class="col-6">
-                  <div class="border rounded p-3">🇯🇵 JPY - Japanese Yen</div>
+                  <div class="border rounded p-3">
+                    🇯🇵 JPY -
+                    <span data-i18n="japaneseYen"> Japanese Yen </span>
+                  </div>
                 </div>
 
                 <div class="col-6">
-                  <div class="border rounded p-3">🇪🇺 EUR - Euro</div>
+                  <div class="border rounded p-3">
+                    🇪🇺 EUR -
+                    <span data-i18n="euro"> Euro </span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -558,21 +610,22 @@
     </main>
 
     <!-- ================= FOOTER ================= -->
+
     <footer>
       <div class="container">
         <div class="row g-4">
           <!-- ================= PROFILE / BRAND ================= -->
+
           <div class="col-lg-5">
             <div class="footer-profile">
-              <!-- Profile Image -->
               <div class="footer-profile-image">
                 <img src="../images/Heng.jpg" alt="Kim Liheng" />
               </div>
 
-              <!-- Profile Info -->
               <div class="footer-profile-info">
-                <strong>Kim Liheng</strong>
-                <span>Founder & Developer</span>
+                <strong> Kim Liheng </strong>
+
+                <span data-i18n="founderDeveloper"> Founder & Developer </span>
               </div>
             </div>
 
@@ -583,6 +636,7 @@
           </div>
 
           <!-- ================= TOOLS ================= -->
+
           <div class="col-6 col-lg-2">
             <h5 data-i18n="tools">Tools</h5>
 
@@ -604,6 +658,7 @@
           </div>
 
           <!-- ================= COMPANY ================= -->
+
           <div class="col-6 col-lg-2">
             <h5 data-i18n="company">Company</h5>
 
@@ -617,6 +672,7 @@
           </div>
 
           <!-- ================= SOCIAL ================= -->
+
           <div class="col-lg-3">
             <h5 data-i18n="followUs">Follow Us</h5>
 
@@ -624,6 +680,7 @@
               <a
                 href="https://www.facebook.com/KimLiheng.77/?_rdc=6&_rdr#"
                 target="_blank"
+                rel="noopener noreferrer"
                 aria-label="Facebook"
               >
                 <i class="bi bi-facebook"></i>
@@ -632,6 +689,7 @@
               <a
                 href="https://t.me/Heng77777"
                 target="_blank"
+                rel="noopener noreferrer"
                 aria-label="Telegram"
               >
                 <i class="bi bi-telegram"></i>
@@ -640,6 +698,7 @@
               <a
                 href="https://www.tiktok.com/@hengg899?_r=1&_t=ZS-9A1HcAsdsLh"
                 target="_blank"
+                rel="noopener noreferrer"
                 aria-label="TikTok"
               >
                 <i class="bi bi-tiktok"></i>
@@ -651,6 +710,7 @@
         <hr />
 
         <!-- ================= FOOTER BOTTOM ================= -->
+
         <div class="footer-bottom">
           <span data-i18n="copyright"> © 2026 Khmer Calculator Hub </span>
 
@@ -659,21 +719,25 @@
       </div>
     </footer>
 
-    <!-- History JS -->
-    <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore-compat.js"></script>
-    <script src="../js/firebase-config.js"></script>
-    <script src="../js/auth.js"></script>
-    <script src="../js/history.js"></script>
+    <!-- ================= SCRIPTS ================= -->
 
-    <!-- Currency JS -->
-    <script src="../js/currency.js"></script>
+    <!--
+      Firebase Compat scripts removed.
 
-    <!-- Language JS -->
-    <script src="../js/language.js"></script>
+      The project uses Firebase Modular SDK through
+      firebase-config.js, auth.js and history.js.
+    -->
 
-    <!-- Bootstrap JS -->
+    <!-- Currency Calculator -->
+
+    <script type="module" src="../js/currency.js"></script>
+
+    <!-- Global Language -->
+
+    <script type="module" src="../js/language.js"></script>
+
+    <!-- Bootstrap -->
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

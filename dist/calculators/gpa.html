@@ -1,4 +1,5 @@
 <!doctype html>
+
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -32,7 +33,7 @@
     <meta name="apple-mobile-web-app-title" content="Khmer Calculator Hub" />
 
     <!-- ================================================= -->
-    <!-- ================= CANONICAL ====================== -->
+    <!-- ================= CANONICAL ===================== -->
     <!-- ================================================= -->
 
     <link
@@ -41,7 +42,7 @@
     />
 
     <!-- ================================================= -->
-    <!-- ===================== FAVICON ===================== -->
+    <!-- ===================== FAVICON ==================== -->
     <!-- ================================================= -->
 
     <link rel="icon" href="../favicon.ico" type="image/x-icon" />
@@ -50,31 +51,31 @@
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href="../images/favicon-32.png"
+      href="/Khmer-Calculator-Hub/assets/favicon-32-DHLaoQIC.png"
     />
 
     <link
       rel="icon"
       type="image/png"
       sizes="64x64"
-      href="../images/favicon-64.png"
+      href="/Khmer-Calculator-Hub/assets/favicon-64-NXGK7V0n.png"
     />
 
     <link
       rel="apple-touch-icon"
       sizes="180x180"
-      href="../images/apple-touch-icon.png"
+      href="/Khmer-Calculator-Hub/assets/apple-touch-icon-DiIjRK1R.png"
     />
 
     <link
       rel="icon"
       type="image/png"
       sizes="192x192"
-      href="../images/icon-192.png"
+      href="/Khmer-Calculator-Hub/assets/icon-192-C4DrYJNt.png"
     />
 
     <!-- ================================================= -->
-    <!-- =================== OPEN GRAPH =================== -->
+    <!-- =================== OPEN GRAPH ================== -->
     <!-- ================================================= -->
 
     <meta property="og:type" content="website" />
@@ -111,7 +112,7 @@
     />
 
     <!-- ================================================= -->
-    <!-- ===================== TWITTER ==================== -->
+    <!-- ===================== TWITTER =================== -->
     <!-- ================================================= -->
 
     <meta name="twitter:card" content="summary_large_image" />
@@ -132,7 +133,7 @@
     />
 
     <!-- ================================================= -->
-    <!-- =================== BOOTSTRAP ==================== -->
+    <!-- =================== BOOTSTRAP =================== -->
     <!-- ================================================= -->
 
     <link
@@ -141,7 +142,7 @@
     />
 
     <!-- ================================================= -->
-    <!-- ================ BOOTSTRAP ICONS ================= -->
+    <!-- ================ BOOTSTRAP ICONS ================ -->
     <!-- ================================================= -->
 
     <link
@@ -150,7 +151,7 @@
     />
 
     <!-- ================================================= -->
-    <!-- ================= GOOGLE FONTS =================== -->
+    <!-- ================= GOOGLE FONTS ================== -->
     <!-- ================================================= -->
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -163,153 +164,15 @@
     />
 
     <!-- ================================================= -->
-    <!-- ==================== MAIN CSS ==================== -->
+    <!-- ==================== MAIN CSS =================== -->
     <!-- ================================================= -->
 
-    <link rel="stylesheet" href="../css/style.css" />
 
     <!-- ================================================= -->
-    <!-- =================== PAGE CSS ===================== -->
+    <!-- ================== PAGE CSS ===================== -->
     <!-- ================================================= -->
 
-    <style>
-      .calculator-page {
-        padding: 70px 0;
-        background: #f8fafc;
-        min-height: calc(100vh - 76px);
-      }
-
-      .calculator-container {
-        max-width: 850px;
-        margin: auto;
-      }
-
-      .calculator-box {
-        background: white;
-        border: 1px solid #e5e7eb;
-        border-radius: 20px;
-        padding: 30px;
-        box-shadow: 0 15px 40px rgba(15, 23, 42, 0.06);
-      }
-
-      .calculator-title {
-        text-align: center;
-        margin-bottom: 30px;
-      }
-
-      .calculator-title i {
-        font-size: 40px;
-        color: #2563eb;
-      }
-
-      .calculator-title h1 {
-        font-size: 32px;
-        font-weight: 800;
-        margin-top: 12px;
-      }
-
-      .subject-row {
-        background: #f8fafc;
-        padding: 15px;
-        border-radius: 12px;
-        margin-bottom: 12px;
-      }
-
-      .result-box {
-        display: none;
-        margin-top: 25px;
-        padding: 25px;
-        background: #eff6ff;
-        border-radius: 15px;
-        text-align: center;
-      }
-
-      .result-box h2 {
-        font-size: 48px;
-        font-weight: 800;
-        color: #2563eb;
-      }
-
-      /* ================= HISTORY ================= */
-
-      .history-box {
-        margin-top: 25px;
-        background: white;
-        border: 1px solid #e5e7eb;
-        border-radius: 20px;
-        padding: 25px;
-        box-shadow: 0 15px 40px rgba(15, 23, 42, 0.06);
-      }
-
-      .history-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
-      }
-
-      .history-title {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        margin: 0;
-        font-size: 20px;
-        font-weight: 700;
-      }
-
-      .history-title i {
-        color: #2563eb;
-      }
-
-      .history-item {
-        background: #f8fafc;
-        transition: 0.2s;
-      }
-
-      .history-item:hover {
-        transform: translateY(-2px);
-      }
-
-      .history-calculator {
-        font-weight: 700;
-        color: #1e293b;
-      }
-
-      .history-result {
-        font-size: 16px;
-        font-weight: 600;
-        color: #2563eb;
-      }
-
-      .history-date {
-        font-size: 13px;
-      }
-
-      @media (max-width: 576px) {
-        .calculator-page {
-          padding: 40px 0;
-        }
-
-        .calculator-box,
-        .history-box {
-          padding: 20px;
-          border-radius: 16px;
-        }
-
-        .calculator-title h1 {
-          font-size: 27px;
-        }
-
-        .history-header {
-          align-items: flex-start;
-          gap: 10px;
-        }
-
-        .history-title {
-          font-size: 18px;
-        }
-      }
-    </style>
+    <style>.calculator-page{background:#f8fafc;min-height:calc(100vh - 76px);padding:70px 0}.calculator-container{max-width:850px;margin:auto}.calculator-box{background:#fff;border:1px solid #e5e7eb;border-radius:20px;padding:30px;box-shadow:0 15px 40px #0f172a0f}.calculator-title{text-align:center;margin-bottom:30px}.calculator-title i{color:#2563eb;font-size:40px}.calculator-title h1{margin-top:12px;font-size:32px;font-weight:800}.subject-row{background:#f8fafc;border-radius:12px;margin-bottom:12px;padding:15px}.result-box{text-align:center;background:#eff6ff;border-radius:15px;margin-top:25px;padding:25px;display:none}.result-box h2{color:#2563eb;font-size:48px;font-weight:800}.history-box{background:#fff;border:1px solid #e5e7eb;border-radius:20px;margin-top:25px;padding:25px;box-shadow:0 15px 40px #0f172a0f}.history-header{justify-content:space-between;align-items:center;margin-bottom:20px;display:flex}.history-title{align-items:center;gap:10px;margin:0;font-size:20px;font-weight:700;display:flex}.history-title i{color:#2563eb}.history-item{background:#f8fafc;transition:all .2s}.history-item:hover{transform:translateY(-2px)}.history-calculator{color:#1e293b;font-weight:700}.history-result{color:#2563eb;font-size:16px;font-weight:600}.history-date{font-size:13px}@media (width<=576px){.calculator-page{padding:40px 0}.calculator-box,.history-box{border-radius:16px;padding:20px}.calculator-title h1{font-size:27px}.history-header{align-items:flex-start;gap:10px}.history-title{font-size:18px}}</style>
 
     <!-- ================================================= -->
     <!-- ================= STRUCTURED DATA ================ -->
@@ -346,7 +209,7 @@
     </script>
 
     <!-- ================================================= -->
-    <!-- ================= BREADCRUMB DATA ================ -->
+    <!-- ================= BREADCRUMB DATA =============== -->
     <!-- ================================================= -->
 
     <script type="application/ld+json">
@@ -375,12 +238,11 @@
         ]
       }
     </script>
+    <link rel="stylesheet" crossorigin href="/Khmer-Calculator-Hub/assets/style-DvKrXJkU.css">
   </head>
 
   <body>
-    <!-- ================================================= -->
-    <!-- ===================== NAVBAR ==================== -->
-    <!-- ================================================= -->
+    <!-- ================= NAVBAR ================= -->
 
     <nav
       class="navbar navbar-expand-lg navbar-light bg-white sticky-top border-bottom"
@@ -394,7 +256,7 @@
         >
           <div class="logo">
             <img
-              src="../images/Logo.png"
+              src="/Khmer-Calculator-Hub/assets/Logo-C6ku9GlI.png"
               alt="Khmer Calculator Hub"
               width="40"
               height="40"
@@ -402,9 +264,8 @@
           </div>
 
           <div>
-            <span class="brand-name"> Khmer Calculator </span>
-
-            <small class="brand-subtitle"> HUB </small>
+            <span class="brand-name">Khmer Calculator</span>
+            <small class="brand-subtitle">HUB</small>
           </div>
         </a>
 
@@ -448,8 +309,6 @@
               </a>
             </li>
 
-            <!-- Language -->
-
             <li class="nav-item ms-lg-2">
               <button
                 type="button"
@@ -458,8 +317,7 @@
                 aria-label="Switch language"
               >
                 <i class="bi bi-translate"></i>
-
-                <span id="languageText"> EN </span>
+                <span id="languageText">EN</span>
               </button>
             </li>
           </ul>
@@ -467,9 +325,7 @@
       </div>
     </nav>
 
-    <!-- ================================================= -->
     <!-- ================= GPA CALCULATOR ================= -->
-    <!-- ================================================= -->
 
     <section class="calculator-page">
       <div class="container">
@@ -486,9 +342,7 @@
             </p>
           </div>
 
-          <!-- ================================================= -->
           <!-- ================= CALCULATOR BOX ================= -->
-          <!-- ================================================= -->
 
           <div class="calculator-box">
             <div id="subjects">
@@ -496,8 +350,6 @@
 
               <div class="subject-row">
                 <div class="row g-3 align-items-center">
-                  <!-- Subject Name -->
-
                   <div class="col-md-5">
                     <input
                       type="text"
@@ -506,8 +358,6 @@
                       data-i18n-placeholder="subjectName"
                     />
                   </div>
-
-                  <!-- Credit -->
 
                   <div class="col-md-3">
                     <input
@@ -519,8 +369,6 @@
                     />
                   </div>
 
-                  <!-- Grade -->
-
                   <div class="col-md-4">
                     <select class="form-select subject-grade">
                       <option value="" data-i18n="selectGrade">
@@ -528,13 +376,9 @@
                       </option>
 
                       <option value="4">A</option>
-
                       <option value="3">B</option>
-
                       <option value="2">C</option>
-
                       <option value="1">D</option>
-
                       <option value="0">F</option>
                     </select>
                   </div>
@@ -542,13 +386,9 @@
               </div>
             </div>
 
-            <!-- ================================================= -->
-            <!-- ===================== BUTTONS =================== -->
-            <!-- ================================================= -->
+            <!-- Buttons -->
 
             <div class="d-flex gap-2 flex-wrap">
-              <!-- Add Subject -->
-
               <button
                 class="btn btn-outline-primary"
                 type="button"
@@ -558,8 +398,6 @@
 
                 <span data-i18n="addSubject"> Add Subject </span>
               </button>
-
-              <!-- Calculate GPA -->
 
               <button
                 class="btn btn-primary"
@@ -572,9 +410,7 @@
               </button>
             </div>
 
-            <!-- ================================================= -->
-            <!-- ====================== RESULT =================== -->
-            <!-- ================================================= -->
+            <!-- ================= RESULT ================= -->
 
             <div class="result-box" id="gpaResult">
               <p class="mb-1" data-i18n="yourGPA">Your GPA</p>
@@ -585,9 +421,7 @@
             </div>
           </div>
 
-          <!-- ================================================= -->
-          <!-- ====================== HISTORY ================== -->
-          <!-- ================================================= -->
+          <!-- ================= HISTORY ================= -->
 
           <div class="history-box">
             <div class="history-header">
@@ -598,8 +432,6 @@
                   Calculation History
                 </span>
               </h3>
-
-              <!-- Clear History -->
 
               <button
                 type="button"
@@ -612,17 +444,13 @@
               </button>
             </div>
 
-            <!-- History Container -->
+            <!-- History will appear here -->
 
             <div id="historyContainer"></div>
           </div>
         </div>
       </div>
     </section>
-
-    <!-- ================================================= -->
-    <!-- ======================== FOOTER ================== -->
-    <!-- ================================================= -->
 
     <footer>
       <div class="container">
@@ -634,15 +462,14 @@
               <!-- Profile Image -->
 
               <div class="footer-profile-image">
-                <img src="../images/Heng.jpg" alt="Kim Liheng" />
+                <img src="/Khmer-Calculator-Hub/assets/Heng-BPNU6nhp.jpg" alt="Kim Liheng" />
               </div>
 
               <!-- Profile Info -->
 
               <div class="footer-profile-info">
-                <strong> Kim Liheng </strong>
-
-                <span data-i18n="founderDeveloper"> Founder & Developer </span>
+                <strong>Kim Liheng</strong>
+                <span>Founder & Developer</span>
               </div>
             </div>
 
@@ -657,17 +484,25 @@
           <div class="col-6 col-lg-2">
             <h5 data-i18n="tools">Tools</h5>
 
+            <!-- FIXED LINK -->
+
             <a href="gpa.html">
               <span data-i18n="gpa"> GPA Calculator </span>
             </a>
+
+            <!-- FIXED LINK -->
 
             <a href="grade.html">
               <span data-i18n="grade"> Grade Calculator </span>
             </a>
 
+            <!-- FIXED LINK -->
+
             <a href="discount.html">
               <span data-i18n="discount"> Discount Calculator </span>
             </a>
+
+            <!-- FIXED LINK -->
 
             <a href="profit.html">
               <span data-i18n="profit"> Profit Calculator </span>
@@ -678,6 +513,8 @@
 
           <div class="col-6 col-lg-2">
             <h5 data-i18n="company">Company</h5>
+
+            <!-- FIXED LINK -->
 
             <a href="../index.html#about" data-i18n="about"> About </a>
 
@@ -733,19 +570,16 @@
       </div>
     </footer>
 
-    <!-- ================================================= -->
-    <!-- ====================== SCRIPTS =================== -->
-    <!-- ================================================= -->
+    <!-- ================= SCRIPTS ================= -->
 
-    <!-- GPA Calculator -->
-
-    <script type="module" src="../js/gpa.js"></script>
-
-    <!-- Global Language -->
-
-    <script type="module" src="../js/language.js"></script>
-
-    <!-- Bootstrap -->
+    <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore-compat.js"></script>
+    <script src="../js/firebase-config.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/history.js"></script>
+    <script src="../js/gpa.js"></script>
+    <script src="../js/language.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   </body>

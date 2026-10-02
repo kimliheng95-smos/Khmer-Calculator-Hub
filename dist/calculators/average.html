@@ -1,4 +1,5 @@
 <!doctype html>
+
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -6,16 +7,16 @@
 
     <!-- ================= SEO ================= -->
 
-    <title>Tax Calculator | Free Tax Calculator Cambodia</title>
+    <title>Average Calculator | Free Average Calculator Cambodia</title>
 
     <meta
       name="description"
-      content="Calculate taxable income, estimated tax amount and after-tax income easily with Khmer Calculator Hub. Free tax calculator for Cambodia."
+      content="Calculate sum, average, minimum and maximum easily with Khmer Calculator Hub. Free and easy-to-use average calculator for students and everyday use."
     />
 
     <meta
       name="keywords"
-      content="Tax Calculator, Income Tax Calculator, Tax Calculator Cambodia, Taxable Income Calculator, After Tax Income Calculator, Tax Estimator, គណនាពន្ធ, គណនាពន្ធលើប្រាក់ចំណូល, គណនាប្រាក់ក្រោយពន្ធ, Khmer Calculator"
+      content="Average Calculator, Average Calculator Cambodia, Calculate Average, Mean Calculator, Sum Calculator, Minimum Calculator, Maximum Calculator, គណនាមធ្យមភាគ, គណនាមធ្យម, Khmer Calculator"
     />
 
     <meta name="robots" content="index, follow" />
@@ -28,7 +29,7 @@
 
     <link
       rel="canonical"
-      href="https://khmercalculatorhub.infy.click/calculators/tax.html"
+      href="https://khmercalculatorhub.infy.click/calculators/average.html"
     />
 
     <!-- ================= FAVICON ================= -->
@@ -39,27 +40,27 @@
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href="../images/favicon-32.png"
+      href="/Khmer-Calculator-Hub/assets/favicon-32-DHLaoQIC.png"
     />
 
     <link
       rel="icon"
       type="image/png"
       sizes="64x64"
-      href="../images/favicon-64.png"
+      href="/Khmer-Calculator-Hub/assets/favicon-64-NXGK7V0n.png"
     />
 
     <link
       rel="apple-touch-icon"
       sizes="180x180"
-      href="../images/apple-touch-icon.png"
+      href="/Khmer-Calculator-Hub/assets/apple-touch-icon-DiIjRK1R.png"
     />
 
     <link
       rel="icon"
       type="image/png"
       sizes="192x192"
-      href="../images/icon-192.png"
+      href="/Khmer-Calculator-Hub/assets/icon-192-C4DrYJNt.png"
     />
 
     <!-- ================= OPEN GRAPH ================= -->
@@ -68,17 +69,17 @@
 
     <meta
       property="og:title"
-      content="Tax Calculator | Free Tax Calculator Cambodia"
+      content="Average Calculator | Free Average Calculator Cambodia"
     />
 
     <meta
       property="og:description"
-      content="Calculate taxable income, estimated tax amount and after-tax income easily with Khmer Calculator Hub."
+      content="Calculate sum, average, minimum and maximum easily with Khmer Calculator Hub. Free and easy-to-use average calculator."
     />
 
     <meta
       property="og:url"
-      content="https://khmercalculatorhub.infy.click/calculators/tax.html"
+      content="https://khmercalculatorhub.infy.click/calculators/average.html"
     />
 
     <meta property="og:site_name" content="Khmer Calculator Hub" />
@@ -93,7 +94,7 @@
 
     <meta
       property="og:image:alt"
-      content="Tax Calculator - Khmer Calculator Hub"
+      content="Average Calculator - Khmer Calculator Hub"
     />
 
     <!-- ================= TWITTER / X ================= -->
@@ -102,12 +103,12 @@
 
     <meta
       name="twitter:title"
-      content="Tax Calculator | Free Tax Calculator Cambodia"
+      content="Average Calculator | Free Average Calculator Cambodia"
     />
 
     <meta
       name="twitter:description"
-      content="Calculate taxable income, estimated tax amount and after-tax income easily with Khmer Calculator Hub."
+      content="Calculate sum, average, minimum and maximum easily with Khmer Calculator Hub. Free and easy-to-use average calculator."
     />
 
     <meta
@@ -122,7 +123,7 @@
       rel="stylesheet"
     />
 
-    <!-- ================= BOOTSTRAP ICONS ================= -->
+    <!-- Bootstrap Icons -->
 
     <link
       rel="stylesheet"
@@ -132,6 +133,7 @@
     <!-- ================= GOOGLE FONTS ================= -->
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
+
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
     <link
@@ -141,125 +143,10 @@
 
     <!-- ================= MAIN CSS ================= -->
 
-    <link rel="stylesheet" href="../css/style.css" />
 
     <!-- ================= PAGE CSS ================= -->
 
-    <style>
-      .calculator-box {
-        background: white;
-        border: 1px solid #e5e7eb;
-        border-radius: 20px;
-        padding: 30px;
-        box-shadow: 0 15px 40px rgba(15, 23, 42, 0.06);
-      }
-
-      .result-box {
-        background: #f8fafc;
-        border: 1px solid #e5e7eb;
-        border-radius: 18px;
-        padding: 25px;
-      }
-
-      .tax-result-item {
-        background: white;
-        border: 1px solid #e5e7eb;
-        border-radius: 14px;
-        padding: 18px;
-        height: 100%;
-      }
-
-      .tax-result-item small {
-        display: block;
-        color: #64748b;
-        font-weight: 600;
-        margin-bottom: 6px;
-      }
-
-      .tax-result-item strong {
-        font-size: 22px;
-        color: #1e293b;
-      }
-
-      .tax-highlight {
-        background: #fff5f5;
-        border: 1px solid #fecaca;
-      }
-
-      .tax-highlight strong {
-        color: #d71920;
-        font-size: 28px;
-      }
-
-      /* ================= HISTORY ================= */
-
-      .history-box {
-        margin-top: 25px;
-        background: white;
-        border: 1px solid #e5e7eb;
-        border-radius: 20px;
-        padding: 25px;
-        box-shadow: 0 15px 40px rgba(15, 23, 42, 0.06);
-      }
-
-      .history-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
-        gap: 10px;
-      }
-
-      .history-title {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        margin: 0;
-        font-size: 20px;
-        font-weight: 700;
-      }
-
-      .history-title i {
-        color: #2563eb;
-      }
-
-      .history-item {
-        background: #f8fafc;
-        transition: 0.2s;
-      }
-
-      .history-item:hover {
-        transform: translateY(-2px);
-      }
-
-      /* ================= MOBILE ================= */
-
-      @media (max-width: 576px) {
-        .calculator-box {
-          padding: 20px;
-        }
-
-        .history-box {
-          padding: 20px;
-        }
-
-        .history-title {
-          font-size: 18px;
-        }
-
-        .tax-result-item {
-          padding: 15px;
-        }
-
-        .tax-result-item strong {
-          font-size: 20px;
-        }
-
-        .tax-highlight strong {
-          font-size: 24px;
-        }
-      }
-    </style>
+    <style>.calculator-box{background:#fff;border:1px solid #e5e7eb;border-radius:20px;padding:30px;box-shadow:0 15px 40px #0f172a0f}.number-row{align-items:center;gap:10px;margin-bottom:12px;display:flex}.number-input{flex:1;min-width:0;height:48px}.remove-number{border-radius:10px;flex-shrink:0;justify-content:center;align-items:center;width:48px;height:48px;display:flex}#addNumberButton,#calculateAverageButton{border-radius:10px;font-weight:600}.average-result-box{background:#f8fafc;border:1px solid #e5e7eb;border-radius:16px;padding:22px}.average-result-item{text-align:center;background:#fff;border:1px solid #e5e7eb;border-radius:14px;height:100%;padding:18px 12px}.average-result-item small{color:#64748b;margin-bottom:8px;font-size:14px;display:block}.average-result-item strong{font-size:24px;font-weight:700;display:block}.history-box{background:#fff;border:1px solid #e5e7eb;border-radius:20px;margin-top:25px;padding:25px;box-shadow:0 15px 40px #0f172a0f}.history-header{justify-content:space-between;align-items:center;gap:10px;margin-bottom:20px;display:flex}.history-title{align-items:center;gap:10px;margin:0;font-size:20px;font-weight:700;display:flex}.history-title i{color:#2563eb}.history-item{background:#f8fafc;transition:all .2s}.history-item:hover{transform:translateY(-2px)}.example-card{background:#fff;border:1px solid #e5e7eb;border-radius:14px;height:100%;padding:18px;transition:all .2s}.example-card:hover{transform:translateY(-2px)}.example-card strong{margin-bottom:5px;display:block}@media (width<=576px){.calculator-box{border-radius:16px;padding:20px}.number-row{gap:8px}.number-input{height:46px}.remove-number{width:46px;height:46px}.history-box{border-radius:16px;padding:18px}.history-header{align-items:flex-start}.history-title{font-size:18px}.history-header button{white-space:nowrap}.average-result-box{padding:15px}.average-result-item{padding:15px 10px}.average-result-item strong{font-size:21px}}</style>
 
     <!-- ================= STRUCTURED DATA ================= -->
 
@@ -267,10 +154,10 @@
       {
         "@context": "https://schema.org",
         "@type": "WebApplication",
-        "name": "Tax Calculator",
-        "url": "https://khmercalculatorhub.infy.click/calculators/tax.html",
-        "description": "Calculate taxable income, estimated tax amount and after-tax income easily with Khmer Calculator Hub.",
-        "applicationCategory": "FinanceApplication",
+        "name": "Average Calculator",
+        "url": "https://khmercalculatorhub.infy.click/calculators/average.html",
+        "description": "Calculate sum, average, minimum and maximum easily with Khmer Calculator Hub. Free and easy-to-use average calculator.",
+        "applicationCategory": "UtilityApplication",
         "operatingSystem": "Any",
         "browserRequirements": "Requires JavaScript",
         "isAccessibleForFree": true,
@@ -315,30 +202,31 @@
           {
             "@type": "ListItem",
             "position": 3,
-            "name": "Tax Calculator",
-            "item": "https://khmercalculatorhub.infy.click/calculators/tax.html"
+            "name": "Average Calculator",
+            "item": "https://khmercalculatorhub.infy.click/calculators/average.html"
           }
         ]
       }
     </script>
+    <link rel="stylesheet" crossorigin href="/Khmer-Calculator-Hub/assets/style-DvKrXJkU.css">
   </head>
 
   <body>
-    <!-- ================= NAVBAR ================= -->
+    <!-- ========================================
+         NAVBAR
+    ======================================== -->
 
     <nav
       class="navbar navbar-expand-lg navbar-light bg-white sticky-top border-bottom"
     >
       <div class="container">
-        <!-- Logo -->
-
         <a
           class="navbar-brand d-flex align-items-center gap-2"
           href="../index.html"
         >
           <div class="logo">
             <img
-              src="../images/Logo.png"
+              src="/Khmer-Calculator-Hub/assets/Logo-C6ku9GlI.png"
               alt="Khmer Calculator Hub"
               width="40"
               height="40"
@@ -352,21 +240,14 @@
           </div>
         </a>
 
-        <!-- Mobile Toggle -->
-
         <button
           class="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#mainNavbar"
-          aria-controls="mainNavbar"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
         >
           <span class="navbar-toggler-icon"></span>
         </button>
-
-        <!-- Menu -->
 
         <div class="collapse navbar-collapse" id="mainNavbar">
           <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
@@ -409,11 +290,15 @@
       </div>
     </nav>
 
-    <!-- ================= MAIN ================= -->
+    <!-- ========================================
+         MAIN
+    ======================================== -->
 
     <main>
-      <div class="container py-4">
-        <!-- Breadcrumb -->
+      <div class="container py-5">
+        <!-- ========================================
+             BREADCRUMB
+        ======================================== -->
 
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
@@ -427,192 +312,179 @@
               </a>
             </li>
 
-            <li
-              class="breadcrumb-item active"
-              aria-current="page"
-              data-i18n="taxCalculator"
-            >
-              Tax Calculator
+            <li class="breadcrumb-item active" data-i18n="averageCalculator">
+              Average Calculator
             </li>
           </ol>
         </nav>
 
-        <!-- Title -->
+        <!-- ========================================
+             TITLE
+        ======================================== -->
 
-        <div class="text-center mb-4">
+        <div class="text-center mb-5">
           <div class="mb-3">
             <i
-              class="bi bi-receipt"
-              style="font-size: 48px; color: #d71920"
+              class="bi bi-bar-chart-line-fill"
+              style="font-size: 50px; color: #d71920"
             ></i>
           </div>
 
-          <h1 class="fw-bold" data-i18n="taxCalculator">Tax Calculator</h1>
+          <h1 class="fw-bold" data-i18n="averageCalculator">
+            Average Calculator
+          </h1>
 
-          <p class="text-secondary" data-i18n="taxDescription">
-            Calculate taxable income, tax amount and after-tax income.
+          <p class="text-muted" data-i18n="averageDescription">
+            Calculate sum, average, minimum and maximum.
           </p>
         </div>
 
-        <!-- ================= CALCULATOR ================= -->
+        <!-- ========================================
+             CALCULATOR
+        ======================================== -->
 
         <div class="row justify-content-center">
           <div class="col-lg-7 col-md-9">
             <div class="calculator-box">
-              <!-- Income -->
+              <h3 class="mb-4" data-i18n="averageCalculator">
+                Average Calculator
+              </h3>
 
-              <div class="mb-3">
-                <label
-                  for="income"
-                  class="form-label fw-semibold"
-                  data-i18n="income"
-                >
-                  Income
-                </label>
-
-                <div class="input-group">
-                  <span class="input-group-text"> $ </span>
-
-                  <input
-                    type="number"
-                    id="income"
-                    class="form-control"
-                    placeholder="Example: 2000"
-                    data-i18n-placeholder="example2000"
-                    min="0"
-                    step="0.01"
-                  />
-                </div>
-              </div>
-
-              <!-- Deduction -->
-
-              <div class="mb-3">
-                <label
-                  for="deduction"
-                  class="form-label fw-semibold"
-                  data-i18n="taxDeduction"
-                >
-                  Tax Deduction
-                </label>
-
-                <div class="input-group">
-                  <span class="input-group-text"> $ </span>
-
-                  <input
-                    type="number"
-                    id="deduction"
-                    class="form-control"
-                    placeholder="Example: 200"
-                    data-i18n-placeholder="example200"
-                    min="0"
-                    step="0.01"
-                  />
-                </div>
-              </div>
-
-              <!-- Tax Rate -->
+              <!-- ENTER NUMBERS -->
 
               <div class="mb-4">
-                <label
-                  for="taxRate"
-                  class="form-label fw-semibold"
-                  data-i18n="taxRate"
-                >
-                  Tax Rate (%)
+                <label class="form-label fw-semibold" data-i18n="enterNumbers">
+                  Enter Numbers
                 </label>
 
-                <div class="input-group">
-                  <input
-                    type="number"
-                    id="taxRate"
-                    class="form-control"
-                    placeholder="Example: 10"
-                    data-i18n-placeholder="example10"
-                    min="0"
-                    max="100"
-                    step="0.01"
-                  />
+                <div id="numberInputs">
+                  <!-- NUMBER 1 -->
 
-                  <span class="input-group-text"> % </span>
+                  <div class="number-row">
+                    <input
+                      type="number"
+                      class="form-control number-input"
+                      placeholder="Example: 80"
+                      data-i18n-placeholder="example80"
+                      step="any"
+                    />
+
+                    <button
+                      type="button"
+                      class="btn btn-outline-danger remove-number"
+                    >
+                      <i class="bi bi-trash"></i>
+                    </button>
+                  </div>
+
+                  <!-- NUMBER 2 -->
+
+                  <div class="number-row">
+                    <input
+                      type="number"
+                      class="form-control number-input"
+                      placeholder="Example: 90"
+                      data-i18n-placeholder="example90"
+                      step="any"
+                    />
+
+                    <button
+                      type="button"
+                      class="btn btn-outline-danger remove-number"
+                    >
+                      <i class="bi bi-trash"></i>
+                    </button>
+                  </div>
                 </div>
+
+                <!-- ADD NUMBER -->
+
+                <button
+                  type="button"
+                  class="btn btn-outline-primary mt-2"
+                  id="addNumberButton"
+                >
+                  <i class="bi bi-plus-circle"></i>
+
+                  <span data-i18n="addNumber"> Add Number </span>
+                </button>
               </div>
 
-              <!-- Calculate -->
+              <!-- CALCULATE -->
 
               <button
                 type="button"
-                id="calculateTaxButton"
                 class="btn btn-danger w-100 py-2"
+                id="calculateAverageButton"
               >
                 <i class="bi bi-calculator"></i>
 
                 <span data-i18n="calculate"> Calculate </span>
               </button>
 
-              <!-- ================= RESULT ================= -->
+              <!-- ========================================
+                   RESULT
+              ======================================== -->
 
-              <div id="taxResult" class="result-box mt-4 d-none">
-                <div class="text-center mb-4">
-                  <small class="text-secondary" data-i18n="taxAmount">
-                    TAX AMOUNT
-                  </small>
-
-                  <div
-                    id="taxAmount"
-                    class="fw-bold mt-2"
-                    style="color: #d71920; font-size: 32px"
-                  >
-                    $0.00
-                  </div>
-
-                  <p
-                    id="taxResultText"
-                    class="text-secondary mb-0"
-                    data-i18n="taxAmountResult"
-                  >
-                    Tax amount
-                  </p>
-                </div>
+              <div id="averageResult" class="average-result-box mt-4 d-none">
+                <h5 class="fw-bold text-center mb-3">
+                  <span data-i18n="result"> Result </span>
+                </h5>
 
                 <div class="row g-3">
-                  <!-- Taxable Income -->
+                  <!-- SUM -->
 
-                  <div class="col-md-4">
-                    <div class="tax-result-item">
-                      <small data-i18n="taxableIncome"> Taxable Income </small>
+                  <div class="col-6">
+                    <div class="average-result-item">
+                      <small data-i18n="sum"> Sum </small>
 
-                      <strong id="taxableIncome"> $0.00 </strong>
+                      <strong id="sumValue"> 0 </strong>
                     </div>
                   </div>
 
-                  <!-- Tax Amount -->
+                  <!-- AVERAGE -->
 
-                  <div class="col-md-4">
-                    <div class="tax-result-item">
-                      <small data-i18n="taxAmount"> Tax Amount </small>
+                  <div class="col-6">
+                    <div class="average-result-item">
+                      <small data-i18n="average"> Average </small>
 
-                      <strong id="taxAmountSmall"> $0.00 </strong>
+                      <strong id="averageValue"> 0 </strong>
                     </div>
                   </div>
 
-                  <!-- After Tax -->
+                  <!-- MINIMUM -->
 
-                  <div class="col-md-4">
-                    <div class="tax-result-item tax-highlight">
-                      <small data-i18n="afterTaxIncome">
-                        After-Tax Income
-                      </small>
+                  <div class="col-6">
+                    <div class="average-result-item">
+                      <small data-i18n="minimum"> Minimum </small>
 
-                      <strong id="afterTaxIncome"> $0.00 </strong>
+                      <strong id="minimumValue"> 0 </strong>
+                    </div>
+                  </div>
+
+                  <!-- MAXIMUM -->
+
+                  <div class="col-6">
+                    <div class="average-result-item">
+                      <small data-i18n="maximum"> Maximum </small>
+
+                      <strong id="maximumValue"> 0 </strong>
                     </div>
                   </div>
                 </div>
+
+                <p id="resultText" class="text-muted text-center mb-0 mt-3"></p>
               </div>
             </div>
+          </div>
+        </div>
 
-            <!-- ================= HISTORY ================= -->
+        <!-- ========================================
+             HISTORY
+        ======================================== -->
 
+        <div class="row justify-content-center">
+          <div class="col-lg-7 col-md-9">
             <div class="history-box">
               <div class="history-header">
                 <h3 class="history-title">
@@ -625,54 +497,89 @@
 
                 <button
                   type="button"
-                  id="clearTaxHistoryButton"
                   class="btn btn-sm btn-outline-danger"
+                  id="clearAverageHistoryButton"
                 >
-                  <i class="bi bi-trash"></i>
+                  <i class="bi bi-trash3"></i>
 
-                  <span data-i18n="clearHistory"> Clear History </span>
+                  <span data-i18n="clearHistory"> Clear All </span>
                 </button>
               </div>
 
               <div id="historyContainer"></div>
             </div>
+          </div>
+        </div>
 
-            <!-- ================= INFO ================= -->
+        <!-- ========================================
+             EXAMPLES
+        ======================================== -->
 
-            <div class="mt-4 p-4 bg-white border rounded-4">
-              <h5 class="fw-bold">
-                <i class="bi bi-lightbulb text-warning"></i>
+        <div class="row justify-content-center mt-5">
+          <div class="col-lg-7 col-md-9">
+            <div class="calculator-box">
+              <h4 class="fw-bold mb-3" data-i18n="examples">Examples</h4>
 
-                <span data-i18n="taxExampleTitle"> Example </span>
-              </h5>
+              <div class="row g-3">
+                <!-- Example 1 -->
 
-              <p class="text-secondary mb-0" data-i18n="taxExample">
-                If your income is $2,000, your deduction is $200, and your tax
-                rate is 10%, your taxable income is $1,800 and your tax is $180.
-              </p>
+                <div class="col-md-4">
+                  <div class="example-card">
+                    <strong> 80, 90, 70 </strong>
+
+                    <small class="text-muted"> Average = 80 </small>
+                  </div>
+                </div>
+
+                <!-- Example 2 -->
+
+                <div class="col-md-4">
+                  <div class="example-card">
+                    <strong> 10, 20, 30, 40 </strong>
+
+                    <small class="text-muted"> Average = 25 </small>
+                  </div>
+                </div>
+
+                <!-- Example 3 -->
+
+                <div class="col-md-4">
+                  <div class="example-card">
+                    <strong> 100, 200, 300 </strong>
+
+                    <small class="text-muted"> Average = 200 </small>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </main>
 
-    <!-- ================= FOOTER ================= -->
+    <!-- ========================================
+         FOOTER
+    ======================================== -->
 
     <footer>
       <div class="container">
         <div class="row g-4">
-          <!-- ================= PROFILE ================= -->
+          <!-- ================= PROFILE / BRAND ================= -->
 
           <div class="col-lg-5">
             <div class="footer-profile">
+              <!-- Profile Image -->
+
               <div class="footer-profile-image">
-                <img src="../images/Heng.jpg" alt="Kim Liheng" />
+                <img src="/Khmer-Calculator-Hub/assets/Heng-BPNU6nhp.jpg" alt="Kim Liheng" />
               </div>
+
+              <!-- Profile Info -->
 
               <div class="footer-profile-info">
                 <strong> Kim Liheng </strong>
 
-                <span data-i18n="founderDeveloper"> Founder & Developer </span>
+                <span> Founder & Developer </span>
               </div>
             </div>
 
@@ -727,7 +634,6 @@
               <a
                 href="https://www.facebook.com/KimLiheng.77/?_rdc=6&_rdr#"
                 target="_blank"
-                rel="noopener noreferrer"
                 aria-label="Facebook"
               >
                 <i class="bi bi-facebook"></i>
@@ -736,7 +642,6 @@
               <a
                 href="https://t.me/Heng77777"
                 target="_blank"
-                rel="noopener noreferrer"
                 aria-label="Telegram"
               >
                 <i class="bi bi-telegram"></i>
@@ -745,7 +650,6 @@
               <a
                 href="https://www.tiktok.com/@hengg899?_r=1&_t=ZS-9A1HcAsdsLh"
                 target="_blank"
-                rel="noopener noreferrer"
                 aria-label="TikTok"
               >
                 <i class="bi bi-tiktok"></i>
@@ -766,15 +670,21 @@
       </div>
     </footer>
 
-    <!-- ================= SCRIPTS ================= -->
+    <!-- ========================================
+         JAVASCRIPT
+    ======================================== -->
 
-    <!-- Tax Calculator -->
-    <script type="module" src="../js/tax.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore-compat.js"></script>
+    <script src="../js/firebase-config.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/history.js"></script>
 
-    <!-- Global Language -->
-    <script type="module" src="../js/language.js"></script>
+    <script src="../js/average.js"></script>
 
-    <!-- Bootstrap -->
+    <script src="../js/language.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

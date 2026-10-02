@@ -2,38 +2,48 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Register | Khmer Calculator Hub</title>
 
     <!-- Bootstrap -->
+
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
 
     <!-- Bootstrap Icons -->
+
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
       rel="stylesheet"
     />
 
     <!-- Google Fonts -->
+
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Kantumruy+Pro:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
 
     <!-- Main CSS -->
+
     <link rel="stylesheet" href="css/style.css" />
   </head>
 
   <body>
-    <!-- Navbar -->
+    <!-- ================================================= -->
+    <!-- ===================== NAVBAR ==================== -->
+    <!-- ================================================= -->
+
     <nav
       class="navbar navbar-expand-lg navbar-light bg-white sticky-top border-bottom"
     >
       <div class="container">
+        <!-- Logo -->
+
         <a
           class="navbar-brand d-flex align-items-center gap-2"
           href="index.html"
@@ -47,36 +57,72 @@
           </div>
         </a>
 
-        <div class="d-flex gap-2">
-          <a href="login.html" class="btn btn-outline-primary btn-sm">
+        <!-- Navigation -->
+
+        <div class="d-flex gap-2 align-items-center">
+          <!-- Login -->
+
+          <a
+            href="login.html"
+            class="btn btn-outline-primary btn-sm"
+            data-i18n="login"
+          >
             Login
           </a>
 
-          <a href="index.html" class="btn btn-light btn-sm"> Home </a>
+          <!-- Home -->
+
+          <a href="index.html" class="btn btn-light btn-sm" data-i18n="home">
+            Home
+          </a>
+
+          <!-- Language -->
+
+          <button
+            type="button"
+            class="language-btn"
+            id="languageButton"
+            aria-label="Switch language"
+          >
+            <i class="bi bi-translate"></i>
+
+            <span id="languageText">EN</span>
+          </button>
         </div>
       </div>
     </nav>
 
-    <!-- Register -->
+    <!-- ================================================= -->
+    <!-- ===================== REGISTER ================== -->
+    <!-- ================================================= -->
+
     <div class="container py-5">
       <div class="row justify-content-center">
         <div class="col-md-5">
           <div class="card shadow-sm border-0">
             <div class="card-body p-4">
-              <h2 class="h4 mb-1 text-center">Register</h2>
+              <h2 class="h4 mb-1 text-center" data-i18n="register">Register</h2>
 
-              <p class="text-secondary text-center small mb-4">
-                ចុះឈ្មោះគណនីថ្មី
+              <p
+                class="text-secondary text-center small mb-4"
+                data-i18n="registerDescription"
+              >
+                Create a new account
               </p>
 
               <!-- Alert -->
+
               <div id="authAlert" class="alert d-none" role="alert"></div>
 
               <!-- Register Form -->
+
               <form id="registerForm">
                 <!-- Name -->
+
                 <div class="mb-3">
-                  <label class="form-label" for="name"> Name / ឈ្មោះ </label>
+                  <label class="form-label" for="name" data-i18n="name">
+                    Name
+                  </label>
 
                   <input
                     type="text"
@@ -85,12 +131,16 @@
                     required
                     minlength="2"
                     placeholder="Your name"
+                    data-i18n-placeholder="namePlaceholder"
                   />
                 </div>
 
                 <!-- Email -->
+
                 <div class="mb-3">
-                  <label class="form-label" for="email"> Email </label>
+                  <label class="form-label" for="email" data-i18n="email">
+                    Email
+                  </label>
 
                   <input
                     type="email"
@@ -98,12 +148,16 @@
                     id="email"
                     required
                     placeholder="you@email.com"
+                    data-i18n-placeholder="emailPlaceholder"
                   />
                 </div>
 
                 <!-- Password -->
+
                 <div class="mb-3">
-                  <label class="form-label" for="password"> Password </label>
+                  <label class="form-label" for="password" data-i18n="password">
+                    Password
+                  </label>
 
                   <input
                     type="password"
@@ -112,12 +166,18 @@
                     required
                     minlength="6"
                     placeholder="Min 6 characters"
+                    data-i18n-placeholder="passwordPlaceholder"
                   />
                 </div>
 
                 <!-- Confirm Password -->
+
                 <div class="mb-3">
-                  <label class="form-label" for="confirm">
+                  <label
+                    class="form-label"
+                    for="confirm"
+                    data-i18n="confirmPassword"
+                  >
                     Confirm Password
                   </label>
 
@@ -128,20 +188,29 @@
                     required
                     minlength="6"
                     placeholder="Confirm your password"
+                    data-i18n-placeholder="confirmPasswordPlaceholder"
                   />
                 </div>
 
                 <!-- Register Button -->
-                <button type="submit" class="btn btn-primary w-100">
-                  Register / ចុះឈ្មោះ
+
+                <button
+                  type="submit"
+                  class="btn btn-primary w-100"
+                  data-i18n="register"
+                >
+                  Register
                 </button>
               </form>
 
               <!-- Login Link -->
-              <p class="text-center mt-3 mb-0 small">
-                Already have an account?
 
-                <a href="login.html"> Login </a>
+              <p class="text-center mt-3 mb-0 small">
+                <span data-i18n="alreadyAccount">
+                  Already have an account?
+                </span>
+
+                <a href="login.html" data-i18n="login"> Login </a>
               </p>
             </div>
           </div>
@@ -149,9 +218,14 @@
       </div>
     </div>
 
-    <!-- Register JavaScript -->
+    <!-- ================================================= -->
+    <!-- ===================== REGISTER JS =============== -->
+    <!-- ================================================= -->
+
     <script type="module">
       import { loadSession, register } from "./js/auth.js";
+
+      import { getCurrentLanguage } from "./js/language.js";
 
       const form = document.getElementById("registerForm");
 
@@ -167,6 +241,14 @@
         alertBox.className = `alert alert-${type}`;
 
         alertBox.textContent = message;
+      }
+
+      // ========================================
+      // GET CURRENT LANGUAGE
+      // ========================================
+
+      function isKhmer() {
+        return getCurrentLanguage() === "kh";
       }
 
       // ========================================
@@ -199,7 +281,11 @@
         // ========================================
 
         if (!name.trim() || !email.trim() || !password || !confirm) {
-          showAlert("Please fill in all fields.");
+          showAlert(
+            isKhmer()
+              ? "សូមបំពេញព័ត៌មានទាំងអស់។"
+              : "Please fill in all fields.",
+          );
 
           return;
         }
@@ -209,7 +295,9 @@
         // ========================================
 
         if (password !== confirm) {
-          showAlert("Passwords do not match.");
+          showAlert(
+            isKhmer() ? "ពាក្យសម្ងាត់មិនដូចគ្នាទេ។" : "Passwords do not match.",
+          );
 
           return;
         }
@@ -221,15 +309,27 @@
         const result = await register(name, email, password);
 
         if (result.success) {
-          showAlert("Registration successful!", "success");
+          showAlert(
+            isKhmer() ? "ចុះឈ្មោះបានជោគជ័យ!" : "Registration successful!",
+            "success",
+          );
 
           setTimeout(function () {
             window.location.href = "index.html";
           }, 800);
         } else {
-          showAlert(result.message || "Registration failed.");
+          showAlert(
+            result.message ||
+              (isKhmer() ? "ការចុះឈ្មោះបរាជ័យ។" : "Registration failed."),
+          );
         }
       });
     </script>
+
+    <!-- ================================================= -->
+    <!-- ================= GLOBAL LANGUAGE =============== -->
+    <!-- ================================================= -->
+
+    <script type="module" src="js/language.js"></script>
   </body>
 </html>

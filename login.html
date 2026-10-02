@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Login | Khmer Calculator Hub</title>
@@ -25,7 +26,10 @@
   </head>
 
   <body>
-    <!-- Navbar -->
+    <!-- ================================================= -->
+    <!-- ===================== NAVBAR ==================== -->
+    <!-- ================================================= -->
+
     <nav
       class="navbar navbar-expand-lg navbar-light bg-white sticky-top border-bottom"
     >
@@ -42,32 +46,70 @@
           </div>
         </a>
 
-        <div class="d-flex gap-2">
-          <a href="register.html" class="btn btn-primary btn-sm"> Register </a>
+        <div class="d-flex gap-2 align-items-center">
+          <!-- Register -->
 
-          <a href="index.html" class="btn btn-light btn-sm"> Home </a>
+          <a
+            href="register.html"
+            class="btn btn-primary btn-sm"
+            data-i18n="register"
+          >
+            Register
+          </a>
+
+          <!-- Home -->
+
+          <a href="index.html" class="btn btn-light btn-sm" data-i18n="home">
+            Home
+          </a>
+
+          <!-- Language -->
+
+          <button
+            type="button"
+            class="language-btn"
+            id="languageButton"
+            aria-label="Switch language"
+          >
+            <i class="bi bi-translate"></i>
+
+            <span id="languageText">EN</span>
+          </button>
         </div>
       </div>
     </nav>
 
-    <!-- Login -->
+    <!-- ================================================= -->
+    <!-- ====================== LOGIN ==================== -->
+    <!-- ================================================= -->
+
     <div class="container py-5">
       <div class="row justify-content-center">
         <div class="col-md-5">
           <div class="card shadow-sm border-0">
             <div class="card-body p-4">
-              <h2 class="h4 mb-1 text-center">Login</h2>
+              <h2 class="h4 mb-1 text-center" data-i18n="login">Login</h2>
 
-              <p class="text-secondary text-center small mb-4">ចូលគណនី</p>
+              <p
+                class="text-secondary text-center small mb-4"
+                data-i18n="loginDescription"
+              >
+                ចូលគណនី
+              </p>
 
               <!-- Alert -->
+
               <div id="authAlert" class="alert d-none" role="alert"></div>
 
               <!-- Login Form -->
+
               <form id="loginForm">
                 <!-- Email -->
+
                 <div class="mb-3">
-                  <label class="form-label" for="email"> Email </label>
+                  <label class="form-label" for="email" data-i18n="email">
+                    Email
+                  </label>
 
                   <input
                     type="email"
@@ -75,31 +117,41 @@
                     id="email"
                     required
                     placeholder="you@email.com"
+                    data-i18n-placeholder="emailPlaceholder"
                   />
                 </div>
 
                 <!-- Password -->
+
                 <div class="mb-3">
-                  <label class="form-label" for="password"> Password </label>
+                  <label class="form-label" for="password" data-i18n="password">
+                    Password
+                  </label>
 
                   <input
                     type="password"
                     class="form-control"
                     id="password"
                     required
+                    data-i18n-placeholder="passwordPlaceholder"
                   />
                 </div>
 
                 <!-- Login Button -->
-                <button type="submit" class="btn btn-primary w-100">
-                  Login / ចូល
+
+                <button
+                  type="submit"
+                  class="btn btn-primary w-100"
+                  data-i18n="login"
+                >
+                  Login
                 </button>
               </form>
 
               <p class="text-center mt-3 mb-0 small">
-                No account?
+                <span data-i18n="noAccount"> No account? </span>
 
-                <a href="register.html"> Register </a>
+                <a href="register.html" data-i18n="register"> Register </a>
               </p>
             </div>
           </div>
@@ -107,7 +159,12 @@
       </div>
     </div>
 
-    <!-- Login JavaScript -->
+    <!-- ================================================= -->
+    <!-- ===================== JAVASCRIPT =============== -->
+    <!-- ================================================= -->
+
+    <!-- Firebase Authentication -->
+
     <script type="module">
       import { loadSession, login } from "./js/auth.js";
 
@@ -153,7 +210,11 @@
         // ========================================
 
         if (!email.trim() || !password) {
-          showAlert("Please enter email and password.");
+          showAlert(
+            getCurrentLanguage() === "kh"
+              ? "សូមបញ្ចូល Email និង Password។"
+              : "Please enter email and password.",
+          );
 
           return;
         }
@@ -165,15 +226,35 @@
         const result = await login(email, password);
 
         if (result.success) {
-          showAlert("Login successful!", "success");
+          showAlert(
+            getCurrentLanguage() === "kh"
+              ? "ចូលគណនីបានជោគជ័យ!"
+              : "Login successful!",
+            "success",
+          );
 
           setTimeout(function () {
             window.location.href = "index.html";
           }, 500);
         } else {
-          showAlert(result.message || "Login failed.");
+          showAlert(
+            result.message ||
+              (getCurrentLanguage() === "kh"
+                ? "ការចូលគណនីបរាជ័យ។"
+                : "Login failed."),
+          );
         }
       });
     </script>
+
+    <!-- Global Language -->
+
+    <script type="module">
+      import { getCurrentLanguage } from "./js/language.js";
+
+      window.getCurrentLanguage = getCurrentLanguage;
+    </script>
+
+    <script type="module" src="js/language.js"></script>
   </body>
 </html>

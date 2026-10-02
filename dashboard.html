@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Dashboard | Khmer Calculator Hub</title>
@@ -29,11 +30,16 @@
   </head>
 
   <body>
-    <!-- Navbar -->
+    <!-- ================================================= -->
+    <!-- ===================== NAVBAR ==================== -->
+    <!-- ================================================= -->
+
     <nav
       class="navbar navbar-expand-lg navbar-light bg-white sticky-top border-bottom"
     >
       <div class="container">
+        <!-- Logo -->
+
         <a
           class="navbar-brand d-flex align-items-center gap-2"
           href="index.html"
@@ -41,23 +47,48 @@
           <img src="images/Logo.png" alt="Logo" width="40" height="40" />
 
           <div>
-            <span class="brand-name">Khmer Calculator</span>
-            <small class="brand-subtitle">HUB</small>
+            <span class="brand-name"> Khmer Calculator </span>
+
+            <small class="brand-subtitle"> HUB </small>
           </div>
         </a>
 
+        <!-- Right Navigation -->
+
         <div class="d-flex align-items-center gap-2">
+          <!-- User -->
+
           <span class="small text-secondary">
             <i class="bi bi-person-circle"></i>
+
             <span data-auth-name></span>
           </span>
 
-          <a href="index.html" class="btn btn-light btn-sm"> Home </a>
+          <!-- Home -->
+
+          <a href="index.html" class="btn btn-light btn-sm" data-i18n="home">
+            Home
+          </a>
+
+          <!-- Language -->
+
+          <button
+            type="button"
+            class="language-btn"
+            id="languageButton"
+            aria-label="Switch language"
+          >
+            <i class="bi bi-translate"></i>
+            <span id="languageText">EN</span>
+          </button>
+
+          <!-- Logout -->
 
           <button
             type="button"
             class="btn btn-outline-danger btn-sm"
             id="logoutBtn"
+            data-i18n="logout"
           >
             Logout
           </button>
@@ -65,34 +96,48 @@
       </div>
     </nav>
 
-    <!-- Dashboard -->
+    <!-- ================================================= -->
+    <!-- ===================== DASHBOARD ================= -->
+    <!-- ================================================= -->
+
     <div class="container py-4">
       <!-- Header -->
+
       <div
         class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-2"
       >
         <div>
-          <h1 class="h3 mb-1">Dashboard</h1>
+          <h1 class="h3 mb-1" data-i18n="dashboard">Dashboard</h1>
 
           <p class="text-secondary mb-0">
-            សួស្តី,
+            <span data-i18n="hello"> Hello, </span>
+
             <strong data-auth-name></strong>!
           </p>
         </div>
 
+        <!-- Calculators Button -->
+
         <a href="index.html#calculators" class="btn btn-primary btn-sm">
           <i class="bi bi-calculator"></i>
-          Calculators
+
+          <span data-i18n="calculators"> Calculators </span>
         </a>
       </div>
 
-      <!-- Statistics -->
+      <!-- ================================================= -->
+      <!-- ==================== STATISTICS ================= -->
+      <!-- ================================================= -->
+
       <div class="row g-3 mb-4">
         <!-- Total Calculations -->
+
         <div class="col-md-4">
           <div class="card border-0 shadow-sm h-100">
             <div class="card-body">
-              <div class="text-secondary small">Total Calculations</div>
+              <div class="text-secondary small" data-i18n="totalCalculations">
+                Total Calculations
+              </div>
 
               <div class="fs-3 fw-bold" id="statCount">0</div>
             </div>
@@ -100,10 +145,13 @@
         </div>
 
         <!-- Account -->
+
         <div class="col-md-4">
           <div class="card border-0 shadow-sm h-100">
             <div class="card-body">
-              <div class="text-secondary small">Account</div>
+              <div class="text-secondary small" data-i18n="account">
+                Account
+              </div>
 
               <div class="fw-semibold" data-auth-name></div>
 
@@ -113,15 +161,19 @@
         </div>
 
         <!-- Quick Links -->
+
         <div class="col-md-4">
           <div class="card border-0 shadow-sm h-100">
             <div class="card-body">
-              <div class="text-secondary small">Quick Links</div>
+              <div class="text-secondary small" data-i18n="quickLinks">
+                Quick Links
+              </div>
 
               <div class="d-flex flex-wrap gap-1 mt-1">
                 <a
                   href="calculators/bmi.html"
                   class="btn btn-sm btn-outline-secondary"
+                  data-i18n="bmi"
                 >
                   BMI
                 </a>
@@ -129,6 +181,7 @@
                 <a
                   href="calculators/salary.html"
                   class="btn btn-sm btn-outline-secondary"
+                  data-i18n="salary"
                 >
                   Salary
                 </a>
@@ -136,6 +189,7 @@
                 <a
                   href="calculators/loan.html"
                   class="btn btn-sm btn-outline-secondary"
+                  data-i18n="loan"
                 >
                   Loan
                 </a>
@@ -143,6 +197,7 @@
                 <a
                   href="calculators/gpa.html"
                   class="btn btn-sm btn-outline-secondary"
+                  data-i18n="gpa"
                 >
                   GPA
                 </a>
@@ -152,35 +207,49 @@
         </div>
       </div>
 
-      <!-- History -->
+      <!-- ================================================= -->
+      <!-- ====================== HISTORY ================== -->
+      <!-- ================================================= -->
+
       <div class="card border-0 shadow-sm">
+        <!-- History Header -->
+
         <div
           class="card-header bg-white d-flex justify-content-between align-items-center"
         >
           <span class="fw-semibold">
             <i class="bi bi-clock-history"></i>
 
-            My Calculation History
+            <span data-i18n="myCalculationHistory">
+              My Calculation History
+            </span>
           </span>
+
+          <!-- Clear All -->
 
           <button
             type="button"
             class="btn btn-sm btn-outline-danger"
             id="clearAllBtn"
+            data-i18n="clearAll"
           >
             Clear All
           </button>
         </div>
 
+        <!-- History Content -->
+
         <div class="card-body" id="dashboardHistory">
-          <p class="text-secondary text-center py-4 mb-0">Loading...</p>
+          <p class="text-secondary text-center py-4 mb-0" data-i18n="loading">
+            Loading...
+          </p>
         </div>
       </div>
     </div>
 
-    <!-- ========================================
-         MODULAR JAVASCRIPT
-         ======================================== -->
+    <!-- ================================================= -->
+    <!-- ===================== JAVASCRIPT ================ -->
+    <!-- ================================================= -->
 
     <script type="module">
       import {
@@ -195,6 +264,20 @@
         getCalculatorDisplayName,
         formatHistoryResult,
       } from "./js/history.js";
+
+      import { getCurrentLanguage } from "./js/language.js";
+
+      // ========================================
+      // TRANSLATION HELPER
+      // ========================================
+
+      function isKhmer() {
+        return getCurrentLanguage() === "kh";
+      }
+
+      function t(en, kh) {
+        return isKhmer() ? kh : en;
+      }
 
       // ========================================
       // DOM READY
@@ -235,7 +318,7 @@
             if (result.success) {
               window.location.href = "login.html";
             } else {
-              alert("Logout failed / ចាកចេញមិនបានទេ");
+              alert(t("Logout failed.", "ចាកចេញមិនបានទេ។"));
             }
           });
 
@@ -247,9 +330,13 @@
           const container = document.getElementById("dashboardHistory");
 
           container.innerHTML = `
+
               <p class="text-secondary text-center py-4 mb-0">
-                Loading...
+
+                ${t("Loading...", "កំពុងផ្ទុក...")}
+
               </p>
+
             `;
 
           try {
@@ -267,10 +354,16 @@
 
             if (!history || history.length === 0) {
               container.innerHTML = `
+
                   <p class="text-secondary text-center py-4 mb-0">
-                    No calculation history yet. /
-                    មិនទាន់មានប្រវត្តិទេ
+
+                    ${t(
+                      "No calculation history yet.",
+                      "មិនទាន់មានប្រវត្តិការគណនាទេ។",
+                    )}
+
                   </p>
+
                 `;
 
               return;
@@ -280,7 +373,7 @@
             // LANGUAGE
             // ========================================
 
-            const lang = localStorage.getItem("language") || "en";
+            const lang = getCurrentLanguage();
 
             // ========================================
             // DISPLAY HISTORY
@@ -293,13 +386,16 @@
                 const result = formatHistoryResult(item);
 
                 // Firestore Timestamp
+
                 let date = "";
 
                 if (
                   item.createdAt &&
                   typeof item.createdAt.toDate === "function"
                 ) {
-                  date = item.createdAt.toDate().toLocaleString();
+                  date = item.createdAt
+                    .toDate()
+                    .toLocaleString(lang === "kh" ? "km-KH" : "en-US");
                 } else if (item.date) {
                   date = item.date;
                 } else if (item.created_at) {
@@ -308,54 +404,55 @@
 
                 return `
 
-                    <div
-                      class="history-item border rounded p-3 mb-2"
-                    >
-
                       <div
-                        class="d-flex justify-content-between align-items-start gap-3"
+                        class="history-item border rounded p-3 mb-2"
                       >
 
-                        <div>
+                        <div
+                          class="d-flex justify-content-between align-items-start gap-3"
+                        >
 
-                          <div
-                            class="history-calculator fw-semibold"
-                          >
-                            ${name}
+                          <div>
+
+                            <div
+                              class="history-calculator fw-semibold"
+                            >
+                              ${name}
+                            </div>
+
+
+                            <div
+                              class="history-result mt-1 small"
+                            >
+                              ${result}
+                            </div>
+
+
+                            <small
+                              class="text-secondary"
+                            >
+                              ${date}
+                            </small>
+
                           </div>
 
 
-                          <div
-                            class="history-result mt-1 small"
+                          <button
+                            type="button"
+                            class="btn btn-sm btn-outline-danger"
+                            data-id="${String(item.id)}"
+                            title="${t("Delete", "លុប")}"
                           >
-                            ${result}
-                          </div>
 
+                            <i class="bi bi-trash"></i>
 
-                          <small
-                            class="text-secondary"
-                          >
-                            ${date}
-                          </small>
+                          </button>
 
                         </div>
 
-
-                        <button
-                          type="button"
-                          class="btn btn-sm btn-outline-danger"
-                          data-id="${String(item.id)}"
-                        >
-
-                          <i class="bi bi-trash"></i>
-
-                        </button>
-
                       </div>
 
-                    </div>
-
-                  `;
+                    `;
               })
               .join("");
 
@@ -369,16 +466,17 @@
                 btn.addEventListener("click", async function () {
                   const id = btn.getAttribute("data-id");
 
-                  // IMPORTANT:
-                  // Do NOT use Number(id)
-                  // Firestore document IDs are strings.
+                  // Firestore document IDs
+                  // are strings.
 
                   const result = await deleteAuthHistoryItem(id);
 
                   if (result && result.success) {
                     await loadDashboardHistory();
                   } else {
-                    alert("Cannot delete history / មិនអាចលុបប្រវត្តិបានទេ");
+                    alert(
+                      t("Cannot delete history.", "មិនអាចលុបប្រវត្តិបានទេ។"),
+                    );
                   }
                 });
               });
@@ -386,10 +484,13 @@
             console.error("Dashboard history error:", error);
 
             container.innerHTML = `
+
                 <p class="text-danger text-center py-4 mb-0">
-                  Cannot load history /
-                  មិនអាចទាញយកប្រវត្តិបានទេ
+
+                  ${t("Cannot load history.", "មិនអាចទាញយកប្រវត្តិបានទេ។")}
+
                 </p>
+
               `;
           }
         }
@@ -402,7 +503,7 @@
           .getElementById("clearAllBtn")
           .addEventListener("click", async function () {
             const confirmed = confirm(
-              "Clear all history? / លុបប្រវត្តិទាំងអស់?",
+              t("Clear all history?", "តើអ្នកចង់លុបប្រវត្តិទាំងអស់មែនទេ?"),
             );
 
             if (!confirmed) {
@@ -414,7 +515,9 @@
             if (result && result.success) {
               await loadDashboardHistory();
             } else {
-              alert("Cannot clear history / មិនអាចលុបប្រវត្តិបានទេ");
+              alert(
+                t("Cannot clear history.", "មិនអាចលុបប្រវត្តិទាំងអស់បានទេ។"),
+              );
             }
           });
 
@@ -425,5 +528,11 @@
         await loadDashboardHistory();
       });
     </script>
+
+    <!-- ================================================= -->
+    <!-- ================= GLOBAL LANGUAGE =============== -->
+    <!-- ================================================= -->
+
+    <script type="module" src="js/language.js"></script>
   </body>
 </html>

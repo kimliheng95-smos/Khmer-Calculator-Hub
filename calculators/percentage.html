@@ -1,5 +1,4 @@
 <!doctype html>
-
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -123,7 +122,7 @@
       rel="stylesheet"
     />
 
-    <!-- Bootstrap Icons -->
+    <!-- ================= BOOTSTRAP ICONS ================= -->
 
     <link
       rel="stylesheet"
@@ -316,6 +315,7 @@
 
           <div>
             <span class="brand-name"> Khmer Calculator </span>
+
             <small class="brand-subtitle"> HUB </small>
           </div>
         </a>
@@ -325,6 +325,9 @@
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#mainNavbar"
+          aria-controls="mainNavbar"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
         >
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -361,7 +364,8 @@
                 aria-label="Switch language"
               >
                 <i class="bi bi-translate"></i>
-                <span id="languageText">EN</span>
+
+                <span id="languageText"> EN </span>
               </button>
             </li>
           </ul>
@@ -373,7 +377,7 @@
 
     <main>
       <div class="container py-5">
-        <!-- Breadcrumb -->
+        <!-- ================= BREADCRUMB ================= -->
 
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
@@ -387,13 +391,17 @@
               </a>
             </li>
 
-            <li class="breadcrumb-item active" data-i18n="percentageCalculator">
+            <li
+              class="breadcrumb-item active"
+              aria-current="page"
+              data-i18n="percentageCalculator"
+            >
               Percentage Calculator
             </li>
           </ol>
         </nav>
 
-        <!-- Title -->
+        <!-- ================= TITLE ================= -->
 
         <div class="text-center mb-5">
           <div class="mb-3">
@@ -421,7 +429,7 @@
                 Percentage Calculator
               </h3>
 
-              <!-- Type -->
+              <!-- ================= TYPE ================= -->
 
               <div class="mb-4">
                 <label
@@ -432,11 +440,7 @@
                   Calculation Type
                 </label>
 
-                <select
-                  id="percentageType"
-                  class="form-select"
-                  onchange="changePercentageType()"
-                >
+                <select id="percentageType" class="form-select">
                   <option value="percentOf" data-i18n="percentOf">
                     What is X% of Y?
                   </option>
@@ -455,7 +459,7 @@
                 </select>
               </div>
 
-              <!-- Input 1 -->
+              <!-- ================= INPUT 1 ================= -->
 
               <div class="mb-3">
                 <label
@@ -471,11 +475,12 @@
                   id="valueOne"
                   class="form-control"
                   placeholder="Example: 20"
+                  data-i18n-placeholder="example20"
                   step="any"
                 />
               </div>
 
-              <!-- Input 2 -->
+              <!-- ================= INPUT 2 ================= -->
 
               <div class="mb-4">
                 <label
@@ -491,23 +496,24 @@
                   id="valueTwo"
                   class="form-control"
                   placeholder="Example: 500"
+                  data-i18n-placeholder="example500"
                   step="any"
                 />
               </div>
 
-              <!-- Button -->
+              <!-- ================= BUTTON ================= -->
 
               <button
                 type="button"
                 class="btn btn-danger w-100 py-2"
-                onclick="calculatePercentage()"
+                id="calculatePercentageButton"
               >
                 <i class="bi bi-calculator"></i>
 
                 <span data-i18n="calculate"> Calculate </span>
               </button>
 
-              <!-- Result -->
+              <!-- ================= RESULT ================= -->
 
               <div
                 id="percentageResult"
@@ -540,7 +546,7 @@
                 <button
                   type="button"
                   class="btn btn-sm btn-outline-danger"
-                  onclick="clearPercentageHistory()"
+                  id="clearPercentageHistoryButton"
                 >
                   <i class="bi bi-trash3"></i>
 
@@ -565,7 +571,7 @@
               <div class="row g-3">
                 <div class="col-md-6">
                   <div class="border rounded p-3">
-                    <strong>20% of 500</strong>
+                    <strong> 20% of 500 </strong>
 
                     <div class="text-muted mt-1">= 100</div>
                   </div>
@@ -573,7 +579,7 @@
 
                 <div class="col-md-6">
                   <div class="border rounded p-3">
-                    <strong>50 is what % of 200?</strong>
+                    <strong> 50 is what % of 200? </strong>
 
                     <div class="text-muted mt-1">= 25%</div>
                   </div>
@@ -581,7 +587,7 @@
 
                 <div class="col-md-6">
                   <div class="border rounded p-3">
-                    <strong>100 → 120</strong>
+                    <strong> 100 → 120 </strong>
 
                     <div class="text-muted mt-1">= 20% increase</div>
                   </div>
@@ -589,7 +595,7 @@
 
                 <div class="col-md-6">
                   <div class="border rounded p-3">
-                    <strong>100 → 80</strong>
+                    <strong> 100 → 80 </strong>
 
                     <div class="text-muted mt-1">= 20% decrease</div>
                   </div>
@@ -610,18 +616,14 @@
 
           <div class="col-lg-5">
             <div class="footer-profile">
-              <!-- Profile Image -->
-
               <div class="footer-profile-image">
                 <img src="../images/Heng.jpg" alt="Kim Liheng" />
               </div>
 
-              <!-- Profile Info -->
-
               <div class="footer-profile-info">
-                <strong>Kim Liheng</strong>
+                <strong> Kim Liheng </strong>
 
-                <span>Founder & Developer</span>
+                <span data-i18n="founderDeveloper"> Founder & Developer </span>
               </div>
             </div>
 
@@ -637,19 +639,19 @@
             <h5 data-i18n="tools">Tools</h5>
 
             <a href="gpa.html">
-              <span data-i18n="gpa">GPA Calculator</span>
+              <span data-i18n="gpa"> GPA Calculator </span>
             </a>
 
             <a href="grade.html">
-              <span data-i18n="grade">Grade Calculator</span>
+              <span data-i18n="grade"> Grade Calculator </span>
             </a>
 
             <a href="discount.html">
-              <span data-i18n="discount">Discount Calculator</span>
+              <span data-i18n="discount"> Discount Calculator </span>
             </a>
 
             <a href="profit.html">
-              <span data-i18n="profit">Profit Calculator</span>
+              <span data-i18n="profit"> Profit Calculator </span>
             </a>
           </div>
 
@@ -676,6 +678,7 @@
               <a
                 href="https://www.facebook.com/KimLiheng.77/?_rdc=6&_rdr#"
                 target="_blank"
+                rel="noopener noreferrer"
                 aria-label="Facebook"
               >
                 <i class="bi bi-facebook"></i>
@@ -684,6 +687,7 @@
               <a
                 href="https://t.me/Heng77777"
                 target="_blank"
+                rel="noopener noreferrer"
                 aria-label="Telegram"
               >
                 <i class="bi bi-telegram"></i>
@@ -692,6 +696,7 @@
               <a
                 href="https://www.tiktok.com/@hengg899?_r=1&_t=ZS-9A1HcAsdsLh"
                 target="_blank"
+                rel="noopener noreferrer"
                 aria-label="TikTok"
               >
                 <i class="bi bi-tiktok"></i>
@@ -712,25 +717,15 @@
       </div>
     </footer>
 
-    <!-- History JS -->
+    <!-- ================= JAVASCRIPT ================= -->
 
-    <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore-compat.js"></script>
-    <script src="../js/firebase-config.js"></script>
-    <script src="../js/auth.js"></script>
-    <script src="../js/history.js"></script>
+    <!-- Percentage Calculator -->
+    <script type="module" src="../js/percentage.js"></script>
 
-    <!-- Percentage JS -->
+    <!-- Global Language -->
+    <script type="module" src="../js/language.js"></script>
 
-    <script src="../js/percentage.js"></script>
-
-    <!-- Language JS -->
-
-    <script src="../js/language.js"></script>
-
-    <!-- Bootstrap JS -->
-
+    <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
