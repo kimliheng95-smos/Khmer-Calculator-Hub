@@ -3,22 +3,26 @@
 // ========================================
 
 // ========================================
-// LANGUAGE HELPER
+// IMPORT LANGUAGE
 // ========================================
 
-function getLanguage() {
-  return localStorage.getItem("language") || "en";
-}
+import { getCurrentLanguage, translations } from "./language.js";
+
+// ========================================
+// IMPORT HISTORY
+// ========================================
+
+import { saveHistory, displayHistory, clearHistory } from "./history.js";
+
+// ========================================
+// GET TRANSLATION
+// ========================================
 
 function getText(key, fallback) {
-  const language = getLanguage();
+  const language = getCurrentLanguage();
 
-  if (
-    window.translations &&
-    window.translations[language] &&
-    window.translations[language][key]
-  ) {
-    return window.translations[language][key];
+  if (translations && translations[language] && translations[language][key]) {
+    return translations[language][key];
   }
 
   return fallback;
@@ -33,117 +37,10 @@ function formatMoney(value) {
 }
 
 // ========================================
-// GET HISTORY
-// ========================================
-
-function getVATHistory() {
-  try {
-    return JSON.parse(localStorage.getItem("vatHistory")) || [];
-  } catch (error) {
-    return [];
-  }
-}
-
-// ========================================
-// SAVE HISTORY
-// ========================================
-
-function saveVATHistory(data) {
-  let history = getVATHistory();
-
-  history.unshift(data);
-
-  // Keep only latest 20
-  if (history.length > 20) {
-    history = history.slice(0, 20);
-  }
-
-  localStorage.setItem("vatHistory", JSON.stringify(history));
-
-  displayVATHistory();
-}
-
-// ========================================
-// DISPLAY HISTORY
-// ========================================
-
-function displayVATHistory() {
-  const container = document.getElementById("historyContainer");
-
-  if (!container) {
-    return;
-  }
-
-  const history = getVATHistory();
-
-  // No history
-  if (history.length === 0) {
-    container.innerHTML = `
-      <div class="text-center text-muted py-4">
-        <i class="bi bi-clock-history fs-3"></i>
-
-        <p class="mb-0 mt-2">
-          ${getText("noHistory", "No calculation history yet.")}
-        </p>
-      </div>
-    `;
-
-    return;
-  }
-
-  // Clear old content
-  container.innerHTML = "";
-
-  history.forEach((item) => {
-    const historyItem = document.createElement("div");
-
-    historyItem.className = "history-item p-3 rounded-3 mb-2";
-
-    historyItem.innerHTML = `
-      <div class="d-flex justify-content-between align-items-start gap-3">
-
-        <div>
-
-          <div class="history-calculator">
-
-            ${item.modeText}
-
-          </div>
-
-          <div class="mt-1">
-
-            ${formatMoney(item.price)}
-            ×
-            ${item.rate}%
-          </div>
-
-          <div class="history-date text-muted mt-1">
-
-            ${item.date}
-
-          </div>
-
-        </div>
-
-
-        <div class="history-result">
-
-          ${formatMoney(item.total)}
-
-        </div>
-
-      </div>
-    `;
-
-    container.appendChild(historyItem);
-  });
-}
-
-// ========================================
 // CALCULATE VAT
 // ========================================
 
-function calculateVAT() {
+async function calculateVAT() {
   const vatType = document.getElementById("vatType");
 
   const priceInput = document.getElementById("price");
@@ -175,15 +72,19 @@ function calculateVAT() {
   }
 
   // ========================================
-  // NUMBER
+  // CONVERT NUMBER
   // ========================================
 
   const price = Number(priceText);
 
   const rate = Number(rateText);
 
+  // ========================================
+  // VALID NUMBER
+  // ========================================
+
   if (!Number.isFinite(price) || !Number.isFinite(rate)) {
-    alert(getText("invalidValues", "Please enter valid numbers."));
+    alert(getText("invalidVatValues", "Please enter valid numbers."));
 
     return;
   }
@@ -193,7 +94,7 @@ function calculateVAT() {
   // ========================================
 
   if (price < 0 || rate < 0 || rate > 100) {
-    alert(getText("invalidValues", "Please enter valid values."));
+    alert(getText("invalidVatValues", "Please enter valid values."));
 
     return;
   }
@@ -203,7 +104,9 @@ function calculateVAT() {
   // ========================================
 
   let priceBeforeVAT = 0;
+
   let vatAmount = 0;
+
   let totalPrice = 0;
 
   // ========================================
@@ -258,7 +161,7 @@ function calculateVAT() {
   }
 
   // ========================================
-  // HISTORY
+  // VAT MODE TEXT
   // ========================================
 
   const modeText =
@@ -266,32 +169,54 @@ function calculateVAT() {
       ? getText("addVat", "Add VAT")
       : getText("removeVat", "Remove VAT");
 
-  saveVATHistory({
-    id: Date.now(),
+  // ========================================
+  // SAVE HISTORY
+  // ========================================
 
-    type: type,
+  const historyResult = await saveHistory({
+    calculatorType: "vat",
 
-    modeText: modeText,
+    calculatorName: getText("vatCalculator", "VAT Calculator"),
 
-    price: price,
+    data: {
+      type: type,
 
-    rate: rate,
+      modeText: modeText,
 
-    priceBeforeVAT: priceBeforeVAT,
+      price: price,
 
-    vatAmount: vatAmount,
+      rate: rate,
 
-    total: totalPrice,
+      priceBeforeVAT: priceBeforeVAT,
 
-    date: new Date().toLocaleString(getLanguage() === "kh" ? "km-KH" : "en-US"),
+      vatAmount: vatAmount,
+
+      total: totalPrice,
+    },
+
+    resultText: `${modeText}: ` + `${formatMoney(totalPrice)} ` + `(${rate}%)`,
   });
+
+  // ========================================
+  // CHECK SAVE
+  // ========================================
+
+  if (!historyResult || !historyResult.success) {
+    console.error("Failed to save VAT history:", historyResult);
+  }
+
+  // ========================================
+  // REFRESH HISTORY
+  // ========================================
+
+  await displayHistory("historyContainer");
 }
 
 // ========================================
-// CLEAR HISTORY
+// CLEAR VAT HISTORY
 // ========================================
 
-function clearVATHistory() {
+async function clearVATHistory() {
   const confirmClear = confirm(
     getText(
       "confirmClearHistory",
@@ -303,9 +228,23 @@ function clearVATHistory() {
     return;
   }
 
-  localStorage.removeItem("vatHistory");
+  // ========================================
+  // CLEAR CENTRAL HISTORY
+  // ========================================
 
-  displayVATHistory();
+  const result = await clearHistory();
+
+  if (!result || !result.success) {
+    console.error("Failed to clear VAT history:", result);
+
+    return;
+  }
+
+  // ========================================
+  // REFRESH HISTORY
+  // ========================================
+
+  await displayHistory("historyContainer");
 }
 
 // ========================================
@@ -317,18 +256,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const clearButton = document.getElementById("clearVATHistoryButton");
 
-  // Calculate
+  // ======================================
+  // CALCULATE
+  // ======================================
+
   if (calculateButton) {
     calculateButton.addEventListener("click", calculateVAT);
   }
 
-  // Clear
+  // ======================================
+  // CLEAR
+  // ======================================
+
   if (clearButton) {
     clearButton.addEventListener("click", clearVATHistory);
   }
 
-  // Load history
-  displayVATHistory();
+  // ======================================
+  // LOAD HISTORY
+  // ======================================
+
+  displayHistory("historyContainer");
 });
 
 // ========================================
