@@ -1,4 +1,9 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://kimliheng95-smos.github.io/Khmer-Calculator-Hub/sitemap.xml
+Disallow: /api/
+Disallow: /dashboard.html
+Disallow: /login.html
+Disallow: /register.html
+
+Sitemap: https://khmercalculatorhub.infy.click/sitemap.xml
