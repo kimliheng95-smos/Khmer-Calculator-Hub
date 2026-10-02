@@ -1283,4 +1283,4 @@ document.addEventListener("DOMContentLoaded", () => {
 // EXPORT
 // =========================================================
 
-export { applyLanguage, toggleLanguage, getCurrentLanguage };
+export { applyLanguage, toggleLanguage, getCurrentLanguage, translations };

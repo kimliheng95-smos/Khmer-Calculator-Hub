@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Dashboard | Khmer Calculator Hub</title>
@@ -25,18 +26,24 @@
     />
 
     <!-- Main CSS -->
-    <script type="module" crossorigin src="/Khmer-Calculator-Hub/assets/dashboard-DPum_hwI.js"></script>
-    <link rel="modulepreload" crossorigin href="/Khmer-Calculator-Hub/assets/auth-BFR1T5uo.js">
-    <link rel="modulepreload" crossorigin href="/Khmer-Calculator-Hub/assets/history-KNf5dX_c.js">
-    <link rel="stylesheet" crossorigin href="/Khmer-Calculator-Hub/assets/style-DvKrXJkU.css">
+    <script type="module" crossorigin src="/Khmer-Calculator-Hub/assets/dashboard-DA3uJFL7.js"></script>
+    <link rel="modulepreload" crossorigin href="/Khmer-Calculator-Hub/assets/language-BCbXHEiN.js">
+    <link rel="modulepreload" crossorigin href="/Khmer-Calculator-Hub/assets/auth-CTlX_AaI.js">
+    <link rel="modulepreload" crossorigin href="/Khmer-Calculator-Hub/assets/history-CNzE-q1v.js">
+    <link rel="stylesheet" crossorigin href="/Khmer-Calculator-Hub/assets/language-DvKrXJkU.css">
   </head>
 
   <body>
-    <!-- Navbar -->
+    <!-- ================================================= -->
+    <!-- ===================== NAVBAR ==================== -->
+    <!-- ================================================= -->
+
     <nav
       class="navbar navbar-expand-lg navbar-light bg-white sticky-top border-bottom"
     >
       <div class="container">
+        <!-- Logo -->
+
         <a
           class="navbar-brand d-flex align-items-center gap-2"
           href="index.html"
@@ -44,23 +51,48 @@
           <img src="/Khmer-Calculator-Hub/assets/Logo-C6ku9GlI.png" alt="Logo" width="40" height="40" />
 
           <div>
-            <span class="brand-name">Khmer Calculator</span>
-            <small class="brand-subtitle">HUB</small>
+            <span class="brand-name"> Khmer Calculator </span>
+
+            <small class="brand-subtitle"> HUB </small>
           </div>
         </a>
 
+        <!-- Right Navigation -->
+
         <div class="d-flex align-items-center gap-2">
+          <!-- User -->
+
           <span class="small text-secondary">
             <i class="bi bi-person-circle"></i>
+
             <span data-auth-name></span>
           </span>
 
-          <a href="index.html" class="btn btn-light btn-sm"> Home </a>
+          <!-- Home -->
+
+          <a href="index.html" class="btn btn-light btn-sm" data-i18n="home">
+            Home
+          </a>
+
+          <!-- Language -->
+
+          <button
+            type="button"
+            class="language-btn"
+            id="languageButton"
+            aria-label="Switch language"
+          >
+            <i class="bi bi-translate"></i>
+            <span id="languageText">EN</span>
+          </button>
+
+          <!-- Logout -->
 
           <button
             type="button"
             class="btn btn-outline-danger btn-sm"
             id="logoutBtn"
+            data-i18n="logout"
           >
             Logout
           </button>
@@ -68,34 +100,48 @@
       </div>
     </nav>
 
-    <!-- Dashboard -->
+    <!-- ================================================= -->
+    <!-- ===================== DASHBOARD ================= -->
+    <!-- ================================================= -->
+
     <div class="container py-4">
       <!-- Header -->
+
       <div
         class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-2"
       >
         <div>
-          <h1 class="h3 mb-1">Dashboard</h1>
+          <h1 class="h3 mb-1" data-i18n="dashboard">Dashboard</h1>
 
           <p class="text-secondary mb-0">
-            សួស្តី,
+            <span data-i18n="hello"> Hello, </span>
+
             <strong data-auth-name></strong>!
           </p>
         </div>
 
+        <!-- Calculators Button -->
+
         <a href="index.html#calculators" class="btn btn-primary btn-sm">
           <i class="bi bi-calculator"></i>
-          Calculators
+
+          <span data-i18n="calculators"> Calculators </span>
         </a>
       </div>
 
-      <!-- Statistics -->
+      <!-- ================================================= -->
+      <!-- ==================== STATISTICS ================= -->
+      <!-- ================================================= -->
+
       <div class="row g-3 mb-4">
         <!-- Total Calculations -->
+
         <div class="col-md-4">
           <div class="card border-0 shadow-sm h-100">
             <div class="card-body">
-              <div class="text-secondary small">Total Calculations</div>
+              <div class="text-secondary small" data-i18n="totalCalculations">
+                Total Calculations
+              </div>
 
               <div class="fs-3 fw-bold" id="statCount">0</div>
             </div>
@@ -103,10 +149,13 @@
         </div>
 
         <!-- Account -->
+
         <div class="col-md-4">
           <div class="card border-0 shadow-sm h-100">
             <div class="card-body">
-              <div class="text-secondary small">Account</div>
+              <div class="text-secondary small" data-i18n="account">
+                Account
+              </div>
 
               <div class="fw-semibold" data-auth-name></div>
 
@@ -116,15 +165,19 @@
         </div>
 
         <!-- Quick Links -->
+
         <div class="col-md-4">
           <div class="card border-0 shadow-sm h-100">
             <div class="card-body">
-              <div class="text-secondary small">Quick Links</div>
+              <div class="text-secondary small" data-i18n="quickLinks">
+                Quick Links
+              </div>
 
               <div class="d-flex flex-wrap gap-1 mt-1">
                 <a
                   href="calculators/bmi.html"
                   class="btn btn-sm btn-outline-secondary"
+                  data-i18n="bmi"
                 >
                   BMI
                 </a>
@@ -132,6 +185,7 @@
                 <a
                   href="calculators/salary.html"
                   class="btn btn-sm btn-outline-secondary"
+                  data-i18n="salary"
                 >
                   Salary
                 </a>
@@ -139,6 +193,7 @@
                 <a
                   href="calculators/loan.html"
                   class="btn btn-sm btn-outline-secondary"
+                  data-i18n="loan"
                 >
                   Loan
                 </a>
@@ -146,6 +201,7 @@
                 <a
                   href="calculators/gpa.html"
                   class="btn btn-sm btn-outline-secondary"
+                  data-i18n="gpa"
                 >
                   GPA
                 </a>
@@ -155,35 +211,54 @@
         </div>
       </div>
 
-      <!-- History -->
+      <!-- ================================================= -->
+      <!-- ====================== HISTORY ================== -->
+      <!-- ================================================= -->
+
       <div class="card border-0 shadow-sm">
+        <!-- History Header -->
+
         <div
           class="card-header bg-white d-flex justify-content-between align-items-center"
         >
           <span class="fw-semibold">
             <i class="bi bi-clock-history"></i>
 
-            My Calculation History
+            <span data-i18n="myCalculationHistory">
+              My Calculation History
+            </span>
           </span>
+
+          <!-- Clear All -->
 
           <button
             type="button"
             class="btn btn-sm btn-outline-danger"
             id="clearAllBtn"
+            data-i18n="clearAll"
           >
             Clear All
           </button>
         </div>
 
+        <!-- History Content -->
+
         <div class="card-body" id="dashboardHistory">
-          <p class="text-secondary text-center py-4 mb-0">Loading...</p>
+          <p class="text-secondary text-center py-4 mb-0" data-i18n="loading">
+            Loading...
+          </p>
         </div>
       </div>
     </div>
 
-    <!-- ========================================
-         MODULAR JAVASCRIPT
-         ======================================== -->
+    <!-- ================================================= -->
+    <!-- ===================== JAVASCRIPT ================ -->
+    <!-- ================================================= -->
+
+
+    <!-- ================================================= -->
+    <!-- ================= GLOBAL LANGUAGE =============== -->
+    <!-- ================================================= -->
 
   </body>
 </html>

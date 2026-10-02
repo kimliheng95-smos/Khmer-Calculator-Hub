@@ -12,12 +12,7 @@ import { getCurrentLanguage, translations } from "./language.js";
 // IMPORT HISTORY
 // ========================================
 
-import {
-  getHistory,
-  displayHistory,
-  clearHistory,
-  HISTORY_KEY,
-} from "./history.js";
+import { saveHistory, displayHistory, clearHistory } from "./history.js";
 
 // ========================================
 // GET TRANSLATION
@@ -37,13 +32,17 @@ function getProfitText(key, fallback) {
 // CALCULATE PROFIT
 // ========================================
 
-function calculateProfit() {
+async function calculateProfit() {
   // ========================================
   // GET INPUTS
   // ========================================
 
   const costInput = document.getElementById("cost");
   const sellingInput = document.getElementById("selling");
+
+  if (!costInput || !sellingInput) {
+    return;
+  }
 
   const cost = Number(costInput.value);
   const selling = Number(sellingInput.value);
@@ -103,24 +102,32 @@ function calculateProfit() {
   // SHOW RESULT
   // ========================================
 
-  document.getElementById("profitResult").style.display = "block";
+  const profitResult = document.getElementById("profitResult");
 
-  document.getElementById("profit").textContent = "$" + profit.toFixed(2);
+  const profitElement = document.getElementById("profit");
 
-  document.getElementById("margin").textContent = margin.toFixed(2) + "%";
+  const marginElement = document.getElementById("margin");
+
+  if (profitResult) {
+    profitResult.style.display = "block";
+  }
+
+  if (profitElement) {
+    profitElement.textContent = "$" + profit.toFixed(2);
+  }
+
+  if (marginElement) {
+    marginElement.textContent = margin.toFixed(2) + "%";
+  }
 
   // ========================================
   // SAVE HISTORY
   // ========================================
 
-  const history = getHistory();
-
-  const newCalculation = {
-    id: Date.now(),
-
-    calculator: "Profit Calculator",
-
+  const historyResult = await saveHistory({
     calculatorType: "profit",
+
+    calculatorName: getProfitText("profitCalculator", "Profit Calculator"),
 
     data: {
       cost: cost,
@@ -129,30 +136,30 @@ function calculateProfit() {
       margin: margin,
     },
 
-    date: new Date().toLocaleString(),
-  };
+    resultText:
+      `Profit: $${profit.toFixed(2)} | ` + `Margin: ${margin.toFixed(2)}%`,
+  });
 
-  history.unshift(newCalculation);
+  // ========================================
+  // CHECK HISTORY SAVE
+  // ========================================
 
-  // Keep latest 20
-  if (history.length > 20) {
-    history.pop();
+  if (!historyResult || !historyResult.success) {
+    console.error("Failed to save profit history:", historyResult);
   }
-
-  localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
 
   // ========================================
   // REFRESH HISTORY
   // ========================================
 
-  displayHistory("historyContainer");
+  await displayHistory("historyContainer");
 }
 
 // ========================================
 // CLEAR PROFIT HISTORY
 // ========================================
 
-function clearProfitHistory() {
+async function clearProfitHistory() {
   const confirmClear = confirm(
     getProfitText(
       "confirmClearHistory",
@@ -164,32 +171,50 @@ function clearProfitHistory() {
     return;
   }
 
-  clearHistory();
+  // ========================================
+  // CLEAR HISTORY
+  // ========================================
 
-  displayHistory("historyContainer");
+  const result = await clearHistory();
+
+  if (!result || !result.success) {
+    console.error("Failed to clear history:", result);
+
+    return;
+  }
+
+  // ========================================
+  // REFRESH HISTORY
+  // ========================================
+
+  await displayHistory("historyContainer");
 }
 
 // ========================================
 // EVENT LISTENERS
 // ========================================
 
-const calculateButton = document.getElementById("calculateProfitButton");
+document.addEventListener("DOMContentLoaded", () => {
+  const calculateButton = document.getElementById("calculateProfitButton");
 
-const clearHistoryButton = document.getElementById("clearProfitHistoryButton");
+  const clearHistoryButton = document.getElementById(
+    "clearProfitHistoryButton",
+  );
 
-if (calculateButton) {
-  calculateButton.addEventListener("click", calculateProfit);
-}
+  if (calculateButton) {
+    calculateButton.addEventListener("click", calculateProfit);
+  }
 
-if (clearHistoryButton) {
-  clearHistoryButton.addEventListener("click", clearProfitHistory);
-}
+  if (clearHistoryButton) {
+    clearHistoryButton.addEventListener("click", clearProfitHistory);
+  }
 
-// ========================================
-// LOAD HISTORY
-// ========================================
+  // ========================================
+  // LOAD HISTORY
+  // ========================================
 
-displayHistory("historyContainer");
+  displayHistory("historyContainer");
+});
 
 // ========================================
 // EXPORT

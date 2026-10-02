@@ -1,5 +1,4 @@
 <!doctype html>
-
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -21,9 +20,13 @@
     />
 
     <meta name="robots" content="index, follow" />
+
     <meta name="author" content="Kim Liheng" />
+
     <meta name="theme-color" content="#d71920" />
+
     <meta name="application-name" content="Khmer Calculator Hub" />
+
     <meta name="apple-mobile-web-app-title" content="Khmer Calculator Hub" />
 
     <!-- ================= CANONICAL ================= -->
@@ -34,8 +37,6 @@
     />
 
     <!-- ================= FAVICON ================= -->
-
-    <link rel="icon" href="../favicon.ico" type="image/x-icon" />
 
     <link
       rel="icon"
@@ -146,6 +147,10 @@
     <!-- ================= MAIN CSS ================= -->
 
 
+    <!-- ================= PAGE CSS ================= -->
+
+    <style>.history-box{background:#fff;border:1px solid #e5e7eb;border-radius:20px;margin-top:25px;padding:25px;box-shadow:0 15px 40px #0f172a0f}.history-header{justify-content:space-between;align-items:center;gap:10px;margin-bottom:20px;display:flex}.history-title{align-items:center;gap:10px;margin:0;font-size:20px;font-weight:700;display:flex}.history-title i{color:#2563eb}.history-item{background:#f8fafc;border:1px solid #eef2f7;transition:all .2s}.history-item:hover{transform:translateY(-2px)}.history-calculator{color:#1e293b;font-weight:700}.history-result{color:#2563eb;white-space:nowrap;font-size:16px;font-weight:600}.history-date{font-size:13px}#vatResult strong{color:#1e293b;font-size:18px;display:block}@media (width<=576px){.history-box{border-radius:16px;padding:20px}.history-header{align-items:flex-start}.history-title{font-size:18px}.history-result{font-size:14px}}</style>
+
     <!-- ================= STRUCTURED DATA ================= -->
 
     <script type="application/ld+json">
@@ -206,15 +211,20 @@
         ]
       }
     </script>
-    <link rel="stylesheet" crossorigin href="/Khmer-Calculator-Hub/assets/style-DvKrXJkU.css">
+    <script type="module" crossorigin src="/Khmer-Calculator-Hub/assets/vat-CEsyBwbJ.js"></script>
+    <link rel="modulepreload" crossorigin href="/Khmer-Calculator-Hub/assets/language-BCbXHEiN.js">
+    <link rel="stylesheet" crossorigin href="/Khmer-Calculator-Hub/assets/language-DvKrXJkU.css">
   </head>
 
   <body>
-    <!-- Navbar -->
+    <!-- ================= NAVBAR ================= -->
+
     <nav
       class="navbar navbar-expand-lg navbar-light bg-white sticky-top border-bottom"
     >
       <div class="container">
+        <!-- LOGO -->
+
         <a
           class="navbar-brand d-flex align-items-center gap-2"
           href="../index.html"
@@ -227,20 +237,29 @@
               height="40"
             />
           </div>
+
           <div>
             <span class="brand-name"> Khmer Calculator </span>
+
             <small class="brand-subtitle"> HUB </small>
           </div>
         </a>
+
+        <!-- MOBILE BUTTON -->
 
         <button
           class="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#mainNavbar"
+          aria-controls="mainNavbar"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
         >
           <span class="navbar-toggler-icon"></span>
         </button>
+
+        <!-- MENU -->
 
         <div class="collapse navbar-collapse" id="mainNavbar">
           <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
@@ -252,7 +271,7 @@
 
             <li class="nav-item">
               <a
-                class="nav-link"
+                class="nav-link active"
                 href="../index.html#calculators"
                 data-i18n="calculators"
               >
@@ -266,6 +285,8 @@
               </a>
             </li>
 
+            <!-- LANGUAGE -->
+
             <li class="nav-item ms-lg-2">
               <button
                 type="button"
@@ -274,7 +295,8 @@
                 aria-label="Switch language"
               >
                 <i class="bi bi-translate"></i>
-                <span id="languageText">EN</span>
+
+                <span id="languageText"> EN </span>
               </button>
             </li>
           </ul>
@@ -282,22 +304,26 @@
       </div>
     </nav>
 
-    <!-- Main -->
+    <!-- ================= MAIN ================= -->
+
     <main class="py-5">
       <div class="container">
-        <!-- Breadcrumb -->
+        <!-- ================= BREADCRUMB ================= -->
+
         <div class="mb-4">
           <a href="../index.html" class="text-decoration-none">
             <i class="bi bi-house"></i>
-            <span data-i18n="home">Home</span>
+
+            <span data-i18n="home"> Home </span>
           </a>
 
-          <span class="mx-2 text-secondary">/</span>
+          <span class="mx-2 text-secondary"> / </span>
 
           <span data-i18n="vatCalculator"> VAT Calculator </span>
         </div>
 
-        <!-- Header -->
+        <!-- ================= HEADER ================= -->
+
         <div class="text-center mb-5">
           <div class="calculator-icon mb-3">
             <i class="bi bi-receipt-cutoff"></i>
@@ -310,17 +336,19 @@
           </p>
         </div>
 
-        <!-- Calculator -->
+        <!-- ================= CALCULATOR ================= -->
+
         <div class="row justify-content-center">
           <div class="col-lg-7 col-md-9">
             <div class="calculator-box">
-              <!-- Calculation Type -->
+              <!-- ================= CALCULATION TYPE ================= -->
+
               <div class="mb-4">
-                <label class="form-label fw-semibold">
+                <label for="vatType" class="form-label fw-semibold">
                   <span data-i18n="vatCalculationType"> Calculation Type </span>
                 </label>
 
-                <select class="form-select" id="vatType">
+                <select class="form-select form-select-lg" id="vatType">
                   <option value="add" data-i18n="addVat">Add VAT</option>
 
                   <option value="remove" data-i18n="removeVat">
@@ -329,7 +357,8 @@
                 </select>
               </div>
 
-              <!-- Price -->
+              <!-- ================= PRICE ================= -->
+
               <div class="mb-4">
                 <label
                   for="price"
@@ -342,7 +371,7 @@
                 <input
                   type="number"
                   id="price"
-                  class="form-control"
+                  class="form-control form-control-lg"
                   placeholder="Example: 100"
                   data-i18n-placeholder="example100"
                   min="0"
@@ -350,7 +379,8 @@
                 />
               </div>
 
-              <!-- VAT Rate -->
+              <!-- ================= VAT RATE ================= -->
+
               <div class="mb-4">
                 <label
                   for="vatRate"
@@ -363,7 +393,7 @@
                 <input
                   type="number"
                   id="vatRate"
-                  class="form-control"
+                  class="form-control form-control-lg"
                   placeholder="Example: 10"
                   data-i18n-placeholder="example10"
                   min="0"
@@ -372,23 +402,28 @@
                 />
               </div>
 
-              <!-- Calculate -->
+              <!-- ================= CALCULATE ================= -->
+
               <button
                 type="button"
-                class="btn btn-primary w-100"
-                onclick="calculateVAT()"
-                data-i18n="calculate"
+                id="calculateVATButton"
+                class="btn btn-primary w-100 py-3"
               >
-                Calculate
+                <i class="bi bi-calculator me-2"></i>
+
+                <span data-i18n="calculate"> Calculate </span>
               </button>
 
-              <!-- Result -->
+              <!-- ================= RESULT ================= -->
+
               <div id="vatResult" class="result-box mt-4 d-none">
                 <h5 class="fw-bold mb-4" data-i18n="result">Result</h5>
 
                 <div class="row g-3">
+                  <!-- PRICE BEFORE VAT -->
+
                   <div class="col-md-4">
-                    <div class="p-3 bg-light rounded">
+                    <div class="p-3 bg-light rounded h-100">
                       <small
                         class="text-secondary d-block mb-1"
                         data-i18n="priceBeforeVat"
@@ -400,8 +435,10 @@
                     </div>
                   </div>
 
+                  <!-- VAT -->
+
                   <div class="col-md-4">
-                    <div class="p-3 bg-light rounded">
+                    <div class="p-3 bg-light rounded h-100">
                       <small
                         class="text-secondary d-block mb-1"
                         data-i18n="vatAmount"
@@ -413,8 +450,10 @@
                     </div>
                   </div>
 
+                  <!-- TOTAL -->
+
                   <div class="col-md-4">
-                    <div class="p-3 bg-light rounded">
+                    <div class="p-3 bg-light rounded h-100">
                       <small
                         class="text-secondary d-block mb-1"
                         data-i18n="totalPrice"
@@ -429,7 +468,8 @@
               </div>
             </div>
 
-            <!-- History -->
+            <!-- ================= HISTORY ================= -->
+
             <div class="history-box">
               <div class="history-header">
                 <h3 class="history-title">
@@ -442,21 +482,25 @@
 
                 <button
                   type="button"
+                  id="clearVATHistoryButton"
                   class="btn btn-sm btn-outline-danger"
-                  onclick="clearVATHistory()"
-                  data-i18n="clearHistory"
                 >
-                  Clear
+                  <i class="bi bi-trash3"></i>
+
+                  <span data-i18n="clearHistory"> Clear All </span>
                 </button>
               </div>
+
+              <!-- HISTORY CONTAINER -->
 
               <div id="historyContainer"></div>
             </div>
 
-            <!-- Example -->
+            <!-- ================= EXAMPLE ================= -->
+
             <div class="alert alert-info mt-4">
               <h6 class="fw-bold">
-                <i class="bi bi-lightbulb"></i>
+                <i class="bi bi-lightbulb me-1"></i>
 
                 <span data-i18n="vatExampleTitle"> Example </span>
               </h6>
@@ -471,22 +515,23 @@
       </div>
     </main>
 
-    <!-- Footer -->
+    <!-- ================= FOOTER ================= -->
+
     <footer>
       <div class="container">
         <div class="row g-4">
-          <!-- ================= PROFILE / BRAND ================= -->
+          <!-- ================= PROFILE ================= -->
+
           <div class="col-lg-5">
             <div class="footer-profile">
-              <!-- Profile Image -->
               <div class="footer-profile-image">
                 <img src="/Khmer-Calculator-Hub/assets/Heng-BPNU6nhp.jpg" alt="Kim Liheng" />
               </div>
 
-              <!-- Profile Info -->
               <div class="footer-profile-info">
-                <strong>Kim Liheng</strong>
-                <span>Founder & Developer</span>
+                <strong> Kim Liheng </strong>
+
+                <span data-i18n="founderDeveloper"> Founder & Developer </span>
               </div>
             </div>
 
@@ -497,27 +542,29 @@
           </div>
 
           <!-- ================= TOOLS ================= -->
+
           <div class="col-6 col-lg-2">
             <h5 data-i18n="tools">Tools</h5>
 
             <a href="gpa.html">
-              <span data-i18n="gpa">GPA Calculator</span>
+              <span data-i18n="gpa"> GPA Calculator </span>
             </a>
 
             <a href="grade.html">
-              <span data-i18n="grade">Grade Calculator</span>
+              <span data-i18n="grade"> Grade Calculator </span>
             </a>
 
             <a href="discount.html">
-              <span data-i18n="discount">Discount Calculator</span>
+              <span data-i18n="discount"> Discount Calculator </span>
             </a>
 
             <a href="profit.html">
-              <span data-i18n="profit">Profit Calculator</span>
+              <span data-i18n="profit"> Profit Calculator </span>
             </a>
           </div>
 
           <!-- ================= COMPANY ================= -->
+
           <div class="col-6 col-lg-2">
             <h5 data-i18n="company">Company</h5>
 
@@ -531,6 +578,7 @@
           </div>
 
           <!-- ================= SOCIAL ================= -->
+
           <div class="col-lg-3">
             <h5 data-i18n="followUs">Follow Us</h5>
 
@@ -538,6 +586,7 @@
               <a
                 href="https://www.facebook.com/KimLiheng.77/?_rdc=6&_rdr#"
                 target="_blank"
+                rel="noopener noreferrer"
                 aria-label="Facebook"
               >
                 <i class="bi bi-facebook"></i>
@@ -546,6 +595,7 @@
               <a
                 href="https://t.me/Heng77777"
                 target="_blank"
+                rel="noopener noreferrer"
                 aria-label="Telegram"
               >
                 <i class="bi bi-telegram"></i>
@@ -554,6 +604,7 @@
               <a
                 href="https://www.tiktok.com/@hengg899?_r=1&_t=ZS-9A1HcAsdsLh"
                 target="_blank"
+                rel="noopener noreferrer"
                 aria-label="TikTok"
               >
                 <i class="bi bi-tiktok"></i>
@@ -565,6 +616,7 @@
         <hr />
 
         <!-- ================= FOOTER BOTTOM ================= -->
+
         <div class="footer-bottom">
           <span data-i18n="copyright"> © 2026 Khmer Calculator Hub </span>
 
@@ -573,15 +625,13 @@
       </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- ================= SCRIPTS ================= -->
 
-    <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore-compat.js"></script>
-    <script src="../js/firebase-config.js"></script>
-    <script src="../js/auth.js"></script>
-    <script src="../js/history.js"></script>
-    <script src="../js/language.js"></script>
-    <script src="../js/vat.js"></script>
+    <!-- VAT Calculator -->
+
+    <!-- Global Language -->
+
+    <!-- Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

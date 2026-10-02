@@ -1,8 +1,8 @@
 <!doctype html>
-
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- ================= SEO ================= -->
@@ -22,7 +22,9 @@
     <meta name="robots" content="index, follow" />
     <meta name="author" content="Kim Liheng" />
     <meta name="theme-color" content="#d71920" />
+
     <meta name="application-name" content="Khmer Calculator Hub" />
+
     <meta name="apple-mobile-web-app-title" content="Khmer Calculator Hub" />
 
     <!-- ================= CANONICAL ================= -->
@@ -85,6 +87,7 @@
     <meta property="og:site_name" content="Khmer Calculator Hub" />
 
     <meta property="og:locale" content="en_US" />
+
     <meta property="og:locale:alternate" content="km_KH" />
 
     <meta
@@ -123,7 +126,7 @@
       rel="stylesheet"
     />
 
-    <!-- Bootstrap Icons -->
+    <!-- ================= BOOTSTRAP ICONS ================= -->
 
     <link
       rel="stylesheet"
@@ -208,7 +211,9 @@
         ]
       }
     </script>
-    <link rel="stylesheet" crossorigin href="/Khmer-Calculator-Hub/assets/style-DvKrXJkU.css">
+    <script type="module" crossorigin src="/Khmer-Calculator-Hub/assets/average-DzllaNdm.js"></script>
+    <link rel="modulepreload" crossorigin href="/Khmer-Calculator-Hub/assets/language-BCbXHEiN.js">
+    <link rel="stylesheet" crossorigin href="/Khmer-Calculator-Hub/assets/language-DvKrXJkU.css">
   </head>
 
   <body>
@@ -220,6 +225,8 @@
       class="navbar navbar-expand-lg navbar-light bg-white sticky-top border-bottom"
     >
       <div class="container">
+        <!-- Logo -->
+
         <a
           class="navbar-brand d-flex align-items-center gap-2"
           href="../index.html"
@@ -240,14 +247,21 @@
           </div>
         </a>
 
+        <!-- Mobile Button -->
+
         <button
           class="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#mainNavbar"
+          aria-controls="mainNavbar"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
         >
           <span class="navbar-toggler-icon"></span>
         </button>
+
+        <!-- Menu -->
 
         <div class="collapse navbar-collapse" id="mainNavbar">
           <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
@@ -272,6 +286,8 @@
                 About
               </a>
             </li>
+
+            <!-- Language -->
 
             <li class="nav-item ms-lg-2">
               <button
@@ -372,6 +388,7 @@
                     <button
                       type="button"
                       class="btn btn-outline-danger remove-number"
+                      aria-label="Remove number"
                     >
                       <i class="bi bi-trash"></i>
                     </button>
@@ -391,6 +408,7 @@
                     <button
                       type="button"
                       class="btn btn-outline-danger remove-number"
+                      aria-label="Remove number"
                     >
                       <i class="bi bi-trash"></i>
                     </button>
@@ -568,18 +586,14 @@
 
           <div class="col-lg-5">
             <div class="footer-profile">
-              <!-- Profile Image -->
-
               <div class="footer-profile-image">
                 <img src="/Khmer-Calculator-Hub/assets/Heng-BPNU6nhp.jpg" alt="Kim Liheng" />
               </div>
 
-              <!-- Profile Info -->
-
               <div class="footer-profile-info">
                 <strong> Kim Liheng </strong>
 
-                <span> Founder & Developer </span>
+                <span data-i18n="founderDeveloper"> Founder & Developer </span>
               </div>
             </div>
 
@@ -634,6 +648,7 @@
               <a
                 href="https://www.facebook.com/KimLiheng.77/?_rdc=6&_rdr#"
                 target="_blank"
+                rel="noopener noreferrer"
                 aria-label="Facebook"
               >
                 <i class="bi bi-facebook"></i>
@@ -642,6 +657,7 @@
               <a
                 href="https://t.me/Heng77777"
                 target="_blank"
+                rel="noopener noreferrer"
                 aria-label="Telegram"
               >
                 <i class="bi bi-telegram"></i>
@@ -650,6 +666,7 @@
               <a
                 href="https://www.tiktok.com/@hengg899?_r=1&_t=ZS-9A1HcAsdsLh"
                 target="_blank"
+                rel="noopener noreferrer"
                 aria-label="TikTok"
               >
                 <i class="bi bi-tiktok"></i>
@@ -674,16 +691,19 @@
          JAVASCRIPT
     ======================================== -->
 
-    <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore-compat.js"></script>
-    <script src="../js/firebase-config.js"></script>
-    <script src="../js/auth.js"></script>
-    <script src="../js/history.js"></script>
+    <!--
+      IMPORTANT:
+      Do NOT use Firebase Compat here.
 
-    <script src="../js/average.js"></script>
+      average.js should import history.js if it needs
+      to save calculation history.
+    -->
 
-    <script src="../js/language.js"></script>
+
+    <!-- Global Language -->
+
+
+    <!-- Bootstrap -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   </body>

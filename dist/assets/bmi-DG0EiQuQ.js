@@ -1,0 +1,1 @@
+import"./language-BCbXHEiN.js";document.addEventListener(`DOMContentLoaded`,async function(){typeof displayHistory==`function`&&await displayHistory(`historyContainer`)});

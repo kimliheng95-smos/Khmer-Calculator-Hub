@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Login | Khmer Calculator Hub</title>
@@ -21,13 +22,17 @@
       rel="stylesheet"
     />
 
-    <script type="module" crossorigin src="/Khmer-Calculator-Hub/assets/login-DjdPFigx.js"></script>
-    <link rel="modulepreload" crossorigin href="/Khmer-Calculator-Hub/assets/auth-BFR1T5uo.js">
-    <link rel="stylesheet" crossorigin href="/Khmer-Calculator-Hub/assets/style-DvKrXJkU.css">
+    <script type="module" crossorigin src="/Khmer-Calculator-Hub/assets/login-Cp_2NCOT.js"></script>
+    <link rel="modulepreload" crossorigin href="/Khmer-Calculator-Hub/assets/language-BCbXHEiN.js">
+    <link rel="modulepreload" crossorigin href="/Khmer-Calculator-Hub/assets/auth-CTlX_AaI.js">
+    <link rel="stylesheet" crossorigin href="/Khmer-Calculator-Hub/assets/language-DvKrXJkU.css">
   </head>
 
   <body>
-    <!-- Navbar -->
+    <!-- ================================================= -->
+    <!-- ===================== NAVBAR ==================== -->
+    <!-- ================================================= -->
+
     <nav
       class="navbar navbar-expand-lg navbar-light bg-white sticky-top border-bottom"
     >
@@ -44,32 +49,70 @@
           </div>
         </a>
 
-        <div class="d-flex gap-2">
-          <a href="register.html" class="btn btn-primary btn-sm"> Register </a>
+        <div class="d-flex gap-2 align-items-center">
+          <!-- Register -->
 
-          <a href="index.html" class="btn btn-light btn-sm"> Home </a>
+          <a
+            href="register.html"
+            class="btn btn-primary btn-sm"
+            data-i18n="register"
+          >
+            Register
+          </a>
+
+          <!-- Home -->
+
+          <a href="index.html" class="btn btn-light btn-sm" data-i18n="home">
+            Home
+          </a>
+
+          <!-- Language -->
+
+          <button
+            type="button"
+            class="language-btn"
+            id="languageButton"
+            aria-label="Switch language"
+          >
+            <i class="bi bi-translate"></i>
+
+            <span id="languageText">EN</span>
+          </button>
         </div>
       </div>
     </nav>
 
-    <!-- Login -->
+    <!-- ================================================= -->
+    <!-- ====================== LOGIN ==================== -->
+    <!-- ================================================= -->
+
     <div class="container py-5">
       <div class="row justify-content-center">
         <div class="col-md-5">
           <div class="card shadow-sm border-0">
             <div class="card-body p-4">
-              <h2 class="h4 mb-1 text-center">Login</h2>
+              <h2 class="h4 mb-1 text-center" data-i18n="login">Login</h2>
 
-              <p class="text-secondary text-center small mb-4">ចូលគណនី</p>
+              <p
+                class="text-secondary text-center small mb-4"
+                data-i18n="loginDescription"
+              >
+                ចូលគណនី
+              </p>
 
               <!-- Alert -->
+
               <div id="authAlert" class="alert d-none" role="alert"></div>
 
               <!-- Login Form -->
+
               <form id="loginForm">
                 <!-- Email -->
+
                 <div class="mb-3">
-                  <label class="form-label" for="email"> Email </label>
+                  <label class="form-label" for="email" data-i18n="email">
+                    Email
+                  </label>
 
                   <input
                     type="email"
@@ -77,31 +120,41 @@
                     id="email"
                     required
                     placeholder="you@email.com"
+                    data-i18n-placeholder="emailPlaceholder"
                   />
                 </div>
 
                 <!-- Password -->
+
                 <div class="mb-3">
-                  <label class="form-label" for="password"> Password </label>
+                  <label class="form-label" for="password" data-i18n="password">
+                    Password
+                  </label>
 
                   <input
                     type="password"
                     class="form-control"
                     id="password"
                     required
+                    data-i18n-placeholder="passwordPlaceholder"
                   />
                 </div>
 
                 <!-- Login Button -->
-                <button type="submit" class="btn btn-primary w-100">
-                  Login / ចូល
+
+                <button
+                  type="submit"
+                  class="btn btn-primary w-100"
+                  data-i18n="login"
+                >
+                  Login
                 </button>
               </form>
 
               <p class="text-center mt-3 mb-0 small">
-                No account?
+                <span data-i18n="noAccount"> No account? </span>
 
-                <a href="register.html"> Register </a>
+                <a href="register.html" data-i18n="register"> Register </a>
               </p>
             </div>
           </div>
@@ -109,6 +162,15 @@
       </div>
     </div>
 
-    <!-- Login JavaScript -->
+    <!-- ================================================= -->
+    <!-- ===================== JAVASCRIPT =============== -->
+    <!-- ================================================= -->
+
+    <!-- Firebase Authentication -->
+
+
+    <!-- Global Language -->
+
+
   </body>
 </html>

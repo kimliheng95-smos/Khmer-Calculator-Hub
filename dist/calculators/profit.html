@@ -24,7 +24,8 @@
     <meta name="application-name" content="Khmer Calculator Hub" />
     <meta name="apple-mobile-web-app-title" content="Khmer Calculator Hub" />
 
-    <!-- Canonical -->
+    <!-- ================= CANONICAL ================= -->
+
     <link
       rel="canonical"
       href="https://khmercalculatorhub.infy.click/calculators/profit.html"
@@ -33,23 +34,27 @@
     <!-- ================= FAVICON ================= -->
 
     <link rel="icon" href="../favicon.ico" type="image/x-icon" />
+
     <link
       rel="icon"
       type="image/png"
       sizes="32x32"
       href="/Khmer-Calculator-Hub/assets/favicon-32-DHLaoQIC.png"
     />
+
     <link
       rel="icon"
       type="image/png"
       sizes="64x64"
       href="/Khmer-Calculator-Hub/assets/favicon-64-NXGK7V0n.png"
     />
+
     <link
       rel="apple-touch-icon"
       sizes="180x180"
       href="/Khmer-Calculator-Hub/assets/apple-touch-icon-DiIjRK1R.png"
     />
+
     <link
       rel="icon"
       type="image/png"
@@ -117,6 +122,7 @@
     />
 
     <!-- Bootstrap Icons -->
+
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
@@ -132,7 +138,8 @@
       rel="stylesheet"
     />
 
-    <!-- Main CSS -->
+    <!-- ================= MAIN CSS ================= -->
+
 
     <!-- ================= PAGE CSS ================= -->
 
@@ -198,7 +205,11 @@
         ]
       }
     </script>
-    <link rel="stylesheet" crossorigin href="/Khmer-Calculator-Hub/assets/style-DvKrXJkU.css">
+    <script type="module" crossorigin src="/Khmer-Calculator-Hub/assets/profit-DF_HmmhX.js"></script>
+    <link rel="modulepreload" crossorigin href="/Khmer-Calculator-Hub/assets/language-BCbXHEiN.js">
+    <link rel="modulepreload" crossorigin href="/Khmer-Calculator-Hub/assets/auth-CTlX_AaI.js">
+    <link rel="modulepreload" crossorigin href="/Khmer-Calculator-Hub/assets/history-CNzE-q1v.js">
+    <link rel="stylesheet" crossorigin href="/Khmer-Calculator-Hub/assets/language-DvKrXJkU.css">
   </head>
 
   <body>
@@ -208,7 +219,6 @@
       class="navbar navbar-expand-lg navbar-light bg-white sticky-top border-bottom"
     >
       <div class="container">
-        <!-- Logo -->
         <a
           class="navbar-brand d-flex align-items-center gap-2"
           href="../index.html"
@@ -224,12 +234,10 @@
 
           <div>
             <span class="brand-name"> Khmer Calculator </span>
-
             <small class="brand-subtitle"> HUB </small>
           </div>
         </a>
 
-        <!-- Mobile Toggle -->
         <button
           class="navbar-toggler"
           type="button"
@@ -242,7 +250,6 @@
           <span class="navbar-toggler-icon"></span>
         </button>
 
-        <!-- Menu -->
         <div class="collapse navbar-collapse" id="mainNavbar">
           <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
             <li class="nav-item">
@@ -288,7 +295,8 @@
     <section class="calculator-page py-5">
       <div class="container">
         <div class="calculator-container">
-          <!-- Calculator -->
+          <!-- ================= CALCULATOR ================= -->
+
           <div class="calculator-box">
             <div class="text-center mb-4">
               <h1 data-i18n="profitCalculator">💰 Profit Calculator</h1>
@@ -298,9 +306,10 @@
               </p>
             </div>
 
-            <!-- Cost Price -->
+            <!-- COST PRICE -->
+
             <div class="mb-3">
-              <label class="form-label" data-i18n="costPrice">
+              <label for="cost" class="form-label" data-i18n="costPrice">
                 Cost Price
               </label>
 
@@ -309,12 +318,16 @@
                 id="cost"
                 class="form-control"
                 placeholder="Example: 50"
+                data-i18n-placeholder="example50"
+                min="0"
+                step="any"
               />
             </div>
 
-            <!-- Selling Price -->
+            <!-- SELLING PRICE -->
+
             <div class="mb-3">
-              <label class="form-label" data-i18n="sellingPrice">
+              <label for="selling" class="form-label" data-i18n="sellingPrice">
                 Selling Price
               </label>
 
@@ -323,12 +336,16 @@
                 id="selling"
                 class="form-control"
                 placeholder="Example: 80"
+                data-i18n-placeholder="example80"
+                min="0"
+                step="any"
               />
             </div>
 
-            <!-- Calculate -->
+            <!-- CALCULATE -->
+
             <button
-              onclick="calculateProfit()"
+              id="calculateProfitButton"
               class="btn btn-primary w-100"
               type="button"
             >
@@ -337,7 +354,8 @@
               <span data-i18n="calculateProfit"> Calculate Profit </span>
             </button>
 
-            <!-- Result -->
+            <!-- RESULT -->
+
             <div id="profitResult" class="result-box">
               <p data-i18n="profit">Profit</p>
 
@@ -364,7 +382,7 @@
               <button
                 type="button"
                 class="btn btn-sm btn-outline-danger"
-                onclick="clearProfitHistory()"
+                id="clearProfitHistoryButton"
               >
                 <i class="bi bi-trash3"></i>
 
@@ -372,7 +390,6 @@
               </button>
             </div>
 
-            <!-- History -->
             <div id="historyContainer"></div>
           </div>
         </div>
@@ -384,20 +401,18 @@
     <footer>
       <div class="container">
         <div class="row g-4">
-          <!-- ================= PROFILE / BRAND ================= -->
+          <!-- PROFILE -->
 
           <div class="col-lg-5">
             <div class="footer-profile">
-              <!-- Profile Image -->
               <div class="footer-profile-image">
                 <img src="/Khmer-Calculator-Hub/assets/Heng-BPNU6nhp.jpg" alt="Kim Liheng" />
               </div>
 
-              <!-- Profile Info -->
               <div class="footer-profile-info">
-                <strong> Kim Liheng </strong>
+                <strong>Kim Liheng</strong>
 
-                <span> Founder & Developer </span>
+                <span data-i18n="founderDeveloper"> Founder & Developer </span>
               </div>
             </div>
 
@@ -407,38 +422,33 @@
             </p>
           </div>
 
-          <!-- ================= TOOLS ================= -->
+          <!-- TOOLS -->
 
           <div class="col-6 col-lg-2">
             <h5 data-i18n="tools">Tools</h5>
 
-            <!-- FIXED -->
             <a href="gpa.html">
               <span data-i18n="gpa"> GPA Calculator </span>
             </a>
 
-            <!-- FIXED -->
             <a href="grade.html">
               <span data-i18n="grade"> Grade Calculator </span>
             </a>
 
-            <!-- FIXED -->
             <a href="discount.html">
               <span data-i18n="discount"> Discount Calculator </span>
             </a>
 
-            <!-- FIXED -->
             <a href="profit.html">
               <span data-i18n="profit"> Profit Calculator </span>
             </a>
           </div>
 
-          <!-- ================= COMPANY ================= -->
+          <!-- COMPANY -->
 
           <div class="col-6 col-lg-2">
             <h5 data-i18n="company">Company</h5>
 
-            <!-- FIXED -->
             <a href="../index.html#about" data-i18n="about"> About </a>
 
             <a href="#" data-i18n="contact"> Contact </a>
@@ -448,7 +458,7 @@
             <a href="#" data-i18n="terms"> Terms </a>
           </div>
 
-          <!-- ================= SOCIAL ================= -->
+          <!-- SOCIAL -->
 
           <div class="col-lg-3">
             <h5 data-i18n="followUs">Follow Us</h5>
@@ -483,7 +493,7 @@
 
         <hr />
 
-        <!-- ================= FOOTER BOTTOM ================= -->
+        <!-- FOOTER BOTTOM -->
 
         <div class="footer-bottom">
           <span data-i18n="copyright"> © 2026 Khmer Calculator Hub </span>
@@ -493,21 +503,11 @@
       </div>
     </footer>
 
-    <!-- ================= SCRIPTS ================= -->
+    <!-- ================= JAVASCRIPT ================= -->
 
-    <!-- History first -->
-    <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore-compat.js"></script>
-    <script src="../js/firebase-config.js"></script>
-    <script src="../js/auth.js"></script>
-    <script src="../js/history.js"></script>
+    <!-- Profit Calculator -->
 
-    <!-- Profit -->
-    <script src="../js/profit.js"></script>
-
-    <!-- Language -->
-    <script src="../js/language.js"></script>
+    <!-- Global Language -->
 
     <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

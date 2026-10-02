@@ -132,7 +132,6 @@
     <!-- ================= GOOGLE FONTS ================= -->
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
     <link
@@ -207,18 +206,20 @@
         ]
       }
     </script>
-    <link rel="stylesheet" crossorigin href="/Khmer-Calculator-Hub/assets/style-DvKrXJkU.css">
+    <script type="module" crossorigin src="/Khmer-Calculator-Hub/assets/savings-BJZyS-dY.js"></script>
+    <link rel="modulepreload" crossorigin href="/Khmer-Calculator-Hub/assets/language-BCbXHEiN.js">
+    <link rel="stylesheet" crossorigin href="/Khmer-Calculator-Hub/assets/language-DvKrXJkU.css">
   </head>
 
   <body>
-    <!-- ========================================
-     NAVBAR
-======================================== -->
+    <!-- ================= NAVBAR ================= -->
 
     <nav
       class="navbar navbar-expand-lg navbar-light bg-white sticky-top border-bottom"
     >
       <div class="container">
+        <!-- Logo -->
+
         <a
           class="navbar-brand d-flex align-items-center gap-2"
           href="../index.html"
@@ -234,18 +235,26 @@
 
           <div>
             <span class="brand-name"> Khmer Calculator </span>
+
             <small class="brand-subtitle"> HUB </small>
           </div>
         </a>
+
+        <!-- Mobile Toggle -->
 
         <button
           class="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#mainNavbar"
+          aria-controls="mainNavbar"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
         >
           <span class="navbar-toggler-icon"></span>
         </button>
+
+        <!-- Menu -->
 
         <div class="collapse navbar-collapse" id="mainNavbar">
           <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
@@ -257,7 +266,7 @@
 
             <li class="nav-item">
               <a
-                class="nav-link"
+                class="nav-link active"
                 href="../index.html#calculators"
                 data-i18n="calculators"
               >
@@ -279,7 +288,8 @@
                 aria-label="Switch language"
               >
                 <i class="bi bi-translate"></i>
-                <span id="languageText">EN</span>
+
+                <span id="languageText"> EN </span>
               </button>
             </li>
           </ul>
@@ -287,13 +297,12 @@
       </div>
     </nav>
 
-    <!-- ========================================
-     MAIN
-======================================== -->
+    <!-- ================= MAIN ================= -->
 
     <main>
       <div class="container py-4">
         <!-- Breadcrumb -->
+
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
@@ -306,13 +315,18 @@
               </a>
             </li>
 
-            <li class="breadcrumb-item active" data-i18n="savingsCalculator">
+            <li
+              class="breadcrumb-item active"
+              aria-current="page"
+              data-i18n="savingsCalculator"
+            >
               Savings Calculator
             </li>
           </ol>
         </nav>
 
         <!-- Title -->
+
         <div class="text-center mb-4">
           <div class="mb-3">
             <i
@@ -330,11 +344,13 @@
           </p>
         </div>
 
-        <!-- Calculator -->
+        <!-- ================= CALCULATOR ================= -->
+
         <div class="row justify-content-center">
           <div class="col-lg-7 col-md-9">
             <div class="calculator-box">
               <!-- Initial Deposit -->
+
               <div class="mb-3">
                 <label
                   for="initialDeposit"
@@ -360,6 +376,7 @@
               </div>
 
               <!-- Monthly Contribution -->
+
               <div class="mb-3">
                 <label
                   for="monthlyContribution"
@@ -385,6 +402,7 @@
               </div>
 
               <!-- Interest Rate -->
+
               <div class="mb-3">
                 <label
                   for="savingsRate"
@@ -409,7 +427,8 @@
                 </div>
               </div>
 
-              <!-- Years -->
+              <!-- Saving Period -->
+
               <div class="mb-3">
                 <label
                   for="savingsYears"
@@ -431,16 +450,19 @@
               </div>
 
               <!-- Calculate -->
+
               <button
                 type="button"
                 id="calculateSavingsButton"
                 class="btn btn-danger w-100 py-2"
-                data-i18n="calculate"
               >
-                Calculate
+                <i class="bi bi-calculator"></i>
+
+                <span data-i18n="calculate"> Calculate </span>
               </button>
 
-              <!-- Result -->
+              <!-- ================= RESULT ================= -->
+
               <div id="savingsResult" class="result-box mt-4 d-none">
                 <div class="text-center mb-4">
                   <small class="text-secondary" data-i18n="futureValue">
@@ -455,13 +477,18 @@
                     $0.00
                   </div>
 
-                  <p id="savingsResultText" class="text-secondary mb-0">
+                  <p
+                    id="savingsResultText"
+                    class="text-secondary mb-0"
+                    data-i18n="futureSavings"
+                  >
                     Future savings
                   </p>
                 </div>
 
                 <div class="row g-3">
                   <!-- Total Contributions -->
+
                   <div class="col-md-4">
                     <div class="savings-result-item">
                       <small data-i18n="totalContributions">
@@ -473,6 +500,7 @@
                   </div>
 
                   <!-- Interest Earned -->
+
                   <div class="col-md-4">
                     <div class="savings-result-item">
                       <small data-i18n="interestEarned">
@@ -484,6 +512,7 @@
                   </div>
 
                   <!-- Future Value -->
+
                   <div class="col-md-4">
                     <div class="savings-result-item future-value">
                       <small data-i18n="futureValue"> Future Value </small>
@@ -495,9 +524,7 @@
               </div>
             </div>
 
-            <!-- ========================================
-             HISTORY
-        ======================================== -->
+            <!-- ================= HISTORY ================= -->
 
             <div class="history-box">
               <div class="history-header">
@@ -523,9 +550,7 @@
               <div id="historyContainer"></div>
             </div>
 
-            <!-- ========================================
-             INFO
-        ======================================== -->
+            <!-- ================= INFO ================= -->
 
             <div class="mt-4 p-4 bg-white border rounded-4">
               <h5 class="fw-bold">
@@ -534,12 +559,10 @@
                 <span data-i18n="savingsExampleTitle"> Example </span>
               </h5>
 
-              <p class="text-secondary mb-0">
-                <span data-i18n="savingsExample">
-                  If you start with $1,000, save $100 every month, earn 5%
-                  annual interest, and save for 5 years, this calculator
-                  estimates your future savings.
-                </span>
+              <p class="text-secondary mb-0" data-i18n="savingsExample">
+                If you start with $1,000, save $100 every month, earn 5% annual
+                interest, and save for 5 years, this calculator estimates your
+                future savings.
               </p>
             </div>
           </div>
@@ -547,27 +570,23 @@
       </div>
     </main>
 
-    <!-- ========================================
-     FOOTER
-======================================== -->
+    <!-- ================= FOOTER ================= -->
 
     <footer>
       <div class="container">
         <div class="row g-4">
-          <!-- ================= PROFILE / BRAND ================= -->
+          <!-- ================= PROFILE ================= -->
 
           <div class="col-lg-5">
             <div class="footer-profile">
-              <!-- Profile Image -->
               <div class="footer-profile-image">
                 <img src="/Khmer-Calculator-Hub/assets/Heng-BPNU6nhp.jpg" alt="Kim Liheng" />
               </div>
 
-              <!-- Profile Info -->
               <div class="footer-profile-info">
-                <strong>Kim Liheng</strong>
+                <strong> Kim Liheng </strong>
 
-                <span>Founder & Developer</span>
+                <span data-i18n="founderDeveloper"> Founder & Developer </span>
               </div>
             </div>
 
@@ -622,6 +641,7 @@
               <a
                 href="https://www.facebook.com/KimLiheng.77/?_rdc=6&_rdr#"
                 target="_blank"
+                rel="noopener noreferrer"
                 aria-label="Facebook"
               >
                 <i class="bi bi-facebook"></i>
@@ -630,6 +650,7 @@
               <a
                 href="https://t.me/Heng77777"
                 target="_blank"
+                rel="noopener noreferrer"
                 aria-label="Telegram"
               >
                 <i class="bi bi-telegram"></i>
@@ -638,6 +659,7 @@
               <a
                 href="https://www.tiktok.com/@hengg899?_r=1&_t=ZS-9A1HcAsdsLh"
                 target="_blank"
+                rel="noopener noreferrer"
                 aria-label="TikTok"
               >
                 <i class="bi bi-tiktok"></i>
@@ -658,19 +680,13 @@
       </div>
     </footer>
 
-    <!-- ========================================
-     SCRIPTS
-======================================== -->
+    <!-- ================= SCRIPTS ================= -->
 
-    <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore-compat.js"></script>
-    <script src="../js/firebase-config.js"></script>
-    <script src="../js/auth.js"></script>
-    <script src="../js/history.js"></script>
-    <script src="../js/savings.js"></script>
-    <script src="../js/language.js"></script>
+    <!-- Savings Calculator -->
 
+    <!-- Global Language -->
+
+    <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
