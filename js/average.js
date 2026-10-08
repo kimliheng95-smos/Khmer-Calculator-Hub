@@ -96,7 +96,7 @@ function removeNumberInput(button) {
 // CALCULATE
 // ========================================
 
-function calculateAverage() {
+async function calculateAverage() {
   const inputs = document.querySelectorAll(".number-input");
 
   const numbers = [];
@@ -199,34 +199,29 @@ function calculateAverage() {
   // HISTORY
   // ========================================
 
-  const history = getHistory();
+  // ========================================
+  // SAVE HISTORY (Firestore if logged in)
+  // ========================================
 
-  const newCalculation = {
-    id: Date.now(),
-
-    calculator: "Average Calculator",
-
-    calculatorType: "average",
-
-    data: {
-      numbers: numbers,
-      sum: sum,
-      average: average,
-      minimum: minimum,
-      maximum: maximum,
-    },
-
-    date: new Date().toLocaleString(),
-  };
-
-  history.unshift(newCalculation);
-
-  // Keep latest 20
-  if (history.length > 20) {
-    history.pop();
+  if (typeof window.saveHistory === "function") {
+    try {
+      await window.saveHistory({
+        calculatorType: "average",
+        calculatorName: "Average Calculator",
+        data: { average: typeof average !== 'undefined' ? average : 0 },
+        resultText: `Average: ${average}`,
+      });
+    } catch (err) {
+      console.error("Average Calculator saveHistory error:", err);
+    }
+  } else {
+    console.error("saveHistory is not available on window");
   }
 
-  localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
+  if (typeof window.displayHistory === "function") {
+    await window.displayHistory("historyContainer");
+  }
+
 
   displayHistory("historyContainer");
 }
@@ -235,7 +230,7 @@ function calculateAverage() {
 // CLEAR HISTORY
 // ========================================
 
-function clearAverageHistory() {
+async function clearAverageHistory() {
   const confirmClear = confirm(
     getAverageText(
       "confirmClearHistory",
@@ -247,7 +242,7 @@ function clearAverageHistory() {
     return;
   }
 
-  clearHistory();
+  if (typeof window.clearHistory === "function") await window.clearHistory();
 
   displayHistory("historyContainer");
 }
@@ -256,7 +251,7 @@ function clearAverageHistory() {
 // PAGE LOAD
 // ========================================
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
   // ========================================
   // ADD BUTTON
   // ========================================
@@ -307,3 +302,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   displayHistory("historyContainer");
 });
+
+window.calculateAverage = calculateAverage;
+
+window.clearAverageHistory = clearAverageHistory;

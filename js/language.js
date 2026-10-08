@@ -1,4 +1,6 @@
 let currentLanguage = localStorage.getItem("language") || "en";
+// Expose for calculator scripts / onclick handlers that run outside this module
+window.currentLanguage = currentLanguage;
 
 const translations = {
   // =========================================================
@@ -1163,9 +1165,11 @@ function applyLanguage() {
   // Safety check
   if (!language) {
     currentLanguage = "en";
+    window.currentLanguage = "en";
     localStorage.setItem("language", "en");
     return;
   }
+  window.currentLanguage = currentLanguage;
 
   // =======================================================
   // TEXT
@@ -1235,6 +1239,7 @@ function applyLanguage() {
 function toggleLanguage() {
   // Change language
   currentLanguage = currentLanguage === "en" ? "kh" : "en";
+  window.currentLanguage = currentLanguage;
 
   // Save globally
   localStorage.setItem("language", currentLanguage);
@@ -1260,6 +1265,7 @@ function getCurrentLanguage() {
 window.applyLanguage = applyLanguage;
 window.toggleLanguage = toggleLanguage;
 window.getCurrentLanguage = getCurrentLanguage;
+window.translations = translations;
 
 // =========================================================
 // START

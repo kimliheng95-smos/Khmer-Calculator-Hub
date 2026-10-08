@@ -21,7 +21,7 @@ function getSalaryText(key, fallback) {
 // CALCULATE SALARY
 // ========================================
 
-function calculateSalary() {
+async function calculateSalary() {
   const basicInput = document.getElementById("basicSalary").value.trim();
 
   const allowanceInput = document.getElementById("allowances").value.trim();
@@ -155,36 +155,29 @@ function calculateSalary() {
   // SAVE HISTORY
   // ========================================
 
-  const history = getHistory();
+  // ========================================
+  // SAVE HISTORY (Firestore if logged in)
+  // ========================================
 
-  const newCalculation = {
-    id: Date.now(),
-
-    calculator: "Salary Calculator",
-
-    calculatorType: "salary",
-
-    data: {
-      basicSalary: basicSalary,
-      allowances: allowances,
-      deductions: deductions,
-      taxRate: taxRate,
-      grossSalary: grossSalary,
-      totalDeductions: totalDeductions,
-      netSalary: netSalary,
-    },
-
-    date: new Date().toLocaleString(),
-  };
-
-  history.unshift(newCalculation);
-
-  // Keep latest 20
-  if (history.length > 20) {
-    history.pop();
+  if (typeof window.saveHistory === "function") {
+    try {
+      await window.saveHistory({
+        calculatorType: "salary",
+        calculatorName: "Salary Calculator",
+        data: { net: typeof net !== 'undefined' ? net : 0 },
+        resultText: `Net: ${net}`,
+      });
+    } catch (err) {
+      console.error("Salary Calculator saveHistory error:", err);
+    }
+  } else {
+    console.error("saveHistory is not available on window");
   }
 
-  localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
+  if (typeof window.displayHistory === "function") {
+    await window.displayHistory("historyContainer");
+  }
+
 
   displayHistory("historyContainer");
 }
@@ -193,7 +186,7 @@ function calculateSalary() {
 // CLEAR HISTORY
 // ========================================
 
-function clearSalaryHistory() {
+async function clearSalaryHistory() {
   const confirmClear = confirm(
     getSalaryText(
       "confirmClearHistory",
@@ -205,7 +198,7 @@ function clearSalaryHistory() {
     return;
   }
 
-  clearHistory();
+  if (typeof window.clearHistory === "function") await window.clearHistory();
 
   displayHistory("historyContainer");
 }
@@ -214,7 +207,7 @@ function clearSalaryHistory() {
 // PAGE LOAD
 // ========================================
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
   const calculateButton = document.getElementById("calculateSalaryButton");
 
   if (calculateButton) {
@@ -229,3 +222,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   displayHistory("historyContainer");
 });
+
+window.calculateSalary = calculateSalary;
+
+window.clearSalaryHistory = clearSalaryHistory;

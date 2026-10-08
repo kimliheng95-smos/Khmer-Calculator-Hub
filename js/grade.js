@@ -8,12 +8,12 @@
 
 function getGradeText(key, fallback) {
   if (
-    typeof translations !== "undefined" &&
-    typeof currentLanguage !== "undefined" &&
-    translations[currentLanguage] &&
-    translations[currentLanguage][key]
+    window.translations &&
+    window.currentLanguage &&
+    window.translations[window.currentLanguage] &&
+    window.translations[window.currentLanguage][key]
   ) {
-    return translations[currentLanguage][key];
+    return window.translations[window.currentLanguage][key];
   }
 
   return fallback;
@@ -23,7 +23,7 @@ function getGradeText(key, fallback) {
 // CALCULATE GRADE
 // ========================================
 
-function calculateGrade() {
+async function calculateGrade() {
   // ========================================
   // GET INPUT VALUES
   // ========================================
@@ -138,49 +138,36 @@ function calculateGrade() {
     getGradeText("gradeLabel", "Grade") + ": " + grade;
 
   // ========================================
-  // SAVE TYPED HISTORY
+  // ========================================
+  // SAVE HISTORY (Firestore if logged in)
   // ========================================
 
-  const history = getHistory();
-
-  const newCalculation = {
-    id: Date.now(),
-
-    calculator: "Grade Calculator",
-
-    calculatorType: "grade",
-
-    data: {
-      score: score,
-      maxScore: maxScore,
-      percentage: percentage,
-      grade: grade,
-    },
-
-    date: new Date().toLocaleString(),
-  };
-
-  history.unshift(newCalculation);
-
-  // Keep latest 20
-  if (history.length > 20) {
-    history.pop();
+  if (typeof window.saveHistory === "function") {
+    try {
+      await window.saveHistory({
+        calculatorType: "grade",
+        calculatorName: "Grade Calculator",
+        data: { score, maxScore, percentage, grade },
+        resultText: `Score: ${score} | Grade: ${grade}`,
+      });
+    } catch (err) {
+      console.error("Grade Calculator saveHistory error:", err);
+    }
+  } else {
+    console.error("saveHistory is not available on window");
   }
 
-  localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
-
-  // ========================================
-  // REFRESH HISTORY
-  // ========================================
-
-  displayHistory("historyContainer");
+  if (typeof window.displayHistory === "function") {
+    await window.displayHistory("historyContainer");
+  }
+if (typeof window.displayHistory === "function") window.displayHistory("historyContainer");
 }
 
 // ========================================
 // CLEAR GRADE HISTORY
 // ========================================
 
-function clearGradeHistory() {
+async function clearGradeHistory() {
   const confirmClear = confirm(
     getGradeText(
       "confirmClearHistory",
@@ -192,16 +179,30 @@ function clearGradeHistory() {
     return;
   }
 
-  clearHistory();
+  if (typeof window.clearHistory === "function") {
+    await window.clearHistory();
+  }
 
-  displayHistory("historyContainer");
+  if (typeof window.displayHistory === "function") window.displayHistory("historyContainer");
 }
 
 // ========================================
 // LOAD HISTORY
 // ========================================
 
-document.addEventListener("DOMContentLoaded", function () {
-  displayHistory("historyContainer");
+document.addEventListener("DOMContentLoaded", async function () {
+  if (typeof window.displayHistory === "function") window.displayHistory("historyContainer");
 });
+
+// GLOBAL
+window.calculateGrade = calculateGrade;
+window.clearGradeHistory = clearGradeHistory;
+
+document.addEventListener("DOMContentLoaded", async function () {
+  const calcBtn = document.getElementById("calculateGradeButton");
+  if (calcBtn) calcBtn.addEventListener("click", calculateGrade);
+  const clearBtn = document.getElementById("clearGradeHistoryButton");
+  if (clearBtn) clearBtn.addEventListener("click", clearGradeHistory);
   
+  if (typeof window.displayHistory === "function") window.displayHistory("historyContainer");
+});

@@ -43,7 +43,7 @@ function changeInterestType() {
 // CALCULATE INTEREST
 // ========================================
 
-function calculateInterest() {
+async function calculateInterest() {
   // ========================================
   // GET INPUT VALUES
   // ========================================
@@ -214,37 +214,29 @@ function calculateInterest() {
   // SAVE TYPED HISTORY
   // ========================================
 
-  const history = getHistory();
+  // ========================================
+  // SAVE HISTORY (Firestore if logged in)
+  // ========================================
 
-  const newCalculation = {
-    id: Date.now(),
-
-    calculator: "Interest Calculator",
-
-    calculatorType: "interest",
-
-    data: {
-      type: type,
-      typeName: typeName,
-      principal: principal,
-      rate: rate,
-      time: time,
-      frequency: frequency,
-      interest: interest,
-      totalAmount: totalAmount,
-    },
-
-    date: new Date().toLocaleString(),
-  };
-
-  history.unshift(newCalculation);
-
-  // Keep latest 20
-  if (history.length > 20) {
-    history.pop();
+  if (typeof window.saveHistory === "function") {
+    try {
+      await window.saveHistory({
+        calculatorType: "interest",
+        calculatorName: "Interest Calculator",
+        data: { interest: typeof interest !== 'undefined' ? interest : 0 },
+        resultText: `Interest: ${interest}`,
+      });
+    } catch (err) {
+      console.error("Interest Calculator saveHistory error:", err);
+    }
+  } else {
+    console.error("saveHistory is not available on window");
   }
 
-  localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
+  if (typeof window.displayHistory === "function") {
+    await window.displayHistory("historyContainer");
+  }
+
 
   // ========================================
   // DISPLAY HISTORY
@@ -257,7 +249,7 @@ function calculateInterest() {
 // CLEAR HISTORY
 // ========================================
 
-function clearInterestHistory() {
+async function clearInterestHistory() {
   const confirmClear = confirm(
     getInterestText(
       "confirmClearHistory",
@@ -269,7 +261,7 @@ function clearInterestHistory() {
     return;
   }
 
-  clearHistory();
+  if (typeof window.clearHistory === "function") await window.clearHistory();
 
   displayHistory("historyContainer");
 }
@@ -278,7 +270,7 @@ function clearInterestHistory() {
 // PAGE LOAD
 // ========================================
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
   // ========================================
   // INTEREST TYPE
   // ========================================
@@ -321,3 +313,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   displayHistory("historyContainer");
 });
+
+window.calculateInterest = calculateInterest;
+
+window.clearInterestHistory = clearInterestHistory;

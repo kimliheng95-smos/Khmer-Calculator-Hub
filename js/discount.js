@@ -7,15 +7,14 @@
 // ========================================
 
 function getDiscountText(key, fallback) {
-  if (
-    typeof translations !== "undefined" &&
-    typeof currentLanguage !== "undefined" &&
-    translations[currentLanguage] &&
-    translations[currentLanguage][key]
-  ) {
-    return translations[currentLanguage][key];
+  const lang =
+    typeof window.currentLanguage !== "undefined"
+      ? window.currentLanguage
+      : "en";
+  const t = window.translations;
+  if (t && t[lang] && t[lang][key]) {
+    return t[lang][key];
   }
-
   return fallback;
 }
 
@@ -23,7 +22,7 @@ function getDiscountText(key, fallback) {
 // CALCULATE DISCOUNT
 // ========================================
 
-function calculateDiscount() {
+async function calculateDiscount() {
   // ========================================
   // GET INPUTS
   // ========================================
@@ -102,49 +101,35 @@ function calculateDiscount() {
     "$" + finalPrice.toFixed(2);
 
   // ========================================
-  // SAVE TYPED HISTORY
+  // ========================================
+  // SAVE HISTORY (Firestore if logged in)
   // ========================================
 
-  const history = getHistory();
-
-  const newCalculation = {
-    id: Date.now(),
-
-    calculator: "Discount Calculator",
-
-    calculatorType: "discount",
-
-    data: {
-      price: price,
-      discount: discount,
-      saved: saved,
-      finalPrice: finalPrice,
-    },
-
-    date: new Date().toLocaleString(),
-  };
-
-  history.unshift(newCalculation);
-
-  // Keep latest 20
-  if (history.length > 20) {
-    history.pop();
+  if (typeof window.saveHistory === "function") {
+    try {
+      await window.saveHistory({
+        calculatorType: "discount",
+        calculatorName: "Discount Calculator",
+        data: { price, discount, saved, finalPrice },
+        resultText: `Final: $${finalPrice.toFixed(2)}`,
+      });
+    } catch (err) {
+      console.error("Discount Calculator saveHistory error:", err);
+    }
+  } else {
+    console.error("saveHistory is not available on window");
   }
 
-  localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
-
-  // ========================================
-  // REFRESH HISTORY
-  // ========================================
-
-  displayHistory("historyContainer");
+  if (typeof window.displayHistory === "function") {
+    await window.displayHistory("historyContainer");
+  }
 }
 
 // ========================================
 // CLEAR DISCOUNT HISTORY
 // ========================================
 
-function clearDiscountHistory() {
+async function clearDiscountHistory() {
   const confirmClear = confirm(
     getDiscountText(
       "confirmClearHistory",
@@ -156,15 +141,35 @@ function clearDiscountHistory() {
     return;
   }
 
-  clearHistory();
-
-  displayHistory("historyContainer");
+  const HISTORY_KEY = window.HISTORY_KEY || "calculatorHistory";
+  localStorage.removeItem(HISTORY_KEY);
+  if (typeof window.clearHistory === "function") {
+    window.clearHistory();
+  }
+  if (typeof window.displayHistory === "function") {
+    window.displayHistory("historyContainer");
+  }
 }
 
 // ========================================
-// LOAD HISTORY
+// GLOBAL
 // ========================================
 
-document.addEventListener("DOMContentLoaded", function () {
-  displayHistory("historyContainer");
+window.calculateDiscount = calculateDiscount;
+window.clearDiscountHistory = clearDiscountHistory;
+
+// ========================================
+// LOAD HISTORY + BIND BUTTONS
+// ========================================
+
+document.addEventListener("DOMContentLoaded", async function () {
+  const calcBtn = document.getElementById("calculateDiscountButton");
+  if (calcBtn) calcBtn.addEventListener("click", calculateDiscount);
+
+  const clearBtn = document.getElementById("clearDiscountHistoryButton");
+  if (clearBtn) clearBtn.addEventListener("click", clearDiscountHistory);
+
+  if (typeof window.displayHistory === "function") {
+    window.displayHistory("historyContainer");
+  }
 });

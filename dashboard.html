@@ -263,13 +263,12 @@
       import {
         getCalculatorDisplayName,
         formatHistoryResult,
+        getHistory,
+        deleteHistory,
+        clearHistory,
       } from "./js/history.js";
 
       import { getCurrentLanguage } from "./js/language.js";
-
-      // ========================================
-      // TRANSLATION HELPER
-      // ========================================
 
       function isKhmer() {
         return getCurrentLanguage() === "kh";
@@ -279,116 +278,73 @@
         return isKhmer() ? kh : en;
       }
 
-      // ========================================
-      // DOM READY
-      // ========================================
-
       document.addEventListener("DOMContentLoaded", async function () {
-        // ========================================
-        // CHECK LOGIN
-        // ========================================
-
         const user = await loadSession();
 
         if (!user) {
           window.location.href = "login.html";
-
           return;
         }
 
-        // ========================================
-        // DISPLAY USER INFORMATION
-        // ========================================
-
         document.querySelectorAll("[data-auth-name]").forEach(function (el) {
-          el.textContent = user.name || "User";
+          el.textContent = user.name || user.email || "User";
         });
 
-        document.getElementById("userEmail").textContent = user.email || "";
+        const emailEl = document.getElementById("userEmail");
+        if (emailEl) emailEl.textContent = user.email || "";
 
-        // ========================================
-        // LOGOUT
-        // ========================================
-
-        document
-          .getElementById("logoutBtn")
-          .addEventListener("click", async function () {
+        const logoutBtn = document.getElementById("logoutBtn");
+        if (logoutBtn) {
+          logoutBtn.addEventListener("click", async function () {
             const result = await logout();
-
-            if (result.success) {
+            if (result && result.success) {
               window.location.href = "login.html";
             } else {
               alert(t("Logout failed.", "ចាកចេញមិនបានទេ។"));
             }
           });
-
-        // ========================================
-        // LOAD DASHBOARD HISTORY
-        // ========================================
+        }
 
         async function loadDashboardHistory() {
           const container = document.getElementById("dashboardHistory");
+          if (!container) return;
 
-          container.innerHTML = `
-
-              <p class="text-secondary text-center py-4 mb-0">
-
-                ${t("Loading...", "កំពុងផ្ទុក...")}
-
-              </p>
-
-            `;
+          container.innerHTML =
+            '<p class="text-secondary text-center py-4 mb-0">' +
+            t("Loading...", "កំពុងផ្ទុក...") +
+            "</p>";
 
           try {
-            const history = await getAuthHistory();
+            // Prefer Firestore; getHistory falls back to local if remote empty
+            let history = await getAuthHistory();
 
-            // ========================================
-            // TOTAL COUNT
-            // ========================================
+            if (!Array.isArray(history) || history.length === 0) {
+              // Fallback: localStorage (so user still sees something)
+              history = await getHistory();
+            }
 
-            document.getElementById("statCount").textContent = history.length;
-
-            // ========================================
-            // NO HISTORY
-            // ========================================
+            const countEl = document.getElementById("statCount");
+            if (countEl) countEl.textContent = String(history.length || 0);
 
             if (!history || history.length === 0) {
-              container.innerHTML = `
-
-                  <p class="text-secondary text-center py-4 mb-0">
-
-                    ${t(
-                      "No calculation history yet.",
-                      "មិនទាន់មានប្រវត្តិការគណនាទេ។",
-                    )}
-
-                  </p>
-
-                `;
-
+              container.innerHTML =
+                '<p class="text-secondary text-center py-4 mb-0">' +
+                t(
+                  "No calculation history yet. Use a calculator while logged in.",
+                  "មិនទាន់មានប្រវត្តិទេ។ សូមគណនាខណៈពេលបាន login។",
+                ) +
+                "</p>";
               return;
             }
 
-            // ========================================
-            // LANGUAGE
-            // ========================================
-
             const lang = getCurrentLanguage();
-
-            // ========================================
-            // DISPLAY HISTORY
-            // ========================================
 
             container.innerHTML = history
               .map(function (item) {
                 const name = getCalculatorDisplayName(item, lang);
-
                 const result = formatHistoryResult(item);
 
-                // Firestore Timestamp
-
                 let date = "";
-
                 if (
                   item.createdAt &&
                   typeof item.createdAt.toDate === "function"
@@ -396,134 +352,95 @@
                   date = item.createdAt
                     .toDate()
                     .toLocaleString(lang === "kh" ? "km-KH" : "en-US");
+                } else if (item.createdAt) {
+                  try {
+                    date = new Date(item.createdAt).toLocaleString(
+                      lang === "kh" ? "km-KH" : "en-US",
+                    );
+                  } catch (e) {
+                    date = "";
+                  }
                 } else if (item.date) {
                   date = item.date;
-                } else if (item.created_at) {
-                  date = item.created_at;
                 }
 
-                return `
-
-                      <div
-                        class="history-item border rounded p-3 mb-2"
-                      >
-
-                        <div
-                          class="d-flex justify-content-between align-items-start gap-3"
-                        >
-
-                          <div>
-
-                            <div
-                              class="history-calculator fw-semibold"
-                            >
-                              ${name}
-                            </div>
-
-
-                            <div
-                              class="history-result mt-1 small"
-                            >
-                              ${result}
-                            </div>
-
-
-                            <small
-                              class="text-secondary"
-                            >
-                              ${date}
-                            </small>
-
-                          </div>
-
-
-                          <button
-                            type="button"
-                            class="btn btn-sm btn-outline-danger"
-                            data-id="${String(item.id)}"
-                            title="${t("Delete", "លុប")}"
-                          >
-
-                            <i class="bi bi-trash"></i>
-
-                          </button>
-
-                        </div>
-
-                      </div>
-
-                    `;
+                return (
+                  '<div class="history-item border rounded p-3 mb-2">' +
+                  '<div class="d-flex justify-content-between align-items-start gap-3">' +
+                  "<div>" +
+                  '<div class="history-calculator fw-semibold">' +
+                  name +
+                  "</div>" +
+                  '<div class="history-result mt-1 small">' +
+                  result +
+                  "</div>" +
+                  '<small class="text-secondary">' +
+                  date +
+                  "</small>" +
+                  "</div>" +
+                  '<button type="button" class="btn btn-sm btn-outline-danger" data-id="' +
+                  String(item.id) +
+                  '" title="' +
+                  t("Delete", "លុប") +
+                  '"><i class="bi bi-trash"></i></button>' +
+                  "</div></div>"
+                );
               })
               .join("");
-
-            // ========================================
-            // DELETE ONE HISTORY
-            // ========================================
 
             container
               .querySelectorAll("button[data-id]")
               .forEach(function (btn) {
                 btn.addEventListener("click", async function () {
                   const id = btn.getAttribute("data-id");
-
-                  // Firestore document IDs
-                  // are strings.
-
-                  const result = await deleteAuthHistoryItem(id);
-
+                  // deleteHistory handles local + Firestore
+                  const result = await deleteHistory(id);
                   if (result && result.success) {
                     await loadDashboardHistory();
                   } else {
-                    alert(
-                      t("Cannot delete history.", "មិនអាចលុបប្រវត្តិបានទេ។"),
-                    );
+                    // try direct firestore delete as fallback
+                    const r2 = await deleteAuthHistoryItem(id);
+                    if (r2 && r2.success) {
+                      await loadDashboardHistory();
+                    } else {
+                      alert(
+                        t("Cannot delete history.", "មិនអាចលុបប្រវត្តិបានទេ។"),
+                      );
+                      console.error("delete failed", result, r2);
+                    }
                   }
                 });
               });
           } catch (error) {
             console.error("Dashboard history error:", error);
-
-            container.innerHTML = `
-
-                <p class="text-danger text-center py-4 mb-0">
-
-                  ${t("Cannot load history.", "មិនអាចទាញយកប្រវត្តិបានទេ។")}
-
-                </p>
-
-              `;
+            container.innerHTML =
+              '<p class="text-danger text-center py-4 mb-0">' +
+              t("Cannot load history.", "មិនអាចទាញយកប្រវត្តិបានទេ។") +
+              "<br><small>" +
+              (error && error.message ? error.message : "") +
+              "</small></p>";
           }
         }
 
-        // ========================================
-        // CLEAR ALL HISTORY
-        // ========================================
-
-        document
-          .getElementById("clearAllBtn")
-          .addEventListener("click", async function () {
+        const clearAllBtn = document.getElementById("clearAllBtn");
+        if (clearAllBtn) {
+          clearAllBtn.addEventListener("click", async function () {
             const confirmed = confirm(
               t("Clear all history?", "តើអ្នកចង់លុបប្រវត្តិទាំងអស់មែនទេ?"),
             );
+            if (!confirmed) return;
 
-            if (!confirmed) {
-              return;
-            }
-
-            const result = await clearAuthHistory();
+            const result = await clearHistory();
+            // also clear firestore
+            await clearAuthHistory();
 
             if (result && result.success) {
               await loadDashboardHistory();
             } else {
-              alert(
-                t("Cannot clear history.", "មិនអាចលុបប្រវត្តិទាំងអស់បានទេ។"),
-              );
+              await loadDashboardHistory();
             }
           });
-
-        // ========================================
-        // INITIAL LOAD
-        // ========================================
+        }
 
         await loadDashboardHistory();
       });

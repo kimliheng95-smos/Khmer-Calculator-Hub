@@ -74,7 +74,20 @@ function getCurrentUser() {
 // ========================================
 
 function isLoggedIn() {
-  return currentUser !== null;
+  // Prefer module state; fall back to Firebase auth.currentUser
+  if (currentUser !== null) return true;
+  try {
+    if (auth && auth.currentUser) {
+      currentUser = {
+        id: auth.currentUser.uid,
+        uid: auth.currentUser.uid,
+        email: auth.currentUser.email,
+        name: auth.currentUser.displayName || "",
+      };
+      return true;
+    }
+  } catch (e) {}
+  return false;
 }
 
 // ========================================
@@ -348,28 +361,39 @@ async function getAuthHistory() {
 
     const historyRef = collection(db, "users", user.uid, "history");
 
-    const historyQuery = query(
-      historyRef,
-      orderBy("createdAt", "desc"),
-      limit(100),
-    );
-
-    const snapshot = await getDocs(historyQuery);
+    let snapshot;
+    try {
+      const historyQuery = query(
+        historyRef,
+        orderBy("createdAt", "desc"),
+        limit(100),
+      );
+      snapshot = await getDocs(historyQuery);
+    } catch (indexError) {
+      // Fallback if composite index is missing
+      console.warn("GET AUTH HISTORY orderBy failed, fallback:", indexError);
+      snapshot = await getDocs(query(historyRef, limit(100)));
+    }
 
     const history = [];
 
     snapshot.forEach((docSnapshot) => {
       history.push({
         id: docSnapshot.id,
-
         ...docSnapshot.data(),
       });
+    });
+
+    // Sort client-side if needed
+    history.sort((a, b) => {
+      const ta = a.createdAt?.toMillis?.() || a.createdAt?.seconds * 1000 || 0;
+      const tb = b.createdAt?.toMillis?.() || b.createdAt?.seconds * 1000 || 0;
+      return tb - ta;
     });
 
     return history;
   } catch (error) {
     console.error("GET AUTH HISTORY ERROR:", error);
-
     return [];
   }
 }
@@ -383,26 +407,57 @@ async function saveAuthHistoryItem(item) {
     const user = await loadSession();
 
     if (!user) {
+      console.error("SAVE AUTH HISTORY: not logged in");
       return {
         success: false,
         error: "not_logged_in",
+        message: "User is not logged in.",
       };
     }
 
-    const historyRef = collection(db, "users", user.uid, "history");
+    const uid = user.uid || user.id;
+    if (!uid) {
+      console.error("SAVE AUTH HISTORY: no uid", user);
+      return { success: false, error: "no_uid" };
+    }
 
-    const docRef = await addDoc(historyRef, {
-      ...item,
+    // Ensure user doc exists (helps some security rule setups)
+    try {
+      await setDoc(
+        doc(db, "users", uid),
+        {
+          email: user.email || "",
+          name: user.name || "",
+          updatedAt: serverTimestamp(),
+        },
+        { merge: true },
+      );
+    } catch (e) {
+      console.warn("Could not upsert user doc:", e);
+    }
 
+    const historyRef = collection(db, "users", uid, "history");
+
+    const payload = {
+      calculator_type: item.calculator_type || item.calculatorType || "",
+      calculator_name: item.calculator_name || item.calculatorName || "",
+      data: item.data || {},
+      result_text: item.result_text || item.resultText || item.result || "",
       createdAt: serverTimestamp(),
-    });
+    };
+
+    console.log("[auth] saving history for", uid, payload.calculator_type);
+
+    const docRef = await addDoc(historyRef, payload);
+
+    console.log("[auth] history saved id=", docRef.id);
 
     return {
       success: true,
       id: docRef.id,
     };
   } catch (error) {
-    console.error("SAVE AUTH HISTORY ERROR:", error);
+    console.error("SAVE AUTH HISTORY ERROR:", error.code, error.message, error);
 
     return {
       success: false,
@@ -551,6 +606,19 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
+
+// ========================================
+// GLOBAL
+// ========================================
+
+window.getCurrentUser = getCurrentUser;
+window.isLoggedIn = isLoggedIn;
+window.loadSession = loadSession;
+window.getAuthHistory = getAuthHistory;
+window.saveAuthHistoryItem = saveAuthHistoryItem;
+window.deleteAuthHistoryItem = deleteAuthHistoryItem;
+window.clearAuthHistory = clearAuthHistory;
+window.updateAuthNav = updateAuthNav;
 
 // ========================================
 // EXPORT

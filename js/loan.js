@@ -23,7 +23,7 @@ function getLoanText(key, fallback) {
 // CALCULATE LOAN
 // ========================================
 
-function calculateLoan() {
+async function calculateLoan() {
   const loanAmountInput = document.getElementById("loanAmount").value.trim();
 
   const interestRateInput = document
@@ -160,35 +160,29 @@ function calculateLoan() {
   // SAVE HISTORY
   // ========================================
 
-  const history = getHistory();
+  // ========================================
+  // SAVE HISTORY (Firestore if logged in)
+  // ========================================
 
-  const newCalculation = {
-    id: Date.now(),
-
-    calculator: "Loan Calculator",
-
-    calculatorType: "loan",
-
-    data: {
-      loanAmount: loanAmount,
-      interestRate: interestRate,
-      loanTerm: loanTerm,
-      monthlyPayment: monthlyPayment,
-      totalPayment: totalPayment,
-      totalInterest: totalInterest,
-    },
-
-    date: new Date().toLocaleString(),
-  };
-
-  history.unshift(newCalculation);
-
-  // Keep latest 20
-  if (history.length > 20) {
-    history.pop();
+  if (typeof window.saveHistory === "function") {
+    try {
+      await window.saveHistory({
+        calculatorType: "loan",
+        calculatorName: "Loan Calculator",
+        data: { monthlyPayment: typeof monthlyPayment !== 'undefined' ? monthlyPayment : 0 },
+        resultText: `Monthly: ${monthlyPayment}`,
+      });
+    } catch (err) {
+      console.error("Loan Calculator saveHistory error:", err);
+    }
+  } else {
+    console.error("saveHistory is not available on window");
   }
 
-  localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
+  if (typeof window.displayHistory === "function") {
+    await window.displayHistory("historyContainer");
+  }
+
 
   // ========================================
   // REFRESH HISTORY
@@ -201,7 +195,7 @@ function calculateLoan() {
 // CLEAR HISTORY
 // ========================================
 
-function clearLoanHistory() {
+async function clearLoanHistory() {
   const confirmClear = confirm(
     getLoanText(
       "confirmClearHistory",
@@ -213,7 +207,7 @@ function clearLoanHistory() {
     return;
   }
 
-  clearHistory();
+  if (typeof window.clearHistory === "function") await window.clearHistory();
 
   displayHistory("historyContainer");
 }
@@ -222,7 +216,7 @@ function clearLoanHistory() {
 // PAGE LOAD
 // ========================================
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
   // ========================================
   // CALCULATE BUTTON
   // ========================================
@@ -249,3 +243,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   displayHistory("historyContainer");
 });
+
+window.calculateLoan = calculateLoan;
+
+window.clearLoanHistory = clearLoanHistory;

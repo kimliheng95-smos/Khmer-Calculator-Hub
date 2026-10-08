@@ -285,6 +285,14 @@ function calculateVAT() {
 
     date: new Date().toLocaleString(getLanguage() === "kh" ? "km-KH" : "en-US"),
   });
+  if (typeof window.saveHistory === "function") {
+    Promise.resolve(window.saveHistory({
+      calculatorType: "vat",
+      calculatorName: "VAT Calculator",
+      data: { type, price, rate, priceBeforeVAT, vatAmount, total: totalPrice },
+      resultText: `VAT total: ${totalPrice}`,
+    })).catch(e => console.error(e));
+  }
 }
 
 // ========================================

@@ -2,11 +2,13 @@
 // AGE CALCULATOR
 // ========================================
 
-function calculateAge() {
+async function calculateAge() {
   const birthDateInput = document.getElementById("birthDate").value;
 
   const language =
-    typeof currentLanguage !== "undefined" ? currentLanguage : "en";
+    typeof window.currentLanguage !== "undefined"
+      ? window.currentLanguage
+      : "en";
 
   // ========================================
   // CHECK EMPTY DATE
@@ -119,54 +121,39 @@ function calculateAge() {
   }
 
   // ========================================
-  // SAVE HISTORY
+  // ========================================
+  // SAVE HISTORY (Firestore if logged in)
   // ========================================
 
-  const historyCalculator = "Age Calculator";
-
-  const historyResult = {
-    years: years,
-    months: months,
-    days: days,
-  };
-
-  const history = getHistory();
-
-  const newCalculation = {
-    id: Date.now(),
-
-    calculator: historyCalculator,
-
-    calculatorType: "age",
-
-    data: historyResult,
-
-    date: new Date().toLocaleString(),
-  };
-
-  history.unshift(newCalculation);
-
-  // Keep latest 20
-  if (history.length > 20) {
-    history.pop();
+  if (typeof window.saveHistory === "function") {
+    try {
+      await window.saveHistory({
+        calculatorType: "age",
+        calculatorName: "Age Calculator",
+        data: { years, months, days },
+        resultText: language === "kh" ? `អាយុ ${years} ឆ្នាំ ${months} ខែ ${days} ថ្ងៃ` : `${years} years, ${months} months, ${days} days`,
+      });
+    } catch (err) {
+      console.error("Age Calculator saveHistory error:", err);
+    }
+  } else {
+    console.error("saveHistory is not available on window");
   }
 
-  localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
-
-  // ========================================
-  // REFRESH HISTORY
-  // ========================================
-
-  displayHistory("historyContainer");
+  if (typeof window.displayHistory === "function") {
+    await window.displayHistory("historyContainer");
+  }
 }
 
 // ========================================
 // CLEAR AGE HISTORY
 // ========================================
 
-function clearAgeHistory() {
+async function clearAgeHistory() {
   const language =
-    typeof currentLanguage !== "undefined" ? currentLanguage : "en";
+    typeof window.currentLanguage !== "undefined"
+      ? window.currentLanguage
+      : "en";
 
   const confirmClear = confirm(
     language === "kh"
@@ -178,15 +165,30 @@ function clearAgeHistory() {
     return;
   }
 
-  clearHistory();
+  const HISTORY_KEY = window.HISTORY_KEY || "calculatorHistory";
+  localStorage.removeItem(HISTORY_KEY);
 
-  displayHistory("historyContainer");
+  if (typeof window.clearHistory === "function") {
+    window.clearHistory();
+  }
+  if (typeof window.displayHistory === "function") {
+    window.displayHistory("historyContainer");
+  }
 }
+
+// ========================================
+// GLOBAL (onclick="calculateAge()")
+// ========================================
+
+window.calculateAge = calculateAge;
+window.clearAgeHistory = clearAgeHistory;
 
 // ========================================
 // LOAD HISTORY
 // ========================================
 
-document.addEventListener("DOMContentLoaded", function () {
-  displayHistory("historyContainer");
+document.addEventListener("DOMContentLoaded", async function () {
+  if (typeof window.displayHistory === "function") {
+    window.displayHistory("historyContainer");
+  }
 });

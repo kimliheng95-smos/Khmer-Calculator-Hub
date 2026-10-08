@@ -1,12 +1,12 @@
 function getBreakEvenText(key) {
-  if (typeof currentLanguage !== "undefined" && currentLanguage === "kh") {
+  if (typeof window.currentLanguage !== "undefined" && window.window.currentLanguage === "kh") {
     return translations.kh[key] || key;
   }
 
   return translations.en[key] || key;
 }
 
-function calculateBreakEven() {
+async function calculateBreakEven() {
   const fixedCosts = parseFloat(document.getElementById("fixedCosts").value);
 
   const sellingPrice = parseFloat(
@@ -60,55 +60,53 @@ function calculateBreakEven() {
   document.getElementById("breakEvenResult").classList.remove("d-none");
 
   // ========================================
-  // SAVE HISTORY
+  // ========================================
+  // SAVE HISTORY (Firestore if logged in)
   // ========================================
 
-  const history = getHistory();
-
-  const newCalculation = {
-    id: Date.now(),
-
-    calculator: "Break-Even Calculator",
-
-    calculatorType: "break-even",
-
-    data: {
-      fixedCosts: fixedCosts,
-      sellingPrice: sellingPrice,
-      variableCost: variableCost,
-      breakEvenUnits: breakEvenUnits,
-      breakEvenRevenue: breakEvenRevenue,
-    },
-
-    date: new Date().toLocaleString(),
-  };
-
-  history.unshift(newCalculation);
-
-  // Keep latest 20
-  if (history.length > 20) {
-    history.pop();
+  if (typeof window.saveHistory === "function") {
+    try {
+      await window.saveHistory({
+        calculatorType: "break-even",
+        calculatorName: "Break-Even Calculator",
+        data: { fixedCosts: typeof fixedCosts !== 'undefined' ? fixedCosts : 0, variableCost: typeof variableCost !== 'undefined' ? variableCost : 0, price: typeof price !== 'undefined' ? price : 0, breakEven: typeof breakEven !== 'undefined' ? breakEven : 0 },
+        resultText: `Break-Even result`,
+      });
+    } catch (err) {
+      console.error("Break-Even Calculator saveHistory error:", err);
+    }
+  } else {
+    console.error("saveHistory is not available on window");
   }
 
-  localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
-
-  displayHistory("historyContainer");
+  if (typeof window.displayHistory === "function") {
+    await window.displayHistory("historyContainer");
+  }
+if (typeof window.displayHistory === "function") window.displayHistory("historyContainer");
 }
 
 // Clear history
-function clearBreakEvenHistory() {
+async function clearBreakEvenHistory() {
   const confirmed = confirm(getBreakEvenText("confirmClearHistory"));
 
   if (!confirmed) {
     return;
   }
 
-  clearHistory();
+  if (typeof window.clearHistory === "function") {
+    await window.clearHistory();
+  }
 
-  displayHistory("historyContainer");
+  if (typeof window.displayHistory === "function") window.displayHistory("historyContainer");
 }
 
 // Load history
-document.addEventListener("DOMContentLoaded", function () {
-  displayHistory("historyContainer");
+document.addEventListener("DOMContentLoaded", async function () {
+  if (typeof window.displayHistory === "function") window.displayHistory("historyContainer");
 });
+
+// ========================================
+// GLOBAL (onclick handlers)
+// ========================================
+window.calculateBreakEven = calculateBreakEven;
+window.clearBreakEvenHistory = clearBreakEvenHistory;

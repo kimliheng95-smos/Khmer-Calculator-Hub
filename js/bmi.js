@@ -7,15 +7,14 @@
 // ========================================
 
 function getBMIText(key, fallback) {
-  if (
-    typeof translations !== "undefined" &&
-    typeof currentLanguage !== "undefined" &&
-    translations[currentLanguage] &&
-    translations[currentLanguage][key]
-  ) {
-    return translations[currentLanguage][key];
+  const lang =
+    typeof window.currentLanguage !== "undefined"
+      ? window.currentLanguage
+      : "en";
+  const t = window.translations;
+  if (t && t[lang] && t[lang][key]) {
+    return t[lang][key];
   }
-
   return fallback;
 }
 
@@ -140,37 +139,30 @@ async function calculateBMI() {
   // SAVE HISTORY TO MYSQL
   // ========================================
 
-  if (typeof saveAuthHistoryItem === "function") {
+  if (typeof window.saveHistory === "function") {
     try {
-      const historyResult = await saveAuthHistoryItem({
-        calculator: "BMI Calculator",
-
+      const historyResult = await window.saveHistory({
         calculatorType: "bmi",
-
-        data: {
-          weight: weight,
-          height: height,
-          bmi: bmi,
-          category: category,
-        },
-
-        result: `BMI: ${roundedBMI}`,
+        calculatorName: "BMI Calculator",
+        data: { weight, height, bmi: typeof roundedBMI !== "undefined" ? roundedBMI : bmi, category },
+        resultText: `BMI: ${typeof roundedBMI !== "undefined" ? roundedBMI : bmi} (${category})`,
       });
-
-      console.log("BMI history saved:", historyResult);
+      if (!historyResult || !historyResult.success) {
+        console.error("Failed to save BMI history:", historyResult);
+      }
     } catch (error) {
       console.error("Failed to save BMI history:", error);
     }
   } else {
-    console.error("saveAuthHistoryItem() is not available.");
+    console.error("saveHistory() is not available.");
   }
 
   // ========================================
   // REFRESH HISTORY
   // ========================================
 
-  if (typeof displayHistory === "function") {
-    await displayHistory("historyContainer");
+  if (typeof window.displayHistory === "function") {
+    await window.displayHistory("historyContainer");
   }
 }
 
@@ -194,39 +186,37 @@ async function clearBMIHistory() {
   // CLEAR HISTORY FROM MYSQL
   // ========================================
 
-  if (typeof clearAuthHistory === "function") {
+  if (typeof window.clearHistory === "function") {
     try {
-      const result = await clearAuthHistory();
-
-      console.log("BMI history cleared:", result);
+      await window.clearHistory();
     } catch (error) {
       console.error("Failed to clear BMI history:", error);
-
-      alert(getBMIText("historyClearError", "Failed to clear history."));
-
       return;
     }
-  } else {
-    console.error("clearAuthHistory() is not available.");
-
-    return;
   }
 
   // ========================================
   // REFRESH HISTORY
   // ========================================
 
-  if (typeof displayHistory === "function") {
-    await displayHistory("historyContainer");
+  if (typeof window.displayHistory === "function") {
+    await window.displayHistory("historyContainer");
   }
 }
+
+// ========================================
+// GLOBAL (onclick handlers)
+// ========================================
+
+window.calculateBMI = calculateBMI;
+window.clearBMIHistory = clearBMIHistory;
 
 // ========================================
 // LOAD HISTORY
 // ========================================
 
 document.addEventListener("DOMContentLoaded", async function () {
-  if (typeof displayHistory === "function") {
-    await displayHistory("historyContainer");
+  if (typeof window.displayHistory === "function") {
+    await window.displayHistory("historyContainer");
   }
 });

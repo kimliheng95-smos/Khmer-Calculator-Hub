@@ -7,15 +7,14 @@
 // ========================================
 
 function getGPAText(key, fallback) {
-  if (
-    typeof translations !== "undefined" &&
-    typeof currentLanguage !== "undefined" &&
-    translations[currentLanguage] &&
-    translations[currentLanguage][key]
-  ) {
-    return translations[currentLanguage][key];
+  const lang =
+    typeof window.currentLanguage !== "undefined"
+      ? window.currentLanguage
+      : "en";
+  const t = window.translations;
+  if (t && t[lang] && t[lang][key]) {
+    return t[lang][key];
   }
-
   return fallback;
 }
 
@@ -23,7 +22,7 @@ function getGPAText(key, fallback) {
 // ADD SUBJECT
 // ========================================
 
-function addSubject() {
+async function addSubject() {
   const subjects = document.getElementById("subjects");
 
   const subjectRow = document.createElement("div");
@@ -77,7 +76,7 @@ function addSubject() {
 // CALCULATE GPA
 // ========================================
 
-function calculateGPA() {
+async function calculateGPA() {
   const names = document.querySelectorAll(".subject-name");
   const credits = document.querySelectorAll(".subject-credit");
   const grades = document.querySelectorAll(".subject-grade");
@@ -192,50 +191,35 @@ function calculateGPA() {
   document.getElementById("gpaMessage").textContent = message;
 
   // ========================================
-  // SAVE TYPED HISTORY
+  // ========================================
+  // SAVE HISTORY (Firestore if logged in)
   // ========================================
 
-  const history = getHistory();
-
-  const newCalculation = {
-    id: Date.now(),
-
-    calculator: "GPA Calculator",
-
-    calculatorType: "gpa",
-
-    data: {
-      subjects: subjectsData,
-      totalCredits: totalCredits,
-      totalPoints: totalPoints,
-      gpa: gpa,
-      message: message,
-    },
-
-    date: new Date().toLocaleString(),
-  };
-
-  history.unshift(newCalculation);
-
-  // Keep latest 20
-  if (history.length > 20) {
-    history.pop();
+  if (typeof window.saveHistory === "function") {
+    try {
+      await window.saveHistory({
+        calculatorType: "gpa",
+        calculatorName: "GPA Calculator",
+        data: { subjects: typeof subjectsData !== 'undefined' ? subjectsData : [], totalCredits: typeof totalCredits !== 'undefined' ? totalCredits : 0, totalPoints: typeof totalPoints !== 'undefined' ? totalPoints : 0, gpa, message: typeof message !== 'undefined' ? message : '' },
+        resultText: `GPA: ${gpa}`,
+      });
+    } catch (err) {
+      console.error("GPA Calculator saveHistory error:", err);
+    }
+  } else {
+    console.error("saveHistory is not available on window");
   }
 
-  localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
-
-  // ========================================
-  // REFRESH HISTORY
-  // ========================================
-
-  displayHistory("historyContainer");
+  if (typeof window.displayHistory === "function") {
+    await window.displayHistory("historyContainer");
+  }
 }
 
 // ========================================
 // CLEAR GPA HISTORY
 // ========================================
 
-function clearGPAHistory() {
+async function clearGPAHistory() {
   const confirmClear = confirm(
     getGPAText(
       "confirmClearHistory",
@@ -247,15 +231,30 @@ function clearGPAHistory() {
     return;
   }
 
-  clearHistory();
-
-  displayHistory("historyContainer");
+  const HISTORY_KEY = window.HISTORY_KEY || "calculatorHistory";
+  localStorage.removeItem(HISTORY_KEY);
+  if (typeof window.clearHistory === "function") {
+    window.clearHistory();
+  }
+  if (typeof window.displayHistory === "function") {
+    window.displayHistory("historyContainer");
+  }
 }
+
+// ========================================
+// GLOBAL (onclick handlers)
+// ========================================
+
+window.addSubject = addSubject;
+window.calculateGPA = calculateGPA;
+window.clearGPAHistory = clearGPAHistory;
 
 // ========================================
 // LOAD HISTORY
 // ========================================
 
-document.addEventListener("DOMContentLoaded", function () {
-  displayHistory("historyContainer");
+document.addEventListener("DOMContentLoaded", async function () {
+  if (typeof window.displayHistory === "function") {
+    window.displayHistory("historyContainer");
+  }
 });

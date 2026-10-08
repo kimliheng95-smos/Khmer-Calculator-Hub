@@ -8,12 +8,12 @@
 
 function getPercentageText(key, fallback) {
   if (
-    typeof translations !== "undefined" &&
-    typeof currentLanguage !== "undefined" &&
-    translations[currentLanguage] &&
-    translations[currentLanguage][key]
+    window.translations &&
+    window.currentLanguage &&
+    window.translations[window.currentLanguage] &&
+    window.translations[window.currentLanguage][key]
   ) {
-    return translations[currentLanguage][key];
+    return window.translations[window.currentLanguage][key];
   }
 
   return fallback;
@@ -90,7 +90,7 @@ function changePercentageType() {
 // CALCULATE
 // ========================================
 
-function calculatePercentage() {
+async function calculatePercentage() {
   const type = document.getElementById("percentageType").value;
 
   const valueOneInput = document.getElementById("valueOne").value;
@@ -201,49 +201,36 @@ function calculatePercentage() {
   document.getElementById("resultText").textContent = resultText;
 
   // ========================================
-  // SAVE TYPED HISTORY
+  // ========================================
+  // SAVE HISTORY (Firestore if logged in)
   // ========================================
 
-  const history = getHistory();
-
-  const newCalculation = {
-    id: Date.now(),
-
-    calculator: "Percentage Calculator",
-
-    calculatorType: "percentage",
-
-    data: {
-      type: type,
-      valueOne: valueOne,
-      valueTwo: valueTwo,
-      result: result,
-    },
-
-    date: new Date().toLocaleString(),
-  };
-
-  history.unshift(newCalculation);
-
-  // Keep latest 20
-  if (history.length > 20) {
-    history.pop();
+  if (typeof window.saveHistory === "function") {
+    try {
+      await window.saveHistory({
+        calculatorType: "percentage",
+        calculatorName: "Percentage Calculator",
+        data: { result: typeof result !== 'undefined' ? result : 0 },
+        resultText: `Result: ${result}`,
+      });
+    } catch (err) {
+      console.error("Percentage Calculator saveHistory error:", err);
+    }
+  } else {
+    console.error("saveHistory is not available on window");
   }
 
-  localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
-
-  // ========================================
-  // REFRESH HISTORY
-  // ========================================
-
-  displayHistory("historyContainer");
+  if (typeof window.displayHistory === "function") {
+    await window.displayHistory("historyContainer");
+  }
+if (typeof window.displayHistory === "function") window.displayHistory("historyContainer");
 }
 
 // ========================================
 // CLEAR HISTORY
 // ========================================
 
-function clearPercentageHistory() {
+async function clearPercentageHistory() {
   const confirmClear = confirm(
     getPercentageText(
       "confirmClearHistory",
@@ -255,17 +242,32 @@ function clearPercentageHistory() {
     return;
   }
 
-  clearHistory();
+  if (typeof window.clearHistory === "function") {
+    await window.clearHistory();
+  }
 
-  displayHistory("historyContainer");
+  if (typeof window.displayHistory === "function") window.displayHistory("historyContainer");
 }
 
 // ========================================
 // PAGE LOAD
 // ========================================
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
   changePercentageType();
 
-  displayHistory("historyContainer");
+  if (typeof window.displayHistory === "function") window.displayHistory("historyContainer");
+});
+
+// GLOBAL
+window.calculatePercentage = calculatePercentage;
+window.clearPercentageHistory = clearPercentageHistory;
+
+document.addEventListener("DOMContentLoaded", async function () {
+  const calcBtn = document.getElementById("calculatePercentageButton");
+  if (calcBtn) calcBtn.addEventListener("click", calculatePercentage);
+  const clearBtn = document.getElementById("clearPercentageHistoryButton");
+  if (clearBtn) clearBtn.addEventListener("click", clearPercentageHistory);
+  if (typeof changePercentageType === "function") changePercentageType();
+  if (typeof window.displayHistory === "function") window.displayHistory("historyContainer");
 });

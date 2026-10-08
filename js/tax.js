@@ -23,7 +23,7 @@ function getTaxText(key, fallback) {
 // CALCULATE TAX
 // ========================================
 
-function calculateTax() {
+async function calculateTax() {
   // ========================================
   // GET INPUT VALUES
   // ========================================
@@ -133,41 +133,29 @@ function calculateTax() {
   // SAVE HISTORY
   // ========================================
 
-  const history = getHistory();
+  // ========================================
+  // SAVE HISTORY (Firestore if logged in)
+  // ========================================
 
-  const newCalculation = {
-    id: Date.now(),
-
-    calculator: "Tax Calculator",
-
-    calculatorType: "tax",
-
-    data: {
-      income: income,
-
-      deduction: deduction,
-
-      taxRate: taxRate,
-
-      taxableIncome: taxableIncome,
-
-      taxAmount: taxAmount,
-
-      afterTaxIncome: afterTaxIncome,
-    },
-
-    date: new Date().toLocaleString(),
-  };
-
-  history.unshift(newCalculation);
-
-  // Keep latest 20
-
-  if (history.length > 20) {
-    history.pop();
+  if (typeof window.saveHistory === "function") {
+    try {
+      await window.saveHistory({
+        calculatorType: "tax",
+        calculatorName: "Tax Calculator",
+        data: { tax: typeof tax !== 'undefined' ? tax : 0 },
+        resultText: `Tax: ${tax}`,
+      });
+    } catch (err) {
+      console.error("Tax Calculator saveHistory error:", err);
+    }
+  } else {
+    console.error("saveHistory is not available on window");
   }
 
-  localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
+  if (typeof window.displayHistory === "function") {
+    await window.displayHistory("historyContainer");
+  }
+
 
   // ========================================
   // DISPLAY HISTORY
@@ -180,7 +168,7 @@ function calculateTax() {
 // CLEAR HISTORY
 // ========================================
 
-function clearTaxHistory() {
+async function clearTaxHistory() {
   const confirmClear = confirm(
     getTaxText(
       "confirmClearHistory",
@@ -192,7 +180,7 @@ function clearTaxHistory() {
     return;
   }
 
-  clearHistory();
+  if (typeof window.clearHistory === "function") await window.clearHistory();
 
   displayHistory("historyContainer");
 }
@@ -201,7 +189,7 @@ function clearTaxHistory() {
 // PAGE LOAD
 // ========================================
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
   // ========================================
   // CALCULATE BUTTON
   // ========================================
@@ -228,3 +216,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   displayHistory("historyContainer");
 });
+
+window.calculateTax = calculateTax;
+
+window.clearTaxHistory = clearTaxHistory;

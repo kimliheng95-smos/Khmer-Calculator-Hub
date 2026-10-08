@@ -6,7 +6,7 @@ function getFuelText(key) {
   return translations.en[key] || key;
 }
 
-function calculateFuel() {
+async function calculateFuel() {
   const distance = parseFloat(document.getElementById("distance").value);
 
   const fuelConsumption = parseFloat(
@@ -49,56 +49,60 @@ function calculateFuel() {
   document.getElementById("fuelResult").classList.remove("d-none");
 
   // ========================================
-  // SAVE HISTORY
+  // ========================================
+  // SAVE HISTORY (Firestore if logged in)
   // ========================================
 
-  const history = getHistory();
-
-  const newCalculation = {
-    id: Date.now(),
-
-    calculator: "Fuel Cost Calculator",
-
-    calculatorType: "fuel",
-
-    data: {
-      distance: distance,
-      fuelConsumption: fuelConsumption,
-      fuelPrice: fuelPrice,
-      fuelUsed: fuelUsed,
-      totalFuelCost: totalFuelCost,
-      costPerKm: costPerKm,
-    },
-
-    date: new Date().toLocaleString(),
-  };
-
-  history.unshift(newCalculation);
-
-  // Keep latest 20
-  if (history.length > 20) {
-    history.pop();
+  if (typeof window.saveHistory === "function") {
+    try {
+      await window.saveHistory({
+        calculatorType: "fuel",
+        calculatorName: "Fuel Cost Calculator",
+        data: { distance, fuelConsumption, fuelPrice, fuelUsed, totalFuelCost, costPerKm },
+        resultText: `Fuel cost: ${totalFuelCost}`,
+      });
+    } catch (err) {
+      console.error("Fuel Cost Calculator saveHistory error:", err);
+    }
+  } else {
+    console.error("saveHistory is not available on window");
   }
 
-  localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
-
-  displayHistory("historyContainer");
+  if (typeof window.displayHistory === "function") {
+    await window.displayHistory("historyContainer");
+  }
+if (typeof window.displayHistory === "function") window.displayHistory("historyContainer");
 }
 
 // Clear history
-function clearFuelHistory() {
+async function clearFuelHistory() {
   const confirmed = confirm(getFuelText("confirmClearHistory"));
 
   if (!confirmed) {
     return;
   }
 
-  clearHistory();
+  if (typeof window.clearHistory === "function") {
+    await window.clearHistory();
+  }
 
-  displayHistory("historyContainer");
+  if (typeof window.displayHistory === "function") window.displayHistory("historyContainer");
 }
 
 // Load history
-document.addEventListener("DOMContentLoaded", function () {
-  displayHistory("historyContainer");
+document.addEventListener("DOMContentLoaded", async function () {
+  if (typeof window.displayHistory === "function") window.displayHistory("historyContainer");
+});
+
+// GLOBAL
+window.calculateFuel = calculateFuel;
+window.clearFuelHistory = clearFuelHistory;
+
+document.addEventListener("DOMContentLoaded", async function () {
+  const calcBtn = document.getElementById("calculateFuelButton");
+  if (calcBtn) calcBtn.addEventListener("click", calculateFuel);
+  const clearBtn = document.getElementById("clearFuelHistoryButton");
+  if (clearBtn) clearBtn.addEventListener("click", clearFuelHistory);
+  
+  if (typeof window.displayHistory === "function") window.displayHistory("historyContainer");
 });

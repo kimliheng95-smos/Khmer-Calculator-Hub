@@ -405,7 +405,7 @@ function convertUnit() {
   // HISTORY
   // ========================================
 
-  saveHistory({
+  const unitData = {
     value: value,
     from: from,
     to: to,
@@ -413,7 +413,16 @@ function convertUnit() {
     toName: getUnitName(to),
     result: result.toFixed(4),
     date: new Date().toLocaleString(getLanguage() === "kh" ? "km-KH" : "en-US"),
-  });
+  };
+  saveHistory(unitData);
+  if (typeof window.saveHistory === "function") {
+    Promise.resolve(window.saveHistory({
+      calculatorType: "unit",
+      calculatorName: "Unit Converter",
+      data: unitData,
+      resultText: `${value} ${unitData.fromName} = ${unitData.result} ${unitData.toName}`,
+    })).catch(e => console.error(e));
+  }
 }
 
 // ========================================

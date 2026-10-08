@@ -59,7 +59,7 @@ function loadCurrencies() {
 // CONVERT CURRENCY
 // ========================================
 
-function convertCurrency() {
+async function convertCurrency() {
   const amountInput = document.getElementById("amount").value;
 
   const from = document.getElementById("fromCurrency").value;
@@ -97,46 +97,36 @@ function convertCurrency() {
     amount.toFixed(2) + " " + from + " = " + result.toFixed(2) + " " + to;
 
   // ========================================
-  // SAVE HISTORY
+  // ========================================
+  // SAVE HISTORY (Firestore if logged in)
   // ========================================
 
-  const history = getHistory();
-
-  const newCalculation = {
-    id: Date.now(),
-
-    calculator: "Currency Converter",
-
-    calculatorType: "currency",
-
-    data: {
-      amount: amount,
-      from: from,
-      to: to,
-      result: result,
-    },
-
-    date: new Date().toLocaleString(),
-  };
-
-  history.unshift(newCalculation);
-
-  // Keep latest 20
-  if (history.length > 20) {
-    history.pop();
+  if (typeof window.saveHistory === "function") {
+    try {
+      await window.saveHistory({
+        calculatorType: "currency",
+        calculatorName: "Currency Converter",
+        data: { from: typeof fromCurrency !== 'undefined' ? fromCurrency : '', to: typeof toCurrency !== 'undefined' ? toCurrency : '', amount: typeof amount !== 'undefined' ? amount : 0, result: typeof converted !== 'undefined' ? converted : (typeof result !== 'undefined' ? result : 0) },
+        resultText: `Currency conversion`,
+      });
+    } catch (err) {
+      console.error("Currency Converter saveHistory error:", err);
+    }
+  } else {
+    console.error("saveHistory is not available on window");
   }
 
-  localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
-
-  // Refresh history
-  displayHistory("historyContainer");
+  if (typeof window.displayHistory === "function") {
+    await window.displayHistory("historyContainer");
+  }
+if (typeof window.displayHistory === "function") window.displayHistory("historyContainer");
 }
 
 // ========================================
 // SWAP CURRENCY
 // ========================================
 
-function swapCurrency() {
+async function swapCurrency() {
   const fromCurrency = document.getElementById("fromCurrency");
 
   const toCurrency = document.getElementById("toCurrency");
@@ -152,7 +142,7 @@ function swapCurrency() {
 // CLEAR CURRENCY HISTORY
 // ========================================
 
-function clearCurrencyHistory() {
+async function clearCurrencyHistory() {
   const confirmClear = confirm(
     "Are you sure you want to clear all calculation history?",
   );
@@ -161,17 +151,26 @@ function clearCurrencyHistory() {
     return;
   }
 
-  clearHistory();
+  if (typeof window.clearHistory === "function") {
+    await window.clearHistory();
+  }
 
-  displayHistory("historyContainer");
+  if (typeof window.displayHistory === "function") window.displayHistory("historyContainer");
 }
 
 // ========================================
 // PAGE LOAD
 // ========================================
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
   loadCurrencies();
 
-  displayHistory("historyContainer");
+  if (typeof window.displayHistory === "function") window.displayHistory("historyContainer");
 });
+
+// ========================================
+// GLOBAL (onclick handlers)
+// ========================================
+window.convertCurrency = convertCurrency;
+window.swapCurrency = swapCurrency;
+window.clearCurrencyHistory = clearCurrencyHistory;
